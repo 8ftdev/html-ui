@@ -1,0 +1,14 @@
+{
+	"name": "html-ui-conformance",
+	"private": true,
+	"scripts": {
+		"test": "bun test && playwright test",
+		"test:browser": "playwright test",
+		"preview": "bun scripts/build-preview.ts"
+	},
+	"devDependencies": {
+		"@playwright/test": "1.63.0",
+		"@speed-highlight/core": "2.1.0",
+		"typescript": "5.9.3"
+	}
+}

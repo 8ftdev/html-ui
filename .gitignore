@@ -1,0 +1,10 @@
+/bin/
+/node_modules/
+/.test-output/
+*.tsbuildinfo
+docs
+
+/test-results/
+/playwright-report/
+
+/preview.html

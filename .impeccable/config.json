@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "preview/template.html"
+        ],
+        "createdAt": "2026-09-28T01:23:31.521Z",
+        "reason": "Codex reviewed desktop and mobile screenshots: preview-grid cells supply 20–32px padding and column-headings spans supply 32px horizontal padding. Outer wrappers intentionally have no additional inset to keep the two-column grid aligned."
+      }
+    ]
+  }
+}

@@ -1,0 +1,3990 @@
+[
+  {
+    "Name": "accordion",
+    "Title": "Accordion",
+    "Summary": "Native disclosure with an accessible summary.",
+    "Status": "native",
+    "RootType": "HTMLDetailsElement",
+    "Props": [
+      {
+        "Name": "name",
+        "Type": "string",
+        "Description": "Nonempty name groups details exclusively within the same tree.",
+        "Required": false
+      },
+      {
+        "Name": "open",
+        "Type": "boolean",
+        "Description": "Whether the disclosure is initially open.",
+        "Required": false,
+        "Default": false
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "summary",
+        "Description": "Accessible disclosure label; avoid nested interactive controls.",
+        "Required": true,
+        "Scope": []
+      },
+      {
+        "Name": "content",
+        "Description": "Disclosure body.",
+        "Required": false,
+        "Scope": [
+          {
+            "Name": "open",
+            "Type": "boolean",
+            "Prop": "open"
+          }
+        ]
+      }
+    ],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "details",
+        "Attributes": {}
+      },
+      {
+        "ID": "summary",
+        "Tag": "summary",
+        "Attributes": {}
+      }
+    ],
+    "Bindings": [
+      {
+        "Node": "root",
+        "Name": "name",
+        "Prop": "name",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "root",
+        "Name": "open",
+        "Prop": "open",
+        "Kind": "property"
+      }
+    ],
+    "Children": [
+      {
+        "Parent": "summary",
+        "Node": "",
+        "Slot": "summary"
+      },
+      {
+        "Parent": "root",
+        "Node": "summary",
+        "Slot": ""
+      },
+      {
+        "Parent": "root",
+        "Node": "",
+        "Slot": "content"
+      }
+    ],
+    "Requirements": [
+      "The summary is the first child. Its native activation opens or closes the details.",
+      "Read root.open on toggle to synchronize adapter state; slot scope is an initial snapshot in the native factory.",
+      "For exclusive groups use the same nonempty name in the same tree, not necessarily siblings. Do not nest members of the same named group."
+    ],
+    "Events": [
+      {
+        "Name": "toggle",
+        "Target": "root",
+        "State": {
+          "open": "open"
+        },
+        "Type": "ToggleEvent",
+        "Description": "Native notification; adapters own application state updates."
+      }
+    ],
+    "Styling": [
+      "Choose spacing, typography, and focus indicators in the consuming design system. Preserve native keyboard and disabled semantics."
+    ],
+    "Features": [
+      {
+        "ID": "details-name",
+        "Status": "Newly available since 2024-09-03",
+        "Date": "2026-09-26"
+      }
+    ]
+  },
+  {
+    "Name": "alert-dialog",
+    "Title": "Alert Dialog",
+    "Summary": "Native modal dialog with declarative open and close buttons.",
+    "Status": "native",
+    "RootType": "HTMLDivElement",
+    "Props": [
+      {
+        "Name": "id",
+        "Type": "string",
+        "Description": "Unique dialog ID.",
+        "Required": true
+      },
+      {
+        "Name": "titleId",
+        "Type": "string",
+        "Description": "Unique title ID.",
+        "Required": true
+      },
+      {
+        "Name": "descriptionId",
+        "Type": "string",
+        "Description": "Unique ID on the slotted alert description.",
+        "Required": true
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "trigger",
+        "Description": "Accessible opening button label.",
+        "Required": true,
+        "Scope": []
+      },
+      {
+        "Name": "title",
+        "Description": "Dialog title.",
+        "Required": true,
+        "Scope": []
+      },
+      {
+        "Name": "content",
+        "Description": "Dialog contents; for alert-dialog assign descriptionId to its descriptive element.",
+        "Required": true,
+        "Scope": []
+      },
+      {
+        "Name": "close",
+        "Description": "Accessible close button label.",
+        "Required": true,
+        "Scope": []
+      }
+    ],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "div",
+        "Attributes": {}
+      },
+      {
+        "ID": "trigger",
+        "Tag": "button",
+        "Attributes": {
+          "type": "button",
+          "command": "show-modal"
+        }
+      },
+      {
+        "ID": "dialog",
+        "Tag": "dialog",
+        "Attributes": {
+          "role": "alertdialog"
+        }
+      },
+      {
+        "ID": "title",
+        "Tag": "h2",
+        "Attributes": {}
+      },
+      {
+        "ID": "close",
+        "Tag": "button",
+        "Attributes": {
+          "type": "button",
+          "command": "close"
+        }
+      }
+    ],
+    "Bindings": [
+      {
+        "Node": "dialog",
+        "Name": "id",
+        "Prop": "id",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "trigger",
+        "Name": "commandfor",
+        "Prop": "id",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "close",
+        "Name": "commandfor",
+        "Prop": "id",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "title",
+        "Name": "id",
+        "Prop": "titleId",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "dialog",
+        "Name": "aria-labelledby",
+        "Prop": "titleId",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "dialog",
+        "Name": "aria-describedby",
+        "Prop": "descriptionId",
+        "Kind": "attribute"
+      }
+    ],
+    "Children": [
+      {
+        "Parent": "trigger",
+        "Node": "",
+        "Slot": "trigger"
+      },
+      {
+        "Parent": "root",
+        "Node": "trigger",
+        "Slot": ""
+      },
+      {
+        "Parent": "title",
+        "Node": "",
+        "Slot": "title"
+      },
+      {
+        "Parent": "dialog",
+        "Node": "title",
+        "Slot": ""
+      },
+      {
+        "Parent": "dialog",
+        "Node": "",
+        "Slot": "content"
+      },
+      {
+        "Parent": "close",
+        "Node": "",
+        "Slot": "close"
+      },
+      {
+        "Parent": "dialog",
+        "Node": "close",
+        "Slot": ""
+      },
+      {
+        "Parent": "root",
+        "Node": "dialog",
+        "Slot": ""
+      }
+    ],
+    "Requirements": [
+      "IDs must be unique within the document. Opening uses command=\"show-modal\"; setting open alone is nonmodal.",
+      "On browsers without invoker commands, the adapter must call dialog.showModal() and dialog.close() from button handlers. Feature-detect command support.",
+      "Choose suitable initial focus, verify focus restoration, and handle cancel/close. For alert dialogs, connect the required descriptionId to descriptive content and choose a least-destructive initial action.",
+      "Action outcomes, controlled state, and dismissal policy belong to the adapter."
+    ],
+    "Events": [
+      {
+        "Name": "close",
+        "Target": "dialog",
+        "State": {},
+        "Type": "Event",
+        "Description": "Native notification; adapters own application state updates."
+      },
+      {
+        "Name": "cancel",
+        "Target": "dialog",
+        "State": {},
+        "Type": "Event",
+        "Description": "Native notification; adapters own application state updates."
+      }
+    ],
+    "Styling": [
+      "Set size, backdrop, spacing, and responsive placement in consuming CSS. For drawers position the dialog at an edge. Preserve visible focus and reduced-motion preferences."
+    ],
+    "Features": [
+      {
+        "ID": "invoker-commands",
+        "Status": "Newly available since 2025-12-12",
+        "Date": "2026-09-26"
+      }
+    ]
+  },
+  {
+    "Name": "autocomplete",
+    "Title": "Autocomplete",
+    "Summary": "Native datalist suggestions.",
+    "Status": "native",
+    "RootType": "HTMLLabelElement",
+    "Props": [
+      {
+        "Name": "name",
+        "Type": "string",
+        "Description": "Form field name.",
+        "Required": false
+      },
+      {
+        "Name": "disabled",
+        "Type": "boolean",
+        "Description": "Disables the input.",
+        "Required": false,
+        "Default": false
+      },
+      {
+        "Name": "required",
+        "Type": "boolean",
+        "Description": "Requires a selection or value.",
+        "Required": false,
+        "Default": false
+      },
+      {
+        "Name": "listId",
+        "Type": "string",
+        "Description": "Unique datalist ID.",
+        "Required": true
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "label",
+        "Description": "Accessible label as noninteractive phrasing content.",
+        "Required": true,
+        "Scope": []
+      },
+      {
+        "Name": "options",
+        "Description": "Native option content. A select may receive an optgroup of options; converters may emit multiple options.",
+        "Required": true,
+        "Scope": []
+      }
+    ],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "label",
+        "Attributes": {}
+      },
+      {
+        "ID": "control",
+        "Tag": "input",
+        "Attributes": {
+          "type": "text"
+        }
+      },
+      {
+        "ID": "options",
+        "Tag": "datalist",
+        "Attributes": {}
+      }
+    ],
+    "Bindings": [
+      {
+        "Node": "control",
+        "Name": "name",
+        "Prop": "name",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "disabled",
+        "Prop": "disabled",
+        "Kind": "property"
+      },
+      {
+        "Node": "control",
+        "Name": "required",
+        "Prop": "required",
+        "Kind": "property"
+      },
+      {
+        "Node": "control",
+        "Name": "list",
+        "Prop": "listId",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "options",
+        "Name": "id",
+        "Prop": "listId",
+        "Kind": "attribute"
+      }
+    ],
+    "Children": [
+      {
+        "Parent": "root",
+        "Node": "",
+        "Slot": "label"
+      },
+      {
+        "Parent": "options",
+        "Node": "",
+        "Slot": "options"
+      },
+      {
+        "Parent": "root",
+        "Node": "control",
+        "Slot": ""
+      },
+      {
+        "Parent": "root",
+        "Node": "options",
+        "Slot": ""
+      }
+    ],
+    "Requirements": [
+      "The control is associated with its enclosing label. Supply valid option elements.",
+      "Datalist is a basic suggestion UI; it does not provide rich controlled combobox behavior, async filtering, or a fixed option-only value.",
+      "The native factory takes one HTMLElement per slot; framework converters can map the slot to their own multi-node content representation."
+    ],
+    "Events": [
+      {
+        "Name": "input",
+        "Target": "control",
+        "State": {},
+        "Type": "Event",
+        "Description": "Native notification; adapters own application state updates."
+      },
+      {
+        "Name": "change",
+        "Target": "control",
+        "State": {},
+        "Type": "Event",
+        "Description": "Native notification; adapters own application state updates."
+      }
+    ],
+    "Styling": [
+      "Choose spacing, typography, and focus indicators in the consuming design system. Preserve native keyboard and disabled semantics."
+    ],
+    "Features": []
+  },
+  {
+    "Name": "avatar",
+    "Title": "Avatar",
+    "Summary": "Native image with alternative text.",
+    "Status": "native",
+    "RootType": "HTMLImageElement",
+    "Props": [
+      {
+        "Name": "src",
+        "Type": "string",
+        "Description": "Image URL.",
+        "Required": true
+      },
+      {
+        "Name": "alt",
+        "Type": "string",
+        "Description": "Alternative text; empty only for a decorative image.",
+        "Required": true
+      }
+    ],
+    "Slots": [],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "img",
+        "Attributes": {}
+      }
+    ],
+    "Bindings": [
+      {
+        "Node": "root",
+        "Name": "src",
+        "Prop": "src",
+        "Kind": "property"
+      },
+      {
+        "Node": "root",
+        "Name": "alt",
+        "Prop": "alt",
+        "Kind": "property"
+      }
+    ],
+    "Children": [],
+    "Requirements": [
+      "Supply useful alternative text when the image conveys identity.",
+      "Image failure replacement and loading placeholders require adapter logic."
+    ],
+    "Events": [
+      {
+        "Name": "error",
+        "Target": "root",
+        "State": {},
+        "Type": "Event",
+        "Description": "Native notification; adapters own application state updates."
+      }
+    ],
+    "Styling": [
+      "Apply dimensions, object-fit, cropping, and border radius in your stylesheet."
+    ],
+    "Features": []
+  },
+  {
+    "Name": "button",
+    "Title": "Button",
+    "Summary": "Native action button.",
+    "Status": "native",
+    "RootType": "HTMLButtonElement",
+    "Props": [
+      {
+        "Name": "disabled",
+        "Type": "boolean",
+        "Description": "Prevents native activation.",
+        "Required": false,
+        "Default": false
+      },
+      {
+        "Name": "type",
+        "Type": "\"button\" | \"submit\" | \"reset\"",
+        "Description": "Button action.",
+        "Required": false,
+        "Default": "button"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "label",
+        "Description": "Accessible button label.",
+        "Required": true,
+        "Scope": []
+      }
+    ],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "button",
+        "Attributes": {}
+      }
+    ],
+    "Bindings": [
+      {
+        "Node": "root",
+        "Name": "disabled",
+        "Prop": "disabled",
+        "Kind": "property"
+      },
+      {
+        "Node": "root",
+        "Name": "type",
+        "Prop": "type",
+        "Kind": "property"
+      }
+    ],
+    "Children": [
+      {
+        "Parent": "root",
+        "Node": "",
+        "Slot": "label"
+      }
+    ],
+    "Requirements": [
+      "Application actions are external. Use submit only inside the intended form."
+    ],
+    "Events": [
+      {
+        "Name": "click",
+        "Target": "root",
+        "State": {},
+        "Type": "MouseEvent",
+        "Description": "Native notification; adapters own application state updates."
+      }
+    ],
+    "Styling": [
+      "Choose spacing, typography, and focus indicators in the consuming design system. Preserve native keyboard and disabled semantics."
+    ],
+    "Features": []
+  },
+  {
+    "Name": "checkbox",
+    "Title": "Checkbox",
+    "Summary": "Native binary checkbox.",
+    "Status": "native",
+    "RootType": "HTMLLabelElement",
+    "Props": [
+      {
+        "Name": "name",
+        "Type": "string",
+        "Description": "Form field name.",
+        "Required": false
+      },
+      {
+        "Name": "disabled",
+        "Type": "boolean",
+        "Description": "Disables the control.",
+        "Required": false,
+        "Default": false
+      },
+      {
+        "Name": "required",
+        "Type": "boolean",
+        "Description": "Requires a value or checked state for submission.",
+        "Required": false,
+        "Default": false
+      },
+      {
+        "Name": "checked",
+        "Type": "boolean",
+        "Description": "Initial checked state.",
+        "Required": false,
+        "Default": false
+      },
+      {
+        "Name": "value",
+        "Type": "string",
+        "Description": "Submitted value when checked.",
+        "Required": false,
+        "Default": "on"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "label",
+        "Description": "Accessible label as noninteractive phrasing content.",
+        "Required": true,
+        "Scope": []
+      }
+    ],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "label",
+        "Attributes": {}
+      },
+      {
+        "ID": "control",
+        "Tag": "input",
+        "Attributes": {
+          "type": "checkbox"
+        }
+      }
+    ],
+    "Bindings": [
+      {
+        "Node": "control",
+        "Name": "name",
+        "Prop": "name",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "disabled",
+        "Prop": "disabled",
+        "Kind": "property"
+      },
+      {
+        "Node": "control",
+        "Name": "required",
+        "Prop": "required",
+        "Kind": "property"
+      },
+      {
+        "Node": "control",
+        "Name": "defaultChecked",
+        "Prop": "checked",
+        "Kind": "property"
+      },
+      {
+        "Node": "control",
+        "Name": "checked",
+        "Prop": "checked",
+        "Kind": "property"
+      },
+      {
+        "Node": "control",
+        "Name": "value",
+        "Prop": "value",
+        "Kind": "property"
+      }
+    ],
+    "Children": [
+      {
+        "Parent": "root",
+        "Node": "",
+        "Slot": "label"
+      },
+      {
+        "Parent": "root",
+        "Node": "control",
+        "Slot": ""
+      }
+    ],
+    "Requirements": [
+      "The label slot must contain noninteractive phrasing content. The enclosing label associates it with the input.",
+      "Read the current control property after input/change; these factories only initialize values.",
+      "Indeterminate is a separate DOM property, not an HTML attribute. Set it in the adapter if needed.",
+      "Initialize both defaultChecked and checked so native form reset restores the supplied initial state. Adapters choose whether later updates change the reset baseline."
+    ],
+    "Events": [
+      {
+        "Name": "input",
+        "Target": "control",
+        "State": {
+          "checked": "checked"
+        },
+        "Type": "Event",
+        "Description": "Native notification; adapters own application state updates."
+      },
+      {
+        "Name": "change",
+        "Target": "control",
+        "State": {
+          "checked": "checked"
+        },
+        "Type": "Event",
+        "Description": "Native notification; adapters own application state updates."
+      }
+    ],
+    "Styling": [
+      "Choose spacing, typography, and focus indicators in the consuming design system. Preserve native keyboard and disabled semantics."
+    ],
+    "Features": []
+  },
+  {
+    "Name": "checkbox-group",
+    "Title": "Checkbox Group",
+    "Summary": "Native fieldset with a legend.",
+    "Status": "native",
+    "RootType": "HTMLFieldSetElement",
+    "Props": [
+      {
+        "Name": "disabled",
+        "Type": "boolean",
+        "Description": "Disables descendant form controls.",
+        "Required": false,
+        "Default": false
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "legend",
+        "Description": "Accessible group label.",
+        "Required": true,
+        "Scope": []
+      },
+      {
+        "Name": "content",
+        "Description": "Group controls.",
+        "Required": true,
+        "Scope": []
+      }
+    ],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "fieldset",
+        "Attributes": {}
+      },
+      {
+        "ID": "legend",
+        "Tag": "legend",
+        "Attributes": {}
+      }
+    ],
+    "Bindings": [
+      {
+        "Node": "root",
+        "Name": "disabled",
+        "Prop": "disabled",
+        "Kind": "property"
+      }
+    ],
+    "Children": [
+      {
+        "Parent": "legend",
+        "Node": "",
+        "Slot": "legend"
+      },
+      {
+        "Parent": "root",
+        "Node": "legend",
+        "Slot": ""
+      },
+      {
+        "Parent": "root",
+        "Node": "",
+        "Slot": "content"
+      }
+    ],
+    "Requirements": [
+      "The legend labels the controls. Use actual inputs inside the content slot.",
+      "Aggregate validation, select-all, and error management remain adapter responsibilities."
+    ],
+    "Events": [
+      {
+        "Name": "change",
+        "Target": "root",
+        "State": {},
+        "Type": "Event",
+        "Description": "Native notification; adapters own application state updates."
+      }
+    ],
+    "Styling": [
+      "Choose spacing, typography, and focus indicators in the consuming design system. Preserve native keyboard and disabled semantics."
+    ],
+    "Features": []
+  },
+  {
+    "Name": "collapsible",
+    "Title": "Collapsible",
+    "Summary": "Native disclosure with an accessible summary.",
+    "Status": "native",
+    "RootType": "HTMLDetailsElement",
+    "Props": [
+      {
+        "Name": "open",
+        "Type": "boolean",
+        "Description": "Whether the disclosure is initially open.",
+        "Required": false,
+        "Default": false
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "summary",
+        "Description": "Accessible disclosure label; avoid nested interactive controls.",
+        "Required": true,
+        "Scope": []
+      },
+      {
+        "Name": "content",
+        "Description": "Disclosure body.",
+        "Required": false,
+        "Scope": [
+          {
+            "Name": "open",
+            "Type": "boolean",
+            "Prop": "open"
+          }
+        ]
+      }
+    ],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "details",
+        "Attributes": {}
+      },
+      {
+        "ID": "summary",
+        "Tag": "summary",
+        "Attributes": {}
+      }
+    ],
+    "Bindings": [
+      {
+        "Node": "root",
+        "Name": "open",
+        "Prop": "open",
+        "Kind": "property"
+      }
+    ],
+    "Children": [
+      {
+        "Parent": "summary",
+        "Node": "",
+        "Slot": "summary"
+      },
+      {
+        "Parent": "root",
+        "Node": "summary",
+        "Slot": ""
+      },
+      {
+        "Parent": "root",
+        "Node": "",
+        "Slot": "content"
+      }
+    ],
+    "Requirements": [
+      "The summary is the first child. Its native activation opens or closes the details.",
+      "Read root.open on toggle to synchronize adapter state; slot scope is an initial snapshot in the native factory.",
+      "Animation and controlled state updates belong to the converter."
+    ],
+    "Events": [
+      {
+        "Name": "toggle",
+        "Target": "root",
+        "State": {
+          "open": "open"
+        },
+        "Type": "ToggleEvent",
+        "Description": "Native notification; adapters own application state updates."
+      }
+    ],
+    "Styling": [
+      "Choose spacing, typography, and focus indicators in the consuming design system. Preserve native keyboard and disabled semantics."
+    ],
+    "Features": []
+  },
+  {
+    "Name": "combobox",
+    "Title": "Combobox",
+    "Summary": "Combobox structure requiring an interaction adapter.",
+    "Status": "adapter-required",
+    "RootType": "HTMLDivElement",
+    "Props": [
+      {
+        "Name": "inputId",
+        "Type": "string",
+        "Description": "Unique input ID.",
+        "Required": true
+      },
+      {
+        "Name": "listId",
+        "Type": "string",
+        "Description": "Unique listbox ID.",
+        "Required": true
+      },
+      {
+        "Name": "expanded",
+        "Type": "boolean",
+        "Description": "Whether the listbox is expanded.",
+        "Required": false,
+        "Default": false
+      },
+      {
+        "Name": "hidden",
+        "Type": "boolean",
+        "Description": "Whether the listbox is hidden; keep opposite to expanded.",
+        "Required": false,
+        "Default": true
+      },
+      {
+        "Name": "activeDescendant",
+        "Type": "string",
+        "Description": "ID of active option, or omit.",
+        "Required": false
+      },
+      {
+        "Name": "value",
+        "Type": "string",
+        "Description": "Initial text.",
+        "Required": false,
+        "Default": ""
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "label",
+        "Description": "Accessible input label.",
+        "Required": true,
+        "Scope": []
+      },
+      {
+        "Name": "options",
+        "Description": "Options with role=option, unique IDs and synchronized aria-selected.",
+        "Required": true,
+        "Scope": []
+      }
+    ],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "div",
+        "Attributes": {}
+      },
+      {
+        "ID": "label",
+        "Tag": "label",
+        "Attributes": {}
+      },
+      {
+        "ID": "input",
+        "Tag": "input",
+        "Attributes": {
+          "type": "text",
+          "role": "combobox",
+          "aria-autocomplete": "list"
+        }
+      },
+      {
+        "ID": "list",
+        "Tag": "div",
+        "Attributes": {
+          "role": "listbox"
+        }
+      }
+    ],
+    "Bindings": [
+      {
+        "Node": "label",
+        "Name": "for",
+        "Prop": "inputId",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "input",
+        "Name": "id",
+        "Prop": "inputId",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "input",
+        "Name": "aria-controls",
+        "Prop": "listId",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "input",
+        "Name": "aria-expanded",
+        "Prop": "expanded",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "input",
+        "Name": "aria-activedescendant",
+        "Prop": "activeDescendant",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "input",
+        "Name": "defaultValue",
+        "Prop": "value",
+        "Kind": "property"
+      },
+      {
+        "Node": "input",
+        "Name": "value",
+        "Prop": "value",
+        "Kind": "property"
+      },
+      {
+        "Node": "list",
+        "Name": "id",
+        "Prop": "listId",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "list",
+        "Name": "hidden",
+        "Prop": "hidden",
+        "Kind": "property"
+      }
+    ],
+    "Children": [
+      {
+        "Parent": "label",
+        "Node": "",
+        "Slot": "label"
+      },
+      {
+        "Parent": "root",
+        "Node": "label",
+        "Slot": ""
+      },
+      {
+        "Parent": "root",
+        "Node": "input",
+        "Slot": ""
+      },
+      {
+        "Parent": "list",
+        "Node": "",
+        "Slot": "options"
+      },
+      {
+        "Parent": "root",
+        "Node": "list",
+        "Slot": ""
+      }
+    ],
+    "Requirements": [
+      "Adapter required: filtering, active option, selection, composition input, keyboard handling, visibility, and ARIA synchronization.",
+      "Keep expanded and hidden consistent. Provide an accessible listbox name. A datalist is a simpler native alternative.",
+      "Initialize both defaultValue and value so native form reset restores the supplied initial text. Adapters choose whether later updates change the reset baseline."
+    ],
+    "Events": [
+      {
+        "Name": "input",
+        "Target": "input",
+        "State": {
+          "value": "value"
+        },
+        "Type": "Event",
+        "Description": "Native notification; adapters own application state updates."
+      },
+      {
+        "Name": "keydown",
+        "Target": "input",
+        "State": {},
+        "Type": "KeyboardEvent",
+        "Description": "Native notification; adapters own application state updates."
+      }
+    ],
+    "Styling": [
+      "Choose spacing, typography, and focus indicators in the consuming design system. Preserve native keyboard and disabled semantics."
+    ],
+    "Features": []
+  },
+  {
+    "Name": "context-menu",
+    "Title": "Context Menu",
+    "Summary": "Native popover visibility with content insertion points.",
+    "Status": "adapter-required",
+    "RootType": "HTMLDivElement",
+    "Props": [
+      {
+        "Name": "id",
+        "Type": "string",
+        "Description": "Unique popup ID.",
+        "Required": true
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "trigger",
+        "Description": "Accessible trigger button label.",
+        "Required": true,
+        "Scope": []
+      },
+      {
+        "Name": "content",
+        "Description": "Menu items with adapter-managed keyboard behavior.",
+        "Required": true,
+        "Scope": []
+      }
+    ],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "div",
+        "Attributes": {}
+      },
+      {
+        "ID": "trigger",
+        "Tag": "button",
+        "Attributes": {
+          "type": "button"
+        }
+      },
+      {
+        "ID": "popup",
+        "Tag": "div",
+        "Attributes": {
+          "popover": "auto",
+          "role": "menu"
+        }
+      }
+    ],
+    "Bindings": [
+      {
+        "Node": "trigger",
+        "Name": "popovertarget",
+        "Prop": "id",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "popup",
+        "Name": "id",
+        "Prop": "id",
+        "Kind": "attribute"
+      }
+    ],
+    "Children": [
+      {
+        "Parent": "trigger",
+        "Node": "",
+        "Slot": "trigger"
+      },
+      {
+        "Parent": "root",
+        "Node": "trigger",
+        "Slot": ""
+      },
+      {
+        "Parent": "popup",
+        "Node": "",
+        "Slot": "content"
+      },
+      {
+        "Parent": "root",
+        "Node": "popup",
+        "Slot": ""
+      }
+    ],
+    "Requirements": [
+      "Popover supplies nonmodal visibility and light dismissal, not arbitrary widget keyboard behavior. IDs must be unique.",
+      "Menu patterns require item roles, roving focus, arrow/Home/End keys, activation, submenu handling, and return focus. Add an accessible name to the menu and synchronize trigger aria-haspopup/aria-expanded.",
+      "Context-menu pointer and keyboard invocation (including Shift+F10) needs adapter logic; the emitted button is a basic click trigger."
+    ],
+    "Events": [
+      {
+        "Name": "toggle",
+        "Target": "popup",
+        "State": {},
+        "Type": "ToggleEvent",
+        "Description": "Native notification; adapters own application state updates."
+      }
+    ],
+    "Styling": [
+      "Position the popup using consuming CSS. Anchor positioning can be an enhancement; verify individual property support."
+    ],
+    "Features": [
+      {
+        "ID": "popover",
+        "Status": "Newly available since 2025-01-27",
+        "Date": "2026-09-26"
+      }
+    ]
+  },
+  {
+    "Name": "dialog",
+    "Title": "Dialog",
+    "Summary": "Native modal dialog with declarative open and close buttons.",
+    "Status": "native",
+    "RootType": "HTMLDivElement",
+    "Props": [
+      {
+        "Name": "id",
+        "Type": "string",
+        "Description": "Unique dialog ID.",
+        "Required": true
+      },
+      {
+        "Name": "titleId",
+        "Type": "string",
+        "Description": "Unique title ID.",
+        "Required": true
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "trigger",
+        "Description": "Accessible opening button label.",
+        "Required": true,
+        "Scope": []
+      },
+      {
+        "Name": "title",
+        "Description": "Dialog title.",
+        "Required": true,
+        "Scope": []
+      },
+      {
+        "Name": "content",
+        "Description": "Dialog contents; for alert-dialog assign descriptionId to its descriptive element.",
+        "Required": false,
+        "Scope": []
+      },
+      {
+        "Name": "close",
+        "Description": "Accessible close button label.",
+        "Required": true,
+        "Scope": []
+      }
+    ],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "div",
+        "Attributes": {}
+      },
+      {
+        "ID": "trigger",
+        "Tag": "button",
+        "Attributes": {
+          "type": "button",
+          "command": "show-modal"
+        }
+      },
+      {
+        "ID": "dialog",
+        "Tag": "dialog",
+        "Attributes": {}
+      },
+      {
+        "ID": "title",
+        "Tag": "h2",
+        "Attributes": {}
+      },
+      {
+        "ID": "close",
+        "Tag": "button",
+        "Attributes": {
+          "type": "button",
+          "command": "close"
+        }
+      }
+    ],
+    "Bindings": [
+      {
+        "Node": "dialog",
+        "Name": "id",
+        "Prop": "id",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "trigger",
+        "Name": "commandfor",
+        "Prop": "id",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "close",
+        "Name": "commandfor",
+        "Prop": "id",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "title",
+        "Name": "id",
+        "Prop": "titleId",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "dialog",
+        "Name": "aria-labelledby",
+        "Prop": "titleId",
+        "Kind": "attribute"
+      }
+    ],
+    "Children": [
+      {
+        "Parent": "trigger",
+        "Node": "",
+        "Slot": "trigger"
+      },
+      {
+        "Parent": "root",
+        "Node": "trigger",
+        "Slot": ""
+      },
+      {
+        "Parent": "title",
+        "Node": "",
+        "Slot": "title"
+      },
+      {
+        "Parent": "dialog",
+        "Node": "title",
+        "Slot": ""
+      },
+      {
+        "Parent": "dialog",
+        "Node": "",
+        "Slot": "content"
+      },
+      {
+        "Parent": "close",
+        "Node": "",
+        "Slot": "close"
+      },
+      {
+        "Parent": "dialog",
+        "Node": "close",
+        "Slot": ""
+      },
+      {
+        "Parent": "root",
+        "Node": "dialog",
+        "Slot": ""
+      }
+    ],
+    "Requirements": [
+      "IDs must be unique within the document. Opening uses command=\"show-modal\"; setting open alone is nonmodal.",
+      "On browsers without invoker commands, the adapter must call dialog.showModal() and dialog.close() from button handlers. Feature-detect command support.",
+      "Choose suitable initial focus, verify focus restoration, and handle cancel/close. For alert dialogs, connect the required descriptionId to descriptive content and choose a least-destructive initial action.",
+      "Action outcomes, controlled state, and dismissal policy belong to the adapter."
+    ],
+    "Events": [
+      {
+        "Name": "close",
+        "Target": "dialog",
+        "State": {},
+        "Type": "Event",
+        "Description": "Native notification; adapters own application state updates."
+      },
+      {
+        "Name": "cancel",
+        "Target": "dialog",
+        "State": {},
+        "Type": "Event",
+        "Description": "Native notification; adapters own application state updates."
+      }
+    ],
+    "Styling": [
+      "Set size, backdrop, spacing, and responsive placement in consuming CSS. For drawers position the dialog at an edge. Preserve visible focus and reduced-motion preferences."
+    ],
+    "Features": [
+      {
+        "ID": "invoker-commands",
+        "Status": "Newly available since 2025-12-12",
+        "Date": "2026-09-26"
+      }
+    ]
+  },
+  {
+    "Name": "drawer",
+    "Title": "Drawer",
+    "Summary": "Native modal dialog with declarative open and close buttons.",
+    "Status": "native",
+    "RootType": "HTMLDivElement",
+    "Props": [
+      {
+        "Name": "id",
+        "Type": "string",
+        "Description": "Unique dialog ID.",
+        "Required": true
+      },
+      {
+        "Name": "titleId",
+        "Type": "string",
+        "Description": "Unique title ID.",
+        "Required": true
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "trigger",
+        "Description": "Accessible opening button label.",
+        "Required": true,
+        "Scope": []
+      },
+      {
+        "Name": "title",
+        "Description": "Dialog title.",
+        "Required": true,
+        "Scope": []
+      },
+      {
+        "Name": "content",
+        "Description": "Dialog contents; for alert-dialog assign descriptionId to its descriptive element.",
+        "Required": false,
+        "Scope": []
+      },
+      {
+        "Name": "close",
+        "Description": "Accessible close button label.",
+        "Required": true,
+        "Scope": []
+      }
+    ],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "div",
+        "Attributes": {}
+      },
+      {
+        "ID": "trigger",
+        "Tag": "button",
+        "Attributes": {
+          "type": "button",
+          "command": "show-modal"
+        }
+      },
+      {
+        "ID": "dialog",
+        "Tag": "dialog",
+        "Attributes": {}
+      },
+      {
+        "ID": "title",
+        "Tag": "h2",
+        "Attributes": {}
+      },
+      {
+        "ID": "close",
+        "Tag": "button",
+        "Attributes": {
+          "type": "button",
+          "command": "close"
+        }
+      }
+    ],
+    "Bindings": [
+      {
+        "Node": "dialog",
+        "Name": "id",
+        "Prop": "id",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "trigger",
+        "Name": "commandfor",
+        "Prop": "id",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "close",
+        "Name": "commandfor",
+        "Prop": "id",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "title",
+        "Name": "id",
+        "Prop": "titleId",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "dialog",
+        "Name": "aria-labelledby",
+        "Prop": "titleId",
+        "Kind": "attribute"
+      }
+    ],
+    "Children": [
+      {
+        "Parent": "trigger",
+        "Node": "",
+        "Slot": "trigger"
+      },
+      {
+        "Parent": "root",
+        "Node": "trigger",
+        "Slot": ""
+      },
+      {
+        "Parent": "title",
+        "Node": "",
+        "Slot": "title"
+      },
+      {
+        "Parent": "dialog",
+        "Node": "title",
+        "Slot": ""
+      },
+      {
+        "Parent": "dialog",
+        "Node": "",
+        "Slot": "content"
+      },
+      {
+        "Parent": "close",
+        "Node": "",
+        "Slot": "close"
+      },
+      {
+        "Parent": "dialog",
+        "Node": "close",
+        "Slot": ""
+      },
+      {
+        "Parent": "root",
+        "Node": "dialog",
+        "Slot": ""
+      }
+    ],
+    "Requirements": [
+      "IDs must be unique within the document. Opening uses command=\"show-modal\"; setting open alone is nonmodal.",
+      "On browsers without invoker commands, the adapter must call dialog.showModal() and dialog.close() from button handlers. Feature-detect command support.",
+      "Choose suitable initial focus, verify focus restoration, and handle cancel/close. For alert dialogs, connect the required descriptionId to descriptive content and choose a least-destructive initial action.",
+      "Drawer edge positioning is CSS guidance only; gestures and snap points require an adapter."
+    ],
+    "Events": [
+      {
+        "Name": "close",
+        "Target": "dialog",
+        "State": {},
+        "Type": "Event",
+        "Description": "Native notification; adapters own application state updates."
+      },
+      {
+        "Name": "cancel",
+        "Target": "dialog",
+        "State": {},
+        "Type": "Event",
+        "Description": "Native notification; adapters own application state updates."
+      }
+    ],
+    "Styling": [
+      "Set size, backdrop, spacing, and responsive placement in consuming CSS. For drawers position the dialog at an edge. Preserve visible focus and reduced-motion preferences."
+    ],
+    "Features": [
+      {
+        "ID": "invoker-commands",
+        "Status": "Newly available since 2025-12-12",
+        "Date": "2026-09-26"
+      }
+    ]
+  },
+  {
+    "Name": "field",
+    "Title": "Field",
+    "Summary": "Label and content insertion points for a field.",
+    "Status": "native",
+    "RootType": "HTMLDivElement",
+    "Props": [
+      {
+        "Name": "id",
+        "Type": "string",
+        "Description": "Unique ID to assign to the slotted control.",
+        "Required": true
+      },
+      {
+        "Name": "descriptionId",
+        "Type": "string",
+        "Description": "Optional unique description ID.",
+        "Required": false
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "label",
+        "Description": "Accessible label.",
+        "Required": true,
+        "Scope": []
+      },
+      {
+        "Name": "control",
+        "Description": "A labelable control using the scoped id. Set aria-describedby when a description is supplied.",
+        "Required": true,
+        "Scope": [
+          {
+            "Name": "id",
+            "Type": "string",
+            "Prop": "id"
+          }
+        ]
+      },
+      {
+        "Name": "description",
+        "Description": "Help or error text.",
+        "Required": false,
+        "Scope": []
+      }
+    ],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "div",
+        "Attributes": {}
+      },
+      {
+        "ID": "label",
+        "Tag": "label",
+        "Attributes": {}
+      },
+      {
+        "ID": "description",
+        "Tag": "div",
+        "Attributes": {}
+      }
+    ],
+    "Bindings": [
+      {
+        "Node": "label",
+        "Name": "for",
+        "Prop": "id",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "description",
+        "Name": "id",
+        "Prop": "descriptionId",
+        "Kind": "attribute"
+      }
+    ],
+    "Children": [
+      {
+        "Parent": "label",
+        "Node": "",
+        "Slot": "label"
+      },
+      {
+        "Parent": "root",
+        "Node": "label",
+        "Slot": ""
+      },
+      {
+        "Parent": "root",
+        "Node": "",
+        "Slot": "control"
+      },
+      {
+        "Parent": "description",
+        "Node": "",
+        "Slot": "description"
+      },
+      {
+        "Parent": "root",
+        "Node": "description",
+        "Slot": ""
+      }
+    ],
+    "Requirements": [
+      "Assign the scoped id to the actual slotted control. The wrapper cannot label a control that omits it.",
+      "When rendering a description, supply descriptionId and connect aria-describedby on the control. Set aria-invalid only when applicable. Dynamic error handling belongs to the converter."
+    ],
+    "Events": [],
+    "Styling": [
+      "Choose spacing, typography, and focus indicators in the consuming design system. Preserve native keyboard and disabled semantics."
+    ],
+    "Features": []
+  },
+  {
+    "Name": "fieldset",
+    "Title": "Fieldset",
+    "Summary": "Native fieldset with a legend.",
+    "Status": "native",
+    "RootType": "HTMLFieldSetElement",
+    "Props": [
+      {
+        "Name": "disabled",
+        "Type": "boolean",
+        "Description": "Disables descendant form controls.",
+        "Required": false,
+        "Default": false
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "legend",
+        "Description": "Accessible group label.",
+        "Required": true,
+        "Scope": []
+      },
+      {
+        "Name": "content",
+        "Description": "Group controls.",
+        "Required": true,
+        "Scope": []
+      }
+    ],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "fieldset",
+        "Attributes": {}
+      },
+      {
+        "ID": "legend",
+        "Tag": "legend",
+        "Attributes": {}
+      }
+    ],
+    "Bindings": [
+      {
+        "Node": "root",
+        "Name": "disabled",
+        "Prop": "disabled",
+        "Kind": "property"
+      }
+    ],
+    "Children": [
+      {
+        "Parent": "legend",
+        "Node": "",
+        "Slot": "legend"
+      },
+      {
+        "Parent": "root",
+        "Node": "legend",
+        "Slot": ""
+      },
+      {
+        "Parent": "root",
+        "Node": "",
+        "Slot": "content"
+      }
+    ],
+    "Requirements": [
+      "The legend labels the controls. Use actual inputs inside the content slot.",
+      "Aggregate validation, select-all, and error management remain adapter responsibilities."
+    ],
+    "Events": [
+      {
+        "Name": "change",
+        "Target": "root",
+        "State": {},
+        "Type": "Event",
+        "Description": "Native notification; adapters own application state updates."
+      }
+    ],
+    "Styling": [
+      "Choose spacing, typography, and focus indicators in the consuming design system. Preserve native keyboard and disabled semantics."
+    ],
+    "Features": []
+  },
+  {
+    "Name": "form",
+    "Title": "Form",
+    "Summary": "Native form submission and constraint validation.",
+    "Status": "native",
+    "RootType": "HTMLFormElement",
+    "Props": [
+      {
+        "Name": "action",
+        "Type": "string",
+        "Description": "Submission URL.",
+        "Required": false
+      },
+      {
+        "Name": "method",
+        "Type": "\"get\" | \"post\" | \"dialog\"",
+        "Description": "Submission method.",
+        "Required": false,
+        "Default": "get"
+      },
+      {
+        "Name": "noValidate",
+        "Type": "boolean",
+        "Description": "Disable native constraint validation.",
+        "Required": false,
+        "Default": false
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "content",
+        "Description": "Form controls and submit actions.",
+        "Required": true,
+        "Scope": []
+      }
+    ],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "form",
+        "Attributes": {}
+      }
+    ],
+    "Bindings": [
+      {
+        "Node": "root",
+        "Name": "action",
+        "Prop": "action",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "root",
+        "Name": "method",
+        "Prop": "method",
+        "Kind": "property"
+      },
+      {
+        "Node": "root",
+        "Name": "noValidate",
+        "Prop": "noValidate",
+        "Kind": "property"
+      }
+    ],
+    "Children": [
+      {
+        "Parent": "root",
+        "Node": "",
+        "Slot": "content"
+      }
+    ],
+    "Requirements": [
+      "Default native submission navigates. Adapters must intercept submit when the application handles submission.",
+      "Use named controls and native constraints; custom validation and async requests are adapter work."
+    ],
+    "Events": [
+      {
+        "Name": "submit",
+        "Target": "root",
+        "State": {},
+        "Type": "SubmitEvent",
+        "Description": "Native notification; adapters own application state updates."
+      },
+      {
+        "Name": "reset",
+        "Target": "root",
+        "State": {},
+        "Type": "Event",
+        "Description": "Native notification; adapters own application state updates."
+      }
+    ],
+    "Styling": [
+      "Choose spacing, typography, and focus indicators in the consuming design system. Preserve native keyboard and disabled semantics."
+    ],
+    "Features": []
+  },
+  {
+    "Name": "input",
+    "Title": "Input",
+    "Summary": "Native text input.",
+    "Status": "native",
+    "RootType": "HTMLLabelElement",
+    "Props": [
+      {
+        "Name": "name",
+        "Type": "string",
+        "Description": "Form field name.",
+        "Required": false
+      },
+      {
+        "Name": "disabled",
+        "Type": "boolean",
+        "Description": "Disables the control.",
+        "Required": false,
+        "Default": false
+      },
+      {
+        "Name": "required",
+        "Type": "boolean",
+        "Description": "Requires a value or checked state for submission.",
+        "Required": false,
+        "Default": false
+      },
+      {
+        "Name": "value",
+        "Type": "string",
+        "Description": "Initial text value.",
+        "Required": false,
+        "Default": ""
+      },
+      {
+        "Name": "placeholder",
+        "Type": "string",
+        "Description": "Hint; does not replace the label.",
+        "Required": false
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "label",
+        "Description": "Accessible label as noninteractive phrasing content.",
+        "Required": true,
+        "Scope": []
+      }
+    ],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "label",
+        "Attributes": {}
+      },
+      {
+        "ID": "control",
+        "Tag": "input",
+        "Attributes": {
+          "type": "text"
+        }
+      }
+    ],
+    "Bindings": [
+      {
+        "Node": "control",
+        "Name": "name",
+        "Prop": "name",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "disabled",
+        "Prop": "disabled",
+        "Kind": "property"
+      },
+      {
+        "Node": "control",
+        "Name": "required",
+        "Prop": "required",
+        "Kind": "property"
+      },
+      {
+        "Node": "control",
+        "Name": "defaultValue",
+        "Prop": "value",
+        "Kind": "property"
+      },
+      {
+        "Node": "control",
+        "Name": "value",
+        "Prop": "value",
+        "Kind": "property"
+      },
+      {
+        "Node": "control",
+        "Name": "placeholder",
+        "Prop": "placeholder",
+        "Kind": "attribute"
+      }
+    ],
+    "Children": [
+      {
+        "Parent": "root",
+        "Node": "",
+        "Slot": "label"
+      },
+      {
+        "Parent": "root",
+        "Node": "control",
+        "Slot": ""
+      }
+    ],
+    "Requirements": [
+      "The label slot must contain noninteractive phrasing content. The enclosing label associates it with the input.",
+      "Read the current control property after input/change; these factories only initialize values.",
+      "Initialize both defaultValue and value so native form reset restores the supplied initial text. Adapters choose whether later updates change the reset baseline."
+    ],
+    "Events": [
+      {
+        "Name": "input",
+        "Target": "control",
+        "State": {
+          "value": "value"
+        },
+        "Type": "Event",
+        "Description": "Native notification; adapters own application state updates."
+      },
+      {
+        "Name": "change",
+        "Target": "control",
+        "State": {
+          "value": "value"
+        },
+        "Type": "Event",
+        "Description": "Native notification; adapters own application state updates."
+      }
+    ],
+    "Styling": [
+      "Choose spacing, typography, and focus indicators in the consuming design system. Preserve native keyboard and disabled semantics."
+    ],
+    "Features": []
+  },
+  {
+    "Name": "menu",
+    "Title": "Menu",
+    "Summary": "Native popover visibility with content insertion points.",
+    "Status": "adapter-required",
+    "RootType": "HTMLDivElement",
+    "Props": [
+      {
+        "Name": "id",
+        "Type": "string",
+        "Description": "Unique popup ID.",
+        "Required": true
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "trigger",
+        "Description": "Accessible trigger button label.",
+        "Required": true,
+        "Scope": []
+      },
+      {
+        "Name": "content",
+        "Description": "Menu items with adapter-managed keyboard behavior.",
+        "Required": true,
+        "Scope": []
+      }
+    ],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "div",
+        "Attributes": {}
+      },
+      {
+        "ID": "trigger",
+        "Tag": "button",
+        "Attributes": {
+          "type": "button"
+        }
+      },
+      {
+        "ID": "popup",
+        "Tag": "div",
+        "Attributes": {
+          "popover": "auto",
+          "role": "menu"
+        }
+      }
+    ],
+    "Bindings": [
+      {
+        "Node": "trigger",
+        "Name": "popovertarget",
+        "Prop": "id",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "popup",
+        "Name": "id",
+        "Prop": "id",
+        "Kind": "attribute"
+      }
+    ],
+    "Children": [
+      {
+        "Parent": "trigger",
+        "Node": "",
+        "Slot": "trigger"
+      },
+      {
+        "Parent": "root",
+        "Node": "trigger",
+        "Slot": ""
+      },
+      {
+        "Parent": "popup",
+        "Node": "",
+        "Slot": "content"
+      },
+      {
+        "Parent": "root",
+        "Node": "popup",
+        "Slot": ""
+      }
+    ],
+    "Requirements": [
+      "Popover supplies nonmodal visibility and light dismissal, not arbitrary widget keyboard behavior. IDs must be unique.",
+      "Menu patterns require item roles, roving focus, arrow/Home/End keys, activation, submenu handling, and return focus. Add an accessible name to the menu and synchronize trigger aria-haspopup/aria-expanded.",
+      "On older browsers, the converter supplies a visibility/focus fallback or chooses another pattern."
+    ],
+    "Events": [
+      {
+        "Name": "toggle",
+        "Target": "popup",
+        "State": {},
+        "Type": "ToggleEvent",
+        "Description": "Native notification; adapters own application state updates."
+      }
+    ],
+    "Styling": [
+      "Position the popup using consuming CSS. Anchor positioning can be an enhancement; verify individual property support."
+    ],
+    "Features": [
+      {
+        "ID": "popover",
+        "Status": "Newly available since 2025-01-27",
+        "Date": "2026-09-26"
+      }
+    ]
+  },
+  {
+    "Name": "menubar",
+    "Title": "Menubar",
+    "Summary": "Labeled container for composed native content.",
+    "Status": "adapter-required",
+    "RootType": "HTMLDivElement",
+    "Props": [
+      {
+        "Name": "label",
+        "Type": "string",
+        "Description": "Accessible container label.",
+        "Required": true
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "content",
+        "Description": "Composed controls or navigation content.",
+        "Required": true,
+        "Scope": []
+      }
+    ],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "div",
+        "Attributes": {
+          "role": "menubar"
+        }
+      }
+    ],
+    "Bindings": [
+      {
+        "Node": "root",
+        "Name": "aria-label",
+        "Prop": "label",
+        "Kind": "attribute"
+      }
+    ],
+    "Children": [
+      {
+        "Parent": "root",
+        "Node": "",
+        "Slot": "content"
+      }
+    ],
+    "Requirements": [
+      "Adapter required: menu item roles, roving focus, arrow navigation, submenus, Escape and focus restoration."
+    ],
+    "Events": [],
+    "Styling": [
+      "Apply layout, spacing and visible focus treatment in consuming CSS."
+    ],
+    "Features": []
+  },
+  {
+    "Name": "meter",
+    "Title": "Meter",
+    "Summary": "Native measurement.",
+    "Status": "native",
+    "RootType": "HTMLMeterElement",
+    "Props": [
+      {
+        "Name": "label",
+        "Type": "string",
+        "Description": "Accessible name.",
+        "Required": true
+      },
+      {
+        "Name": "value",
+        "Type": "number",
+        "Description": "Current measurement.",
+        "Required": true
+      },
+      {
+        "Name": "max",
+        "Type": "number",
+        "Description": "Positive maximum.",
+        "Required": false,
+        "Default": 1
+      },
+      {
+        "Name": "min",
+        "Type": "number",
+        "Description": "Minimum.",
+        "Required": false,
+        "Default": 0
+      },
+      {
+        "Name": "low",
+        "Type": "number",
+        "Description": "Low boundary.",
+        "Required": false
+      },
+      {
+        "Name": "high",
+        "Type": "number",
+        "Description": "High boundary.",
+        "Required": false
+      },
+      {
+        "Name": "optimum",
+        "Type": "number",
+        "Description": "Optimal value.",
+        "Required": false
+      }
+    ],
+    "Slots": [],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "meter",
+        "Attributes": {}
+      }
+    ],
+    "Bindings": [
+      {
+        "Node": "root",
+        "Name": "aria-label",
+        "Prop": "label",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "root",
+        "Name": "value",
+        "Prop": "value",
+        "Kind": "property"
+      },
+      {
+        "Node": "root",
+        "Name": "max",
+        "Prop": "max",
+        "Kind": "property"
+      },
+      {
+        "Node": "root",
+        "Name": "min",
+        "Prop": "min",
+        "Kind": "property"
+      },
+      {
+        "Node": "root",
+        "Name": "low",
+        "Prop": "low",
+        "Kind": "property"
+      },
+      {
+        "Node": "root",
+        "Name": "high",
+        "Prop": "high",
+        "Kind": "property"
+      },
+      {
+        "Node": "root",
+        "Name": "optimum",
+        "Prop": "optimum",
+        "Kind": "property"
+      }
+    ],
+    "Children": [],
+    "Requirements": [
+      "Use a meaningful accessible label and valid ordered range values.",
+      "Meter is a scalar measurement, not task progress. Update its current value in the adapter."
+    ],
+    "Events": [],
+    "Styling": [
+      "Choose spacing, typography, and focus indicators in the consuming design system. Preserve native keyboard and disabled semantics."
+    ],
+    "Features": []
+  },
+  {
+    "Name": "navigation-menu",
+    "Title": "Navigation Menu",
+    "Summary": "Labeled container for composed native content.",
+    "Status": "native",
+    "RootType": "HTMLElement",
+    "Props": [
+      {
+        "Name": "label",
+        "Type": "string",
+        "Description": "Accessible container label.",
+        "Required": true
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "content",
+        "Description": "Composed controls or navigation content.",
+        "Required": true,
+        "Scope": []
+      }
+    ],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "nav",
+        "Attributes": {}
+      }
+    ],
+    "Bindings": [
+      {
+        "Node": "root",
+        "Name": "aria-label",
+        "Prop": "label",
+        "Kind": "attribute"
+      }
+    ],
+    "Children": [
+      {
+        "Parent": "root",
+        "Node": "",
+        "Slot": "content"
+      }
+    ],
+    "Requirements": [
+      "Use links and lists for ordinary navigation; native details may disclose sections. Complex coordinated panels require an adapter."
+    ],
+    "Events": [],
+    "Styling": [
+      "Apply layout, spacing and visible focus treatment in consuming CSS."
+    ],
+    "Features": []
+  },
+  {
+    "Name": "number-field",
+    "Title": "Number Field",
+    "Summary": "Native number entry and stepping.",
+    "Status": "native",
+    "RootType": "HTMLLabelElement",
+    "Props": [
+      {
+        "Name": "name",
+        "Type": "string",
+        "Description": "Form field name.",
+        "Required": false
+      },
+      {
+        "Name": "disabled",
+        "Type": "boolean",
+        "Description": "Disables the control.",
+        "Required": false,
+        "Default": false
+      },
+      {
+        "Name": "required",
+        "Type": "boolean",
+        "Description": "Requires a value or checked state for submission.",
+        "Required": false,
+        "Default": false
+      },
+      {
+        "Name": "value",
+        "Type": "number",
+        "Description": "Initial numeric value.",
+        "Required": false
+      },
+      {
+        "Name": "min",
+        "Type": "number",
+        "Description": "Minimum value.",
+        "Required": false
+      },
+      {
+        "Name": "max",
+        "Type": "number",
+        "Description": "Maximum value.",
+        "Required": false
+      },
+      {
+        "Name": "step",
+        "Type": "number",
+        "Description": "Positive stepping interval.",
+        "Required": false
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "label",
+        "Description": "Accessible label as noninteractive phrasing content.",
+        "Required": true,
+        "Scope": []
+      }
+    ],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "label",
+        "Attributes": {}
+      },
+      {
+        "ID": "control",
+        "Tag": "input",
+        "Attributes": {
+          "type": "number"
+        }
+      }
+    ],
+    "Bindings": [
+      {
+        "Node": "control",
+        "Name": "name",
+        "Prop": "name",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "disabled",
+        "Prop": "disabled",
+        "Kind": "property"
+      },
+      {
+        "Node": "control",
+        "Name": "required",
+        "Prop": "required",
+        "Kind": "property"
+      },
+      {
+        "Node": "control",
+        "Name": "min",
+        "Prop": "min",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "max",
+        "Prop": "max",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "step",
+        "Prop": "step",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "value",
+        "Prop": "value",
+        "Kind": "attribute"
+      }
+    ],
+    "Children": [
+      {
+        "Parent": "root",
+        "Node": "",
+        "Slot": "label"
+      },
+      {
+        "Parent": "root",
+        "Node": "control",
+        "Slot": ""
+      }
+    ],
+    "Requirements": [
+      "The label slot must contain noninteractive phrasing content. The enclosing label associates it with the input.",
+      "Read the current control property after input/change; these factories only initialize values.",
+      "valueAsNumber can be NaN when empty or invalid. Define adapter handling for this state. Native locale behavior differs; formatted display and scrubbing require an adapter.",
+      "Apply min, max and step before value so browser sanitization uses the intended bounds."
+    ],
+    "Events": [
+      {
+        "Name": "input",
+        "Target": "control",
+        "State": {
+          "value": "valueAsNumber"
+        },
+        "Type": "Event",
+        "Description": "Native notification; adapters own application state updates."
+      },
+      {
+        "Name": "change",
+        "Target": "control",
+        "State": {
+          "value": "valueAsNumber"
+        },
+        "Type": "Event",
+        "Description": "Native notification; adapters own application state updates."
+      }
+    ],
+    "Styling": [
+      "Choose spacing, typography, and focus indicators in the consuming design system. Preserve native keyboard and disabled semantics."
+    ],
+    "Features": []
+  },
+  {
+    "Name": "otp-field",
+    "Title": "Otp Field",
+    "Summary": "Single-field one-time code entry.",
+    "Status": "native",
+    "RootType": "HTMLLabelElement",
+    "Props": [
+      {
+        "Name": "name",
+        "Type": "string",
+        "Description": "Form field name.",
+        "Required": false
+      },
+      {
+        "Name": "disabled",
+        "Type": "boolean",
+        "Description": "Disables the control.",
+        "Required": false,
+        "Default": false
+      },
+      {
+        "Name": "required",
+        "Type": "boolean",
+        "Description": "Requires a value or checked state for submission.",
+        "Required": false,
+        "Default": false
+      },
+      {
+        "Name": "value",
+        "Type": "string",
+        "Description": "Initial text value.",
+        "Required": false,
+        "Default": ""
+      },
+      {
+        "Name": "placeholder",
+        "Type": "string",
+        "Description": "Hint; does not replace the label.",
+        "Required": false
+      },
+      {
+        "Name": "maxLength",
+        "Type": "number",
+        "Description": "Expected maximum code length.",
+        "Required": false
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "label",
+        "Description": "Accessible label as noninteractive phrasing content.",
+        "Required": true,
+        "Scope": []
+      }
+    ],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "label",
+        "Attributes": {}
+      },
+      {
+        "ID": "control",
+        "Tag": "input",
+        "Attributes": {
+          "type": "text",
+          "autocomplete": "one-time-code",
+          "inputmode": "numeric",
+          "pattern": "[0-9]*"
+        }
+      }
+    ],
+    "Bindings": [
+      {
+        "Node": "control",
+        "Name": "name",
+        "Prop": "name",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "disabled",
+        "Prop": "disabled",
+        "Kind": "property"
+      },
+      {
+        "Node": "control",
+        "Name": "required",
+        "Prop": "required",
+        "Kind": "property"
+      },
+      {
+        "Node": "control",
+        "Name": "defaultValue",
+        "Prop": "value",
+        "Kind": "property"
+      },
+      {
+        "Node": "control",
+        "Name": "value",
+        "Prop": "value",
+        "Kind": "property"
+      },
+      {
+        "Node": "control",
+        "Name": "placeholder",
+        "Prop": "placeholder",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "maxLength",
+        "Prop": "maxLength",
+        "Kind": "property"
+      }
+    ],
+    "Children": [
+      {
+        "Parent": "root",
+        "Node": "",
+        "Slot": "label"
+      },
+      {
+        "Parent": "root",
+        "Node": "control",
+        "Slot": ""
+      }
+    ],
+    "Requirements": [
+      "The label slot must contain noninteractive phrasing content. The enclosing label associates it with the input.",
+      "Read the current control property after input/change; these factories only initialize values.",
+      "Keep codes as strings to preserve leading zeros. This numeric-code pattern is a starting point; segmented focus and paste logic require an adapter.",
+      "Initialize both defaultValue and value so native form reset restores the supplied initial text. Adapters choose whether later updates change the reset baseline."
+    ],
+    "Events": [
+      {
+        "Name": "input",
+        "Target": "control",
+        "State": {
+          "value": "value"
+        },
+        "Type": "Event",
+        "Description": "Native notification; adapters own application state updates."
+      },
+      {
+        "Name": "change",
+        "Target": "control",
+        "State": {
+          "value": "value"
+        },
+        "Type": "Event",
+        "Description": "Native notification; adapters own application state updates."
+      }
+    ],
+    "Styling": [
+      "Choose spacing, typography, and focus indicators in the consuming design system. Preserve native keyboard and disabled semantics."
+    ],
+    "Features": []
+  },
+  {
+    "Name": "popover",
+    "Title": "Popover",
+    "Summary": "Native popover visibility with content insertion points.",
+    "Status": "native",
+    "RootType": "HTMLDivElement",
+    "Props": [
+      {
+        "Name": "id",
+        "Type": "string",
+        "Description": "Unique popup ID.",
+        "Required": true
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "trigger",
+        "Description": "Accessible trigger button label.",
+        "Required": true,
+        "Scope": []
+      },
+      {
+        "Name": "content",
+        "Description": "Popup content.",
+        "Required": true,
+        "Scope": []
+      }
+    ],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "div",
+        "Attributes": {}
+      },
+      {
+        "ID": "trigger",
+        "Tag": "button",
+        "Attributes": {
+          "type": "button"
+        }
+      },
+      {
+        "ID": "popup",
+        "Tag": "div",
+        "Attributes": {
+          "popover": "auto"
+        }
+      }
+    ],
+    "Bindings": [
+      {
+        "Node": "trigger",
+        "Name": "popovertarget",
+        "Prop": "id",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "popup",
+        "Name": "id",
+        "Prop": "id",
+        "Kind": "attribute"
+      }
+    ],
+    "Children": [
+      {
+        "Parent": "trigger",
+        "Node": "",
+        "Slot": "trigger"
+      },
+      {
+        "Parent": "root",
+        "Node": "trigger",
+        "Slot": ""
+      },
+      {
+        "Parent": "popup",
+        "Node": "",
+        "Slot": "content"
+      },
+      {
+        "Parent": "root",
+        "Node": "popup",
+        "Slot": ""
+      }
+    ],
+    "Requirements": [
+      "Popover supplies nonmodal visibility and light dismissal, not arbitrary widget keyboard behavior. IDs must be unique.",
+      "Supply an accessible structure and choose positioning appropriate to the trigger.",
+      "On older browsers, the converter supplies a visibility/focus fallback or chooses another pattern."
+    ],
+    "Events": [
+      {
+        "Name": "toggle",
+        "Target": "popup",
+        "State": {},
+        "Type": "ToggleEvent",
+        "Description": "Native notification; adapters own application state updates."
+      }
+    ],
+    "Styling": [
+      "Position the popup using consuming CSS. Anchor positioning can be an enhancement; verify individual property support."
+    ],
+    "Features": [
+      {
+        "ID": "popover",
+        "Status": "Newly available since 2025-01-27",
+        "Date": "2026-09-26"
+      }
+    ]
+  },
+  {
+    "Name": "preview-card",
+    "Title": "Preview Card",
+    "Summary": "Native popover visibility with content insertion points.",
+    "Status": "adapter-required",
+    "RootType": "HTMLDivElement",
+    "Props": [
+      {
+        "Name": "id",
+        "Type": "string",
+        "Description": "Unique popup ID.",
+        "Required": true
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "trigger",
+        "Description": "Accessible trigger button label.",
+        "Required": true,
+        "Scope": []
+      },
+      {
+        "Name": "content",
+        "Description": "Popup content.",
+        "Required": true,
+        "Scope": []
+      }
+    ],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "div",
+        "Attributes": {}
+      },
+      {
+        "ID": "trigger",
+        "Tag": "button",
+        "Attributes": {
+          "type": "button"
+        }
+      },
+      {
+        "ID": "popup",
+        "Tag": "div",
+        "Attributes": {
+          "popover": "auto"
+        }
+      }
+    ],
+    "Bindings": [
+      {
+        "Node": "trigger",
+        "Name": "popovertarget",
+        "Prop": "id",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "popup",
+        "Name": "id",
+        "Prop": "id",
+        "Kind": "attribute"
+      }
+    ],
+    "Children": [
+      {
+        "Parent": "trigger",
+        "Node": "",
+        "Slot": "trigger"
+      },
+      {
+        "Parent": "root",
+        "Node": "trigger",
+        "Slot": ""
+      },
+      {
+        "Parent": "popup",
+        "Node": "",
+        "Slot": "content"
+      },
+      {
+        "Parent": "root",
+        "Node": "popup",
+        "Slot": ""
+      }
+    ],
+    "Requirements": [
+      "Popover supplies nonmodal visibility and light dismissal, not arbitrary widget keyboard behavior. IDs must be unique.",
+      "Supply an accessible structure and choose positioning appropriate to the trigger.",
+      "Hover/focus intent, delays, and dismissal for a preview card need adapter logic; the emitted trigger opens on click."
+    ],
+    "Events": [
+      {
+        "Name": "toggle",
+        "Target": "popup",
+        "State": {},
+        "Type": "ToggleEvent",
+        "Description": "Native notification; adapters own application state updates."
+      }
+    ],
+    "Styling": [
+      "Position the popup using consuming CSS. Anchor positioning can be an enhancement; verify individual property support."
+    ],
+    "Features": [
+      {
+        "ID": "popover",
+        "Status": "Newly available since 2025-01-27",
+        "Date": "2026-09-26"
+      }
+    ]
+  },
+  {
+    "Name": "progress",
+    "Title": "Progress",
+    "Summary": "Native task progress.",
+    "Status": "native",
+    "RootType": "HTMLProgressElement",
+    "Props": [
+      {
+        "Name": "label",
+        "Type": "string",
+        "Description": "Accessible name.",
+        "Required": true
+      },
+      {
+        "Name": "value",
+        "Type": "number",
+        "Description": "Current value; omit for indeterminate progress.",
+        "Required": false
+      },
+      {
+        "Name": "max",
+        "Type": "number",
+        "Description": "Positive maximum.",
+        "Required": false,
+        "Default": 1
+      }
+    ],
+    "Slots": [],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "progress",
+        "Attributes": {}
+      }
+    ],
+    "Bindings": [
+      {
+        "Node": "root",
+        "Name": "aria-label",
+        "Prop": "label",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "root",
+        "Name": "value",
+        "Prop": "value",
+        "Kind": "property"
+      },
+      {
+        "Node": "root",
+        "Name": "max",
+        "Prop": "max",
+        "Kind": "property"
+      }
+    ],
+    "Children": [],
+    "Requirements": [
+      "Use a meaningful accessible label and valid ordered range values.",
+      "Omitting value preserves indeterminate progress. Application updates are external."
+    ],
+    "Events": [],
+    "Styling": [
+      "Choose spacing, typography, and focus indicators in the consuming design system. Preserve native keyboard and disabled semantics."
+    ],
+    "Features": []
+  },
+  {
+    "Name": "radio-group",
+    "Title": "Radio Group",
+    "Summary": "Native fieldset with a legend.",
+    "Status": "native",
+    "RootType": "HTMLFieldSetElement",
+    "Props": [
+      {
+        "Name": "disabled",
+        "Type": "boolean",
+        "Description": "Disables descendant form controls.",
+        "Required": false,
+        "Default": false
+      },
+      {
+        "Name": "name",
+        "Type": "string",
+        "Description": "Shared nonempty form name for radio inputs.",
+        "Required": true
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "legend",
+        "Description": "Accessible group label.",
+        "Required": true,
+        "Scope": []
+      },
+      {
+        "Name": "content",
+        "Description": "Group controls. Radio controls must share the scoped name.",
+        "Required": true,
+        "Scope": [
+          {
+            "Name": "name",
+            "Type": "string",
+            "Prop": "name"
+          }
+        ]
+      }
+    ],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "fieldset",
+        "Attributes": {}
+      },
+      {
+        "ID": "legend",
+        "Tag": "legend",
+        "Attributes": {}
+      }
+    ],
+    "Bindings": [
+      {
+        "Node": "root",
+        "Name": "disabled",
+        "Prop": "disabled",
+        "Kind": "property"
+      }
+    ],
+    "Children": [
+      {
+        "Parent": "legend",
+        "Node": "",
+        "Slot": "legend"
+      },
+      {
+        "Parent": "root",
+        "Node": "legend",
+        "Slot": ""
+      },
+      {
+        "Parent": "root",
+        "Node": "",
+        "Slot": "content"
+      }
+    ],
+    "Requirements": [
+      "The legend labels the controls. Use actual inputs inside the content slot.",
+      "Radio selection and arrow keys are native when radios share a name; the converter constructs the individual controls."
+    ],
+    "Events": [
+      {
+        "Name": "change",
+        "Target": "root",
+        "State": {},
+        "Type": "Event",
+        "Description": "Native notification; adapters own application state updates."
+      }
+    ],
+    "Styling": [
+      "Choose spacing, typography, and focus indicators in the consuming design system. Preserve native keyboard and disabled semantics."
+    ],
+    "Features": []
+  },
+  {
+    "Name": "scroll-area",
+    "Title": "Scroll Area",
+    "Summary": "Labeled container for composed native content.",
+    "Status": "native",
+    "RootType": "HTMLDivElement",
+    "Props": [
+      {
+        "Name": "label",
+        "Type": "string",
+        "Description": "Accessible container label.",
+        "Required": true
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "content",
+        "Description": "Composed controls or navigation content.",
+        "Required": true,
+        "Scope": []
+      }
+    ],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "div",
+        "Attributes": {
+          "role": "region",
+          "tabindex": "0"
+        }
+      }
+    ],
+    "Bindings": [
+      {
+        "Node": "root",
+        "Name": "aria-label",
+        "Prop": "label",
+        "Kind": "attribute"
+      }
+    ],
+    "Children": [
+      {
+        "Parent": "root",
+        "Node": "",
+        "Slot": "content"
+      }
+    ],
+    "Requirements": [
+      "Scrolling requires consuming CSS overflow and a constrained size. The region is focusable for keyboard scrolling; retain a visible focus indicator."
+    ],
+    "Events": [],
+    "Styling": [
+      "Set overflow and size constraints for a scroll area; do not hide focus outlines. Custom scrollbar dragging is separate behavior."
+    ],
+    "Features": []
+  },
+  {
+    "Name": "select",
+    "Title": "Select",
+    "Summary": "Native selection control.",
+    "Status": "native",
+    "RootType": "HTMLLabelElement",
+    "Props": [
+      {
+        "Name": "name",
+        "Type": "string",
+        "Description": "Form field name.",
+        "Required": false
+      },
+      {
+        "Name": "disabled",
+        "Type": "boolean",
+        "Description": "Disables the input.",
+        "Required": false,
+        "Default": false
+      },
+      {
+        "Name": "required",
+        "Type": "boolean",
+        "Description": "Requires a selection or value.",
+        "Required": false,
+        "Default": false
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "label",
+        "Description": "Accessible label as noninteractive phrasing content.",
+        "Required": true,
+        "Scope": []
+      },
+      {
+        "Name": "options",
+        "Description": "Native option content. A select may receive an optgroup of options; converters may emit multiple options.",
+        "Required": true,
+        "Scope": []
+      }
+    ],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "label",
+        "Attributes": {}
+      },
+      {
+        "ID": "control",
+        "Tag": "select",
+        "Attributes": {}
+      }
+    ],
+    "Bindings": [
+      {
+        "Node": "control",
+        "Name": "name",
+        "Prop": "name",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "disabled",
+        "Prop": "disabled",
+        "Kind": "property"
+      },
+      {
+        "Node": "control",
+        "Name": "required",
+        "Prop": "required",
+        "Kind": "property"
+      }
+    ],
+    "Children": [
+      {
+        "Parent": "root",
+        "Node": "",
+        "Slot": "label"
+      },
+      {
+        "Parent": "control",
+        "Node": "",
+        "Slot": "options"
+      },
+      {
+        "Parent": "root",
+        "Node": "control",
+        "Slot": ""
+      }
+    ],
+    "Requirements": [
+      "The control is associated with its enclosing label. Supply valid option elements.",
+      "Mark initial selected options in the options content; single-selection keyboard behavior is native.",
+      "The native factory takes one HTMLElement per slot; framework converters can map the slot to their own multi-node content representation."
+    ],
+    "Events": [
+      {
+        "Name": "input",
+        "Target": "control",
+        "State": {},
+        "Type": "Event",
+        "Description": "Native notification; adapters own application state updates."
+      },
+      {
+        "Name": "change",
+        "Target": "control",
+        "State": {},
+        "Type": "Event",
+        "Description": "Native notification; adapters own application state updates."
+      }
+    ],
+    "Styling": [
+      "Choose spacing, typography, and focus indicators in the consuming design system. Preserve native keyboard and disabled semantics."
+    ],
+    "Features": [
+      {
+        "ID": "customizable-select",
+        "Status": "Limited availability",
+        "Date": "2026-09-26"
+      }
+    ]
+  },
+  {
+    "Name": "separator",
+    "Title": "Separator",
+    "Summary": "Native thematic break.",
+    "Status": "native",
+    "RootType": "HTMLHRElement",
+    "Props": [],
+    "Slots": [],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "hr",
+        "Attributes": {}
+      }
+    ],
+    "Bindings": [],
+    "Children": [],
+    "Requirements": [
+      "Use for a thematic break. A purely decorative divider should use consuming CSS; other separator contexts need explicit semantics."
+    ],
+    "Events": [],
+    "Styling": [
+      "Choose spacing, typography, and focus indicators in the consuming design system. Preserve native keyboard and disabled semantics."
+    ],
+    "Features": []
+  },
+  {
+    "Name": "slider",
+    "Title": "Slider",
+    "Summary": "Native single-thumb range control.",
+    "Status": "native",
+    "RootType": "HTMLLabelElement",
+    "Props": [
+      {
+        "Name": "name",
+        "Type": "string",
+        "Description": "Form field name.",
+        "Required": false
+      },
+      {
+        "Name": "disabled",
+        "Type": "boolean",
+        "Description": "Disables the control.",
+        "Required": false,
+        "Default": false
+      },
+      {
+        "Name": "value",
+        "Type": "number",
+        "Description": "Initial numeric value.",
+        "Required": false
+      },
+      {
+        "Name": "min",
+        "Type": "number",
+        "Description": "Minimum value.",
+        "Required": false
+      },
+      {
+        "Name": "max",
+        "Type": "number",
+        "Description": "Maximum value.",
+        "Required": false
+      },
+      {
+        "Name": "step",
+        "Type": "number",
+        "Description": "Positive stepping interval.",
+        "Required": false
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "label",
+        "Description": "Accessible label as noninteractive phrasing content.",
+        "Required": true,
+        "Scope": []
+      }
+    ],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "label",
+        "Attributes": {}
+      },
+      {
+        "ID": "control",
+        "Tag": "input",
+        "Attributes": {
+          "type": "range"
+        }
+      }
+    ],
+    "Bindings": [
+      {
+        "Node": "control",
+        "Name": "name",
+        "Prop": "name",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "disabled",
+        "Prop": "disabled",
+        "Kind": "property"
+      },
+      {
+        "Node": "control",
+        "Name": "min",
+        "Prop": "min",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "max",
+        "Prop": "max",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "step",
+        "Prop": "step",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "value",
+        "Prop": "value",
+        "Kind": "attribute"
+      }
+    ],
+    "Children": [
+      {
+        "Parent": "root",
+        "Node": "",
+        "Slot": "label"
+      },
+      {
+        "Parent": "root",
+        "Node": "control",
+        "Slot": ""
+      }
+    ],
+    "Requirements": [
+      "The label slot must contain noninteractive phrasing content. The enclosing label associates it with the input.",
+      "Read the current control property after input/change; these factories only initialize values.",
+      "Use ordered min/max and a positive step. Multiple thumbs and coordinated constraints require adapter logic.",
+      "Apply min, max and step before value so browser sanitization uses the intended bounds.",
+      "Range controls always have a value; required validation does not apply."
+    ],
+    "Events": [
+      {
+        "Name": "input",
+        "Target": "control",
+        "State": {
+          "value": "valueAsNumber"
+        },
+        "Type": "Event",
+        "Description": "Native notification; adapters own application state updates."
+      },
+      {
+        "Name": "change",
+        "Target": "control",
+        "State": {
+          "value": "valueAsNumber"
+        },
+        "Type": "Event",
+        "Description": "Native notification; adapters own application state updates."
+      }
+    ],
+    "Styling": [
+      "Choose spacing, typography, and focus indicators in the consuming design system. Preserve native keyboard and disabled semantics."
+    ],
+    "Features": []
+  },
+  {
+    "Name": "switch",
+    "Title": "Switch",
+    "Summary": "Native checkbox exposing switch semantics.",
+    "Status": "native",
+    "RootType": "HTMLLabelElement",
+    "Props": [
+      {
+        "Name": "name",
+        "Type": "string",
+        "Description": "Form field name.",
+        "Required": false
+      },
+      {
+        "Name": "disabled",
+        "Type": "boolean",
+        "Description": "Disables the control.",
+        "Required": false,
+        "Default": false
+      },
+      {
+        "Name": "required",
+        "Type": "boolean",
+        "Description": "Requires a value or checked state for submission.",
+        "Required": false,
+        "Default": false
+      },
+      {
+        "Name": "checked",
+        "Type": "boolean",
+        "Description": "Initial checked state.",
+        "Required": false,
+        "Default": false
+      },
+      {
+        "Name": "value",
+        "Type": "string",
+        "Description": "Submitted value when checked.",
+        "Required": false,
+        "Default": "on"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "label",
+        "Description": "Accessible label as noninteractive phrasing content.",
+        "Required": true,
+        "Scope": []
+      }
+    ],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "label",
+        "Attributes": {}
+      },
+      {
+        "ID": "control",
+        "Tag": "input",
+        "Attributes": {
+          "type": "checkbox",
+          "role": "switch"
+        }
+      }
+    ],
+    "Bindings": [
+      {
+        "Node": "control",
+        "Name": "name",
+        "Prop": "name",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "disabled",
+        "Prop": "disabled",
+        "Kind": "property"
+      },
+      {
+        "Node": "control",
+        "Name": "required",
+        "Prop": "required",
+        "Kind": "property"
+      },
+      {
+        "Node": "control",
+        "Name": "defaultChecked",
+        "Prop": "checked",
+        "Kind": "property"
+      },
+      {
+        "Node": "control",
+        "Name": "checked",
+        "Prop": "checked",
+        "Kind": "property"
+      },
+      {
+        "Node": "control",
+        "Name": "value",
+        "Prop": "value",
+        "Kind": "property"
+      }
+    ],
+    "Children": [
+      {
+        "Parent": "root",
+        "Node": "",
+        "Slot": "label"
+      },
+      {
+        "Parent": "root",
+        "Node": "control",
+        "Slot": ""
+      }
+    ],
+    "Requirements": [
+      "The label slot must contain noninteractive phrasing content. The enclosing label associates it with the input.",
+      "Read the current control property after input/change; these factories only initialize values.",
+      "Expose binary checked state; switch does not support a mixed state.",
+      "Initialize both defaultChecked and checked so native form reset restores the supplied initial state. Adapters choose whether later updates change the reset baseline."
+    ],
+    "Events": [
+      {
+        "Name": "input",
+        "Target": "control",
+        "State": {
+          "checked": "checked"
+        },
+        "Type": "Event",
+        "Description": "Native notification; adapters own application state updates."
+      },
+      {
+        "Name": "change",
+        "Target": "control",
+        "State": {
+          "checked": "checked"
+        },
+        "Type": "Event",
+        "Description": "Native notification; adapters own application state updates."
+      }
+    ],
+    "Styling": [
+      "Choose spacing, typography, and focus indicators in the consuming design system. Preserve native keyboard and disabled semantics."
+    ],
+    "Features": []
+  },
+  {
+    "Name": "tabs",
+    "Title": "Tabs",
+    "Summary": "Tablist and panel insertion points requiring an interaction adapter.",
+    "Status": "adapter-required",
+    "RootType": "HTMLDivElement",
+    "Props": [
+      {
+        "Name": "label",
+        "Type": "string",
+        "Description": "Accessible tablist label.",
+        "Required": true
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "tabs",
+        "Description": "Buttons with role=tab, IDs, aria-controls, aria-selected and managed tabindex.",
+        "Required": true,
+        "Scope": []
+      },
+      {
+        "Name": "panels",
+        "Description": "Panels with role=tabpanel, IDs, aria-labelledby and selected visibility.",
+        "Required": true,
+        "Scope": []
+      }
+    ],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "div",
+        "Attributes": {}
+      },
+      {
+        "ID": "tablist",
+        "Tag": "div",
+        "Attributes": {
+          "role": "tablist"
+        }
+      }
+    ],
+    "Bindings": [
+      {
+        "Node": "tablist",
+        "Name": "aria-label",
+        "Prop": "label",
+        "Kind": "attribute"
+      }
+    ],
+    "Children": [
+      {
+        "Parent": "tablist",
+        "Node": "",
+        "Slot": "tabs"
+      },
+      {
+        "Parent": "root",
+        "Node": "tablist",
+        "Slot": ""
+      },
+      {
+        "Parent": "root",
+        "Node": "",
+        "Slot": "panels"
+      }
+    ],
+    "Requirements": [
+      "Adapter required: selected state, roving focus, arrow/Home/End keys, activation policy and panel visibility.",
+      "Keep tab and panel IDs unique and relationships reciprocal. A disclosure is not a substitute for tab behavior."
+    ],
+    "Events": [],
+    "Styling": [
+      "Choose spacing, typography, and focus indicators in the consuming design system. Preserve native keyboard and disabled semantics."
+    ],
+    "Features": []
+  },
+  {
+    "Name": "toast",
+    "Title": "Toast",
+    "Summary": "Persistent polite live region for adapter-managed notifications.",
+    "Status": "adapter-required",
+    "RootType": "HTMLDivElement",
+    "Props": [],
+    "Slots": [
+      {
+        "Name": "content",
+        "Description": "Notification content; insert or update after the live region is mounted.",
+        "Required": false,
+        "Scope": []
+      }
+    ],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "div",
+        "Attributes": {
+          "role": "status",
+          "aria-live": "polite",
+          "aria-atomic": "true"
+        }
+      }
+    ],
+    "Bindings": [],
+    "Children": [
+      {
+        "Parent": "root",
+        "Node": "",
+        "Slot": "content"
+      }
+    ],
+    "Requirements": [
+      "Adapter required: mount the empty live region before inserting announcements, manage queues, dismissal, timing and actions.",
+      "Static initial markup does not guarantee an announcement. Do not steal focus; provide sufficient reading time and explicit dismissal when needed."
+    ],
+    "Events": [],
+    "Styling": [
+      "Choose spacing, typography, and focus indicators in the consuming design system. Preserve native keyboard and disabled semantics."
+    ],
+    "Features": []
+  },
+  {
+    "Name": "toggle",
+    "Title": "Toggle",
+    "Summary": "Button exposing an externally managed pressed state.",
+    "Status": "adapter-required",
+    "RootType": "HTMLButtonElement",
+    "Props": [
+      {
+        "Name": "pressed",
+        "Type": "boolean",
+        "Description": "Initial pressed state.",
+        "Required": false,
+        "Default": false
+      },
+      {
+        "Name": "disabled",
+        "Type": "boolean",
+        "Description": "Disables the button.",
+        "Required": false,
+        "Default": false
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "label",
+        "Description": "Stable accessible toggle label.",
+        "Required": true,
+        "Scope": []
+      }
+    ],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "button",
+        "Attributes": {
+          "type": "button"
+        }
+      }
+    ],
+    "Bindings": [
+      {
+        "Node": "root",
+        "Name": "aria-pressed",
+        "Prop": "pressed",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "root",
+        "Name": "disabled",
+        "Prop": "disabled",
+        "Kind": "property"
+      }
+    ],
+    "Children": [
+      {
+        "Parent": "root",
+        "Node": "",
+        "Slot": "label"
+      }
+    ],
+    "Requirements": [
+      "Adapter required: update pressed and aria-pressed on activation. The native button does not toggle aria-pressed automatically.",
+      "Use a stable label; expose state through aria-pressed. A checkbox is an alternative with different semantics."
+    ],
+    "Events": [
+      {
+        "Name": "click",
+        "Target": "root",
+        "State": {},
+        "Type": "MouseEvent",
+        "Description": "Native notification; adapters own application state updates."
+      }
+    ],
+    "Styling": [
+      "Choose spacing, typography, and focus indicators in the consuming design system. Preserve native keyboard and disabled semantics."
+    ],
+    "Features": []
+  },
+  {
+    "Name": "toggle-group",
+    "Title": "Toggle Group",
+    "Summary": "Labeled container for composed native content.",
+    "Status": "adapter-required",
+    "RootType": "HTMLDivElement",
+    "Props": [
+      {
+        "Name": "label",
+        "Type": "string",
+        "Description": "Accessible container label.",
+        "Required": true
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "content",
+        "Description": "Composed controls or navigation content.",
+        "Required": true,
+        "Scope": []
+      }
+    ],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "div",
+        "Attributes": {
+          "role": "group"
+        }
+      }
+    ],
+    "Bindings": [
+      {
+        "Node": "root",
+        "Name": "aria-label",
+        "Prop": "label",
+        "Kind": "attribute"
+      }
+    ],
+    "Children": [
+      {
+        "Parent": "root",
+        "Node": "",
+        "Slot": "content"
+      }
+    ],
+    "Requirements": [
+      "Adapter required: selection policy, pressed states, and optional composite keyboard behavior. Radios or checkboxes are simpler native alternatives."
+    ],
+    "Events": [],
+    "Styling": [
+      "Apply layout, spacing and visible focus treatment in consuming CSS."
+    ],
+    "Features": []
+  },
+  {
+    "Name": "toolbar",
+    "Title": "Toolbar",
+    "Summary": "Labeled container for composed native content.",
+    "Status": "adapter-required",
+    "RootType": "HTMLDivElement",
+    "Props": [
+      {
+        "Name": "label",
+        "Type": "string",
+        "Description": "Accessible container label.",
+        "Required": true
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "content",
+        "Description": "Composed controls or navigation content.",
+        "Required": true,
+        "Scope": []
+      }
+    ],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "div",
+        "Attributes": {
+          "role": "toolbar"
+        }
+      }
+    ],
+    "Bindings": [
+      {
+        "Node": "root",
+        "Name": "aria-label",
+        "Prop": "label",
+        "Kind": "attribute"
+      }
+    ],
+    "Children": [
+      {
+        "Parent": "root",
+        "Node": "",
+        "Slot": "content"
+      }
+    ],
+    "Requirements": [
+      "Adapter required: composite keyboard navigation and roving focus among suitable controls."
+    ],
+    "Events": [],
+    "Styling": [
+      "Apply layout, spacing and visible focus treatment in consuming CSS."
+    ],
+    "Features": []
+  },
+  {
+    "Name": "tooltip",
+    "Title": "Tooltip",
+    "Summary": "Described trigger and noninteractive tooltip content.",
+    "Status": "adapter-required",
+    "RootType": "HTMLDivElement",
+    "Props": [
+      {
+        "Name": "id",
+        "Type": "string",
+        "Description": "Unique tooltip ID.",
+        "Required": true
+      },
+      {
+        "Name": "hidden",
+        "Type": "boolean",
+        "Description": "Initial tooltip visibility.",
+        "Required": false,
+        "Default": true
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "trigger",
+        "Description": "Accessible trigger button label.",
+        "Required": true,
+        "Scope": []
+      },
+      {
+        "Name": "content",
+        "Description": "Noninteractive descriptive text.",
+        "Required": true,
+        "Scope": []
+      }
+    ],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "div",
+        "Attributes": {}
+      },
+      {
+        "ID": "trigger",
+        "Tag": "button",
+        "Attributes": {
+          "type": "button"
+        }
+      },
+      {
+        "ID": "tooltip",
+        "Tag": "div",
+        "Attributes": {
+          "role": "tooltip"
+        }
+      }
+    ],
+    "Bindings": [
+      {
+        "Node": "trigger",
+        "Name": "aria-describedby",
+        "Prop": "id",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "tooltip",
+        "Name": "id",
+        "Prop": "id",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "tooltip",
+        "Name": "hidden",
+        "Prop": "hidden",
+        "Kind": "property"
+      }
+    ],
+    "Children": [
+      {
+        "Parent": "trigger",
+        "Node": "",
+        "Slot": "trigger"
+      },
+      {
+        "Parent": "root",
+        "Node": "trigger",
+        "Slot": ""
+      },
+      {
+        "Parent": "tooltip",
+        "Node": "",
+        "Slot": "content"
+      },
+      {
+        "Parent": "root",
+        "Node": "tooltip",
+        "Slot": ""
+      }
+    ],
+    "Requirements": [
+      "Adapter required: show on keyboard focus and hover, hide on Escape, coordinate delays and pointer movement.",
+      "Keep content noninteractive; interactive content requires another pattern. Associate the description with the actual trigger and do not rely on a title attribute."
+    ],
+    "Events": [],
+    "Styling": [
+      "Position and size with consuming CSS; ensure the tooltip remains hoverable and visible without obscuring its trigger."
+    ],
+    "Features": []
+  }
+]
