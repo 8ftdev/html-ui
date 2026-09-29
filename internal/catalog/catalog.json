@@ -4174,5 +4174,800 @@
       "Presentation is supplied by the selected UI plugin."
     ],
     "Features": []
+  },
+  {
+    "Name": "alert",
+    "Title": "Alert",
+    "Summary": "Local native alert building block.",
+    "Status": "native",
+    "RootType": "HTMLDivElement",
+    "Props": [],
+    "Slots": [
+      {
+        "Name": "icon",
+        "Description": "Decorative icon only.",
+        "Required": false,
+        "Scope": []
+      },
+      {
+        "Name": "title",
+        "Description": "Caller-owned content.",
+        "Required": true,
+        "Scope": []
+      },
+      {
+        "Name": "description",
+        "Description": "Caller-owned content.",
+        "Required": false,
+        "Scope": []
+      }
+    ],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "div",
+        "Attributes": {
+          "role": "alert"
+        }
+      },
+      {
+        "ID": "icon",
+        "Tag": "div",
+        "Attributes": {
+          "aria-hidden": "true"
+        }
+      },
+      {
+        "ID": "title",
+        "Tag": "div",
+        "Attributes": {}
+      },
+      {
+        "ID": "description",
+        "Tag": "div",
+        "Attributes": {}
+      }
+    ],
+    "Bindings": [],
+    "Children": [
+      {
+        "Parent": "icon",
+        "Node": "",
+        "Slot": "icon"
+      },
+      {
+        "Parent": "title",
+        "Node": "",
+        "Slot": "title"
+      },
+      {
+        "Parent": "description",
+        "Node": "",
+        "Slot": "description"
+      },
+      {
+        "Parent": "root",
+        "Node": "icon",
+        "Slot": ""
+      },
+      {
+        "Parent": "root",
+        "Node": "title",
+        "Slot": ""
+      },
+      {
+        "Parent": "root",
+        "Node": "description",
+        "Slot": ""
+      }
+    ],
+    "Requirements": [
+      "Native alert role; announcements depend on when content is inserted or changed. No dismissal or action controller.",
+      "The icon is decorative; place meaningful text in title and description."
+    ],
+    "Events": [],
+    "Styling": [
+      "Presentation is supplied by the selected UI plugin; every owned part remains overridable."
+    ],
+    "Features": []
+  },
+  {
+    "Name": "badge",
+    "Title": "Badge",
+    "Summary": "Local native badge building block.",
+    "Status": "native",
+    "RootType": "HTMLSpanElement",
+    "Props": [],
+    "Slots": [
+      {
+        "Name": "default",
+        "Description": "Caller-owned content.",
+        "Required": false,
+        "Scope": []
+      }
+    ],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "span",
+        "Attributes": {}
+      }
+    ],
+    "Bindings": [],
+    "Children": [
+      {
+        "Parent": "root",
+        "Node": "",
+        "Slot": "default"
+      }
+    ],
+    "Requirements": [
+      "Noninteractive status text. Use Button or an anchor for actions and navigation."
+    ],
+    "Events": [],
+    "Styling": [
+      "Presentation is supplied by the selected UI plugin; every owned part remains overridable."
+    ],
+    "Features": []
+  },
+  {
+    "Name": "aspect-ratio",
+    "Title": "Aspect Ratio",
+    "Summary": "Local native aspect ratio building block.",
+    "Status": "native",
+    "RootType": "HTMLDivElement",
+    "Props": [],
+    "Slots": [
+      {
+        "Name": "default",
+        "Description": "Caller-owned content.",
+        "Required": false,
+        "Scope": []
+      }
+    ],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "div",
+        "Attributes": {}
+      }
+    ],
+    "Bindings": [],
+    "Children": [
+      {
+        "Parent": "root",
+        "Node": "",
+        "Slot": "default"
+      }
+    ],
+    "Requirements": [
+      "CSS aspect ratio controls the preferred box size; oversized content can increase intrinsic height. Use styles.root.aspectRatio for custom ratios."
+    ],
+    "Events": [],
+    "Styling": [
+      "Presentation is supplied by the selected UI plugin; every owned part remains overridable."
+    ],
+    "Features": []
+  },
+  {
+    "Name": "breadcrumb",
+    "Title": "Breadcrumb",
+    "Summary": "Local native breadcrumb building block.",
+    "Status": "native",
+    "RootType": "HTMLElement",
+    "Props": [
+      {
+        "Name": "label",
+        "Type": "string",
+        "Description": "Accessible navigation label; localize for the application.",
+        "Required": false,
+        "Default": "Breadcrumb"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "default",
+        "Description": "li elements containing links and an aria-current=page final item.",
+        "Required": true,
+        "Scope": []
+      }
+    ],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "nav",
+        "Attributes": {}
+      },
+      {
+        "ID": "list",
+        "Tag": "ol",
+        "Attributes": {}
+      }
+    ],
+    "Bindings": [
+      {
+        "Node": "root",
+        "Name": "aria-label",
+        "Prop": "label",
+        "Kind": "attribute"
+      }
+    ],
+    "Children": [
+      {
+        "Parent": "list",
+        "Node": "",
+        "Slot": "default"
+      },
+      {
+        "Parent": "root",
+        "Node": "list",
+        "Slot": ""
+      }
+    ],
+    "Requirements": [
+      "Caller supplies semantic list items, links and current-page identification. Separators are decorative CSS; no routing or dropdown behavior."
+    ],
+    "Events": [],
+    "Styling": [
+      "Presentation is supplied by the selected UI plugin; every owned part remains overridable."
+    ],
+    "Features": []
+  },
+  {
+    "Name": "button-group",
+    "Title": "Button Group",
+    "Summary": "Local native button group building block.",
+    "Status": "native",
+    "RootType": "HTMLDivElement",
+    "Props": [
+      {
+        "Name": "label",
+        "Type": "string",
+        "Description": "Accessible name identifying the grouped actions.",
+        "Required": true
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "default",
+        "Description": "Caller-owned content.",
+        "Required": false,
+        "Scope": []
+      }
+    ],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "div",
+        "Attributes": {
+          "role": "group"
+        }
+      }
+    ],
+    "Bindings": [
+      {
+        "Node": "root",
+        "Name": "aria-label",
+        "Prop": "label",
+        "Kind": "attribute"
+      }
+    ],
+    "Children": [
+      {
+        "Parent": "root",
+        "Node": "",
+        "Slot": "default"
+      }
+    ],
+    "Requirements": [
+      "Labeled group of local Button primitives; all enabled buttons remain in normal tab order. No toolbar/roving-focus behavior."
+    ],
+    "Events": [],
+    "Styling": [
+      "Presentation is supplied by the selected UI plugin; every owned part remains overridable."
+    ],
+    "Features": []
+  },
+  {
+    "Name": "label",
+    "Title": "Label",
+    "Summary": "Local native label building block.",
+    "Status": "native",
+    "RootType": "HTMLLabelElement",
+    "Props": [
+      {
+        "Name": "htmlFor",
+        "Type": "string",
+        "Description": "ID of the labelable control, emitted as the native for attribute.",
+        "Required": false
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "default",
+        "Description": "Caller-owned content.",
+        "Required": false,
+        "Scope": []
+      }
+    ],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "label",
+        "Attributes": {}
+      }
+    ],
+    "Bindings": [
+      {
+        "Node": "root",
+        "Name": "for",
+        "Prop": "htmlFor",
+        "Kind": "attribute"
+      }
+    ],
+    "Children": [
+      {
+        "Parent": "root",
+        "Node": "",
+        "Slot": "default"
+      }
+    ],
+    "Requirements": [
+      "Use htmlFor to connect to an external labelable control; alternatively wrap one labelable control. Avoid nested labels."
+    ],
+    "Events": [],
+    "Styling": [
+      "Presentation is supplied by the selected UI plugin; every owned part remains overridable."
+    ],
+    "Features": []
+  },
+  {
+    "Name": "skeleton",
+    "Title": "Skeleton",
+    "Summary": "Local native skeleton building block.",
+    "Status": "native",
+    "RootType": "HTMLDivElement",
+    "Props": [],
+    "Slots": [],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "div",
+        "Attributes": {
+          "aria-hidden": "true"
+        }
+      }
+    ],
+    "Bindings": [],
+    "Children": [],
+    "Requirements": [
+      "Decorative placeholder; application marks the loading region aria-busy. Do not place meaningful content inside. CSS pulse respects reduced motion."
+    ],
+    "Events": [],
+    "Styling": [
+      "Presentation is supplied by the selected UI plugin; every owned part remains overridable."
+    ],
+    "Features": []
+  },
+  {
+    "Name": "spinner",
+    "Title": "Spinner",
+    "Summary": "Local native spinner building block.",
+    "Status": "native",
+    "RootType": "HTMLSpanElement",
+    "Props": [
+      {
+        "Name": "label",
+        "Type": "string",
+        "Description": "Accessible loading status; localize for the application.",
+        "Required": false,
+        "Default": "Loading"
+      }
+    ],
+    "Slots": [],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "span",
+        "Attributes": {
+          "role": "status"
+        }
+      },
+      {
+        "ID": "indicator",
+        "Tag": "span",
+        "Attributes": {
+          "aria-hidden": "true"
+        }
+      }
+    ],
+    "Bindings": [
+      {
+        "Node": "root",
+        "Name": "aria-label",
+        "Prop": "label",
+        "Kind": "attribute"
+      }
+    ],
+    "Children": [
+      {
+        "Parent": "root",
+        "Node": "indicator",
+        "Slot": ""
+      }
+    ],
+    "Requirements": [
+      "Labeled loading status with decorative CSS indicator. App owns loading lifecycle and aria-busy; reduced motion keeps a static indicator."
+    ],
+    "Events": [],
+    "Styling": [
+      "Presentation is supplied by the selected UI plugin; every owned part remains overridable."
+    ],
+    "Features": []
+  },
+  {
+    "Name": "table",
+    "Title": "Table",
+    "Summary": "Local native table building block.",
+    "Status": "native",
+    "RootType": "HTMLDivElement",
+    "Props": [
+      {
+        "Name": "tabIndex",
+        "Type": "number",
+        "Description": "Native scroll-container keyboard focus order; defaults to 0.",
+        "Required": false,
+        "Default": 0
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "caption",
+        "Description": "Accessible table title.",
+        "Required": true,
+        "Scope": []
+      },
+      {
+        "Name": "head",
+        "Description": "Header tr elements with scoped th cells.",
+        "Required": false,
+        "Scope": []
+      },
+      {
+        "Name": "rows",
+        "Description": "Body tr elements with td/th cells.",
+        "Required": true,
+        "Scope": []
+      },
+      {
+        "Name": "foot",
+        "Description": "Footer tr elements.",
+        "Required": false,
+        "Scope": []
+      }
+    ],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "div",
+        "Attributes": {}
+      },
+      {
+        "ID": "table",
+        "Tag": "table",
+        "Attributes": {}
+      },
+      {
+        "ID": "caption",
+        "Tag": "caption",
+        "Attributes": {}
+      },
+      {
+        "ID": "head",
+        "Tag": "thead",
+        "Attributes": {}
+      },
+      {
+        "ID": "body",
+        "Tag": "tbody",
+        "Attributes": {}
+      },
+      {
+        "ID": "foot",
+        "Tag": "tfoot",
+        "Attributes": {}
+      }
+    ],
+    "Bindings": [
+      {
+        "Node": "root",
+        "Name": "tabIndex",
+        "Prop": "tabIndex",
+        "Kind": "property"
+      }
+    ],
+    "Children": [
+      {
+        "Parent": "caption",
+        "Node": "",
+        "Slot": "caption"
+      },
+      {
+        "Parent": "head",
+        "Node": "",
+        "Slot": "head"
+      },
+      {
+        "Parent": "body",
+        "Node": "",
+        "Slot": "rows"
+      },
+      {
+        "Parent": "foot",
+        "Node": "",
+        "Slot": "foot"
+      },
+      {
+        "Parent": "table",
+        "Node": "caption",
+        "Slot": ""
+      },
+      {
+        "Parent": "table",
+        "Node": "head",
+        "Slot": ""
+      },
+      {
+        "Parent": "table",
+        "Node": "body",
+        "Slot": ""
+      },
+      {
+        "Parent": "table",
+        "Node": "foot",
+        "Slot": ""
+      },
+      {
+        "Parent": "root",
+        "Node": "table",
+        "Slot": ""
+      }
+    ],
+    "Requirements": [
+      "Caller supplies semantic rows and cells. No sorting, virtualization, selection or DataTable behavior.",
+      "Scroll container is keyboard focusable; the caption names the table. Empty optional sections remain valid native table sections."
+    ],
+    "Events": [],
+    "Styling": [
+      "Presentation is supplied by the selected UI plugin; every owned part remains overridable."
+    ],
+    "Features": []
+  },
+  {
+    "Name": "textarea",
+    "Title": "Textarea",
+    "Summary": "Native labeled multiline text control.",
+    "Status": "native",
+    "RootType": "HTMLLabelElement",
+    "Props": [
+      {
+        "Name": "name",
+        "Type": "string",
+        "Description": "Form field name.",
+        "Required": false
+      },
+      {
+        "Name": "disabled",
+        "Type": "boolean",
+        "Description": "Disables the control.",
+        "Required": false,
+        "Default": false
+      },
+      {
+        "Name": "required",
+        "Type": "boolean",
+        "Description": "Requires a value or checked state for submission.",
+        "Required": false,
+        "Default": false
+      },
+      {
+        "Name": "value",
+        "Type": "string",
+        "Description": "Initial text value.",
+        "Required": false,
+        "Default": ""
+      },
+      {
+        "Name": "placeholder",
+        "Type": "string",
+        "Description": "Hint; does not replace the label.",
+        "Required": false
+      },
+      {
+        "Name": "id",
+        "Type": "string",
+        "Description": "Native input id.",
+        "Required": false
+      },
+      {
+        "Name": "autocomplete",
+        "Type": "string",
+        "Description": "Native input autocomplete.",
+        "Required": false
+      },
+      {
+        "Name": "readOnly",
+        "Type": "boolean",
+        "Description": "Prevents editing while preserving focus and form submission.",
+        "Required": false,
+        "Default": false
+      },
+      {
+        "Name": "rows",
+        "Type": "number",
+        "Description": "Positive number of visible text rows.",
+        "Required": false
+      },
+      {
+        "Name": "cols",
+        "Type": "number",
+        "Description": "Positive number of visible text columns.",
+        "Required": false
+      },
+      {
+        "Name": "minLength",
+        "Type": "number",
+        "Description": "Minimum user-entered length, measured in UTF-16 code units.",
+        "Required": false
+      },
+      {
+        "Name": "maxLength",
+        "Type": "number",
+        "Description": "Maximum user-entered length, measured in UTF-16 code units.",
+        "Required": false
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "label",
+        "Description": "Accessible label as noninteractive phrasing content.",
+        "Required": true,
+        "Scope": []
+      }
+    ],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "label",
+        "Attributes": {}
+      },
+      {
+        "ID": "control",
+        "Tag": "textarea",
+        "Attributes": {}
+      }
+    ],
+    "Bindings": [
+      {
+        "Node": "control",
+        "Name": "name",
+        "Prop": "name",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "disabled",
+        "Prop": "disabled",
+        "Kind": "property"
+      },
+      {
+        "Node": "control",
+        "Name": "required",
+        "Prop": "required",
+        "Kind": "property"
+      },
+      {
+        "Node": "control",
+        "Name": "defaultValue",
+        "Prop": "value",
+        "Kind": "property"
+      },
+      {
+        "Node": "control",
+        "Name": "value",
+        "Prop": "value",
+        "Kind": "property"
+      },
+      {
+        "Node": "control",
+        "Name": "placeholder",
+        "Prop": "placeholder",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "id",
+        "Prop": "id",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "autocomplete",
+        "Prop": "autocomplete",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "readOnly",
+        "Prop": "readOnly",
+        "Kind": "property"
+      },
+      {
+        "Node": "control",
+        "Name": "rows",
+        "Prop": "rows",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "cols",
+        "Prop": "cols",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "minlength",
+        "Prop": "minLength",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "maxlength",
+        "Prop": "maxLength",
+        "Kind": "attribute"
+      }
+    ],
+    "Children": [
+      {
+        "Parent": "root",
+        "Node": "",
+        "Slot": "label"
+      },
+      {
+        "Parent": "root",
+        "Node": "control",
+        "Slot": ""
+      }
+    ],
+    "Requirements": [
+      "The label slot must contain noninteractive phrasing content. The enclosing label associates it with the input.",
+      "Read the current control property after input/change; these factories only initialize values.",
+      "Initialize both defaultValue and value so native form reset restores the supplied initial text. Adapters choose whether later updates change the reset baseline.",
+      "rows/cols must be positive integers; lengths must be nonnegative integers. Native validation distinguishes disabled and readonly controls."
+    ],
+    "Events": [
+      {
+        "Name": "input",
+        "Target": "control",
+        "State": {
+          "value": "value"
+        },
+        "Type": "Event",
+        "Description": "Native notification; adapters own application state updates."
+      },
+      {
+        "Name": "change",
+        "Target": "control",
+        "State": {
+          "value": "value"
+        },
+        "Type": "Event",
+        "Description": "Native notification; adapters own application state updates."
+      }
+    ],
+    "Styling": [
+      "Choose spacing, typography, and focus indicators in the consuming design system. Preserve native keyboard and disabled semantics."
+    ],
+    "Features": []
   }
 ]

@@ -18,7 +18,7 @@ func TestModes(t *testing.T) {
 		{[]string{"accordion", "--ts"}, "export interface AccordionProps"},
 		{[]string{"--docs", "accordion"}, "# Accordion"},
 		{[]string{"accordion", "--docs"}, "# Accordion"},
-		{[]string{"--list"}, "accordion\nalert-dialog\n"},
+		{[]string{"--list"}, "accordion\nalert\nalert-dialog\n"},
 		{[]string{"--help"}, "Usage:"}, {[]string{"-h"}, "Usage:"},
 		{[]string{"--version"}, "html-ui "},
 	} {

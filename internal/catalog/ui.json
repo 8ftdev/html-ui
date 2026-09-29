@@ -1367,5 +1367,176 @@
         "styleRole": "surface"
       }
     }
+  },
+  "alert": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "status"
+      },
+      "icon": {
+        "node": "icon",
+        "styleRole": "image"
+      },
+      "title": {
+        "node": "title",
+        "styleRole": "heading"
+      },
+      "description": {
+        "node": "description",
+        "styleRole": "description"
+      }
+    }
+  },
+  "badge": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "status"
+      }
+    }
+  },
+  "aspect-ratio": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "surface"
+      }
+    }
+  },
+  "breadcrumb": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "navigation"
+      },
+      "list": {
+        "node": "list",
+        "styleRole": "option-list"
+      }
+    }
+  },
+  "button-group": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "group"
+      }
+    }
+  },
+  "label": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "label"
+      }
+    }
+  },
+  "skeleton": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "surface"
+      }
+    }
+  },
+  "spinner": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "status"
+      },
+      "indicator": {
+        "node": "indicator",
+        "styleRole": "image"
+      }
+    }
+  },
+  "table": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "scroll-area"
+      },
+      "table": {
+        "node": "table",
+        "styleRole": "surface"
+      },
+      "caption": {
+        "node": "caption",
+        "styleRole": "description"
+      },
+      "head": {
+        "node": "head",
+        "styleRole": "group"
+      },
+      "body": {
+        "node": "body",
+        "styleRole": "group"
+      },
+      "foot": {
+        "node": "foot",
+        "styleRole": "group"
+      }
+    }
+  },
+  "textarea": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "field",
+        "state": {
+          "disabled": {
+            "source": {
+              "node": "control",
+              "pseudo": "disabled"
+            }
+          }
+        }
+      },
+      "control": {
+        "node": "control",
+        "styleRole": "input",
+        "state": {
+          "disabled": {
+            "source": {
+              "node": "control",
+              "pseudo": "disabled"
+            }
+          },
+          "focusVisible": {
+            "source": {
+              "node": "control",
+              "pseudo": "focus-visible"
+            }
+          },
+          "hover": {
+            "source": {
+              "node": "control",
+              "pseudo": "hover"
+            }
+          },
+          "invalid": {
+            "source": {
+              "node": "control",
+              "pseudo": "invalid"
+            }
+          },
+          "required": {
+            "source": {
+              "node": "control",
+              "pseudo": "required"
+            }
+          },
+          "readOnly": {
+            "source": {
+              "node": "control",
+              "attribute": "readonly",
+              "present": true
+            }
+          }
+        }
+      }
+    }
   }
 }

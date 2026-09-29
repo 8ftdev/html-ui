@@ -14,7 +14,7 @@ Version 2 is the default and exposes owned styling parts, native state bindings,
 html-ui accordion > accordion.ts
 ```
 
-The source additionally exports `ui`, `AccordionStyle<Style>`, and `AccordionClasses<Style>`. Owned elements receive `data-ui`/`data-ui-part` markers. No CSS, tokens, framework imports, wrappers, or interaction code are added. All 40 primitives expose their owned parts; slot-provided elements are not assumed to belong to the producer.
+The source additionally exports `ui`, `AccordionStyle<Style>`, and `AccordionClasses<Style>`. Owned elements receive `data-ui`/`data-ui-part` markers. No CSS, tokens, framework imports, wrappers, or interaction code are added. All 50 primitives expose their owned parts; slot-provided elements are not assumed to belong to the producer.
 
 The intended downstream pipeline separates framework and theme selection:
 
@@ -60,7 +60,7 @@ npx tsc accordion.ts --strict --target ES2022 --lib ES2022,DOM \
 
 ## Testing
 
-To build an offline preview of all 40 primitives:
+To build an offline preview of all 50 primitives:
 
 ```sh
 bun run preview
