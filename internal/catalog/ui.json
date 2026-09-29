@@ -1538,5 +1538,261 @@
         }
       }
     }
+  },
+  "kbd": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "surface"
+      }
+    }
+  },
+  "direction": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "surface"
+      }
+    }
+  },
+  "typography": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "surface"
+      }
+    }
+  },
+  "pagination": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "surface"
+      },
+      "list": {
+        "node": "list",
+        "styleRole": "list"
+      }
+    }
+  },
+  "empty": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "surface"
+      },
+      "header": {
+        "node": "header",
+        "styleRole": "header"
+      },
+      "media": {
+        "node": "media",
+        "styleRole": "media"
+      },
+      "title": {
+        "node": "title",
+        "styleRole": "title"
+      },
+      "description": {
+        "node": "description",
+        "styleRole": "description"
+      },
+      "content": {
+        "node": "content",
+        "styleRole": "content"
+      }
+    }
+  },
+  "item": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "surface"
+      },
+      "media": {
+        "node": "media",
+        "styleRole": "media"
+      },
+      "content": {
+        "node": "content",
+        "styleRole": "content"
+      },
+      "title": {
+        "node": "title",
+        "styleRole": "title"
+      },
+      "description": {
+        "node": "description",
+        "styleRole": "description"
+      },
+      "actions": {
+        "node": "actions",
+        "styleRole": "actions"
+      }
+    }
+  },
+  "input-group": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "field"
+      },
+      "label": {
+        "node": "label",
+        "styleRole": "field-label"
+      },
+      "surface": {
+        "node": "surface",
+        "styleRole": "input-group",
+        "state": {
+          "disabled": {
+            "source": {
+              "node": "control",
+              "pseudo": "disabled"
+            }
+          },
+          "focusVisible": {
+            "source": {
+              "node": "control",
+              "pseudo": "focus-visible"
+            }
+          },
+          "hover": {
+            "source": {
+              "node": "control",
+              "pseudo": "hover"
+            }
+          },
+          "invalid": {
+            "source": {
+              "node": "control",
+              "pseudo": "invalid"
+            }
+          },
+          "required": {
+            "source": {
+              "node": "control",
+              "pseudo": "required"
+            }
+          },
+          "readOnly": {
+            "source": {
+              "node": "control",
+              "attribute": "readonly",
+              "present": true
+            }
+          }
+        }
+      },
+      "start": {
+        "node": "start",
+        "styleRole": "addon"
+      },
+      "control": {
+        "node": "control",
+        "styleRole": "input",
+        "state": {
+          "disabled": {
+            "source": {
+              "node": "control",
+              "pseudo": "disabled"
+            }
+          },
+          "focusVisible": {
+            "source": {
+              "node": "control",
+              "pseudo": "focus-visible"
+            }
+          },
+          "hover": {
+            "source": {
+              "node": "control",
+              "pseudo": "hover"
+            }
+          },
+          "invalid": {
+            "source": {
+              "node": "control",
+              "pseudo": "invalid"
+            }
+          },
+          "required": {
+            "source": {
+              "node": "control",
+              "pseudo": "required"
+            }
+          },
+          "readOnly": {
+            "source": {
+              "node": "control",
+              "attribute": "readonly",
+              "present": true
+            }
+          }
+        }
+      },
+      "end": {
+        "node": "end",
+        "styleRole": "addon"
+      }
+    }
+  },
+  "radio": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "field",
+        "state": {
+          "disabled": {
+            "source": {
+              "node": "control",
+              "pseudo": "disabled"
+            }
+          }
+        }
+      },
+      "control": {
+        "node": "control",
+        "styleRole": "radio",
+        "state": {
+          "disabled": {
+            "source": {
+              "node": "control",
+              "pseudo": "disabled"
+            }
+          },
+          "checked": {
+            "source": {
+              "node": "control",
+              "pseudo": "checked"
+            }
+          },
+          "required": {
+            "source": {
+              "node": "control",
+              "pseudo": "required"
+            }
+          },
+          "invalid": {
+            "source": {
+              "node": "control",
+              "pseudo": "invalid"
+            }
+          },
+          "focusVisible": {
+            "source": {
+              "node": "control",
+              "pseudo": "focus-visible"
+            }
+          },
+          "hover": {
+            "source": {
+              "node": "control",
+              "pseudo": "hover"
+            }
+          }
+        }
+      }
+    }
   }
 }

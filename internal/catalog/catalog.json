@@ -3122,8 +3122,9 @@
       }
     ],
     "Requirements": [
-      "The legend labels the controls. Use actual inputs inside the content slot.",
-      "Radio selection and arrow keys are native when radios share a name; the converter constructs the individual controls."
+      "Legend labels the native fieldset; scoped content slot supplies the shared name to local Radio children.",
+      "Native radio inputs with the same name provide exclusivity, arrow keys and reset. Group change events bubble from children; application reads the selected value.",
+      "No generated options, controlled group model or custom roving-focus implementation. Disabled fieldset follows the native first-legend exception."
     ],
     "Events": [
       {
@@ -4967,6 +4968,868 @@
     ],
     "Styling": [
       "Choose spacing, typography, and focus indicators in the consuming design system. Preserve native keyboard and disabled semantics."
+    ],
+    "Features": []
+  },
+  {
+    "Name": "kbd",
+    "Title": "Kbd",
+    "Summary": "Local native kbd building block.",
+    "Status": "native",
+    "RootType": "HTMLElement",
+    "Props": [],
+    "Slots": [
+      {
+        "Name": "default",
+        "Description": "Keyboard key or shortcut display.",
+        "Required": true,
+        "Scope": []
+      }
+    ],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "kbd",
+        "Attributes": {}
+      }
+    ],
+    "Bindings": [],
+    "Children": [
+      {
+        "Parent": "root",
+        "Node": "",
+        "Slot": "default"
+      }
+    ],
+    "Requirements": [
+      "Displays keyboard input semantically; does not register shortcut handlers."
+    ],
+    "Events": [],
+    "Styling": [
+      "Presentation comes from local recipes; every owned part is overridable."
+    ],
+    "Features": []
+  },
+  {
+    "Name": "direction",
+    "Title": "Direction",
+    "Summary": "Local native direction building block.",
+    "Status": "native",
+    "RootType": "HTMLDivElement",
+    "Props": [
+      {
+        "Name": "dir",
+        "Type": "\"ltr\" | \"rtl\" | \"auto\"",
+        "Description": "Native text direction inherited by descendants.",
+        "Required": false,
+        "Default": "ltr"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "default",
+        "Description": "Content inheriting the native writing direction.",
+        "Required": false,
+        "Scope": []
+      }
+    ],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "div",
+        "Attributes": {}
+      }
+    ],
+    "Bindings": [
+      {
+        "Node": "root",
+        "Name": "dir",
+        "Prop": "dir",
+        "Kind": "attribute"
+      }
+    ],
+    "Children": [
+      {
+        "Parent": "root",
+        "Node": "",
+        "Slot": "default"
+      }
+    ],
+    "Requirements": [
+      "Native dir inheritance only; this is not a JavaScript DirectionProvider context. Logical CSS properties respect direction."
+    ],
+    "Events": [],
+    "Styling": [
+      "Presentation comes from local recipes; every owned part is overridable."
+    ],
+    "Features": []
+  },
+  {
+    "Name": "typography",
+    "Title": "Typography",
+    "Summary": "Local native typography building block.",
+    "Status": "native",
+    "RootType": "HTMLDivElement",
+    "Props": [],
+    "Slots": [
+      {
+        "Name": "default",
+        "Description": "Caller-owned semantic headings, paragraphs, lists and other content.",
+        "Required": true,
+        "Scope": []
+      }
+    ],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "div",
+        "Attributes": {}
+      }
+    ],
+    "Bindings": [],
+    "Children": [
+      {
+        "Parent": "root",
+        "Node": "",
+        "Slot": "default"
+      }
+    ],
+    "Requirements": [
+      "Caller owns semantic tags and heading hierarchy. Recipes style the supplied markup without generating headings or changing text."
+    ],
+    "Events": [],
+    "Styling": [
+      "Presentation comes from local recipes; every owned part is overridable."
+    ],
+    "Features": []
+  },
+  {
+    "Name": "pagination",
+    "Title": "Pagination",
+    "Summary": "Local native pagination building block.",
+    "Status": "native",
+    "RootType": "HTMLElement",
+    "Props": [
+      {
+        "Name": "label",
+        "Type": "string",
+        "Description": "Accessible navigation name.",
+        "Required": false,
+        "Default": "Pagination"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "default",
+        "Description": "Semantic li elements with page links and aria-current=page.",
+        "Required": true,
+        "Scope": []
+      }
+    ],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "nav",
+        "Attributes": {}
+      },
+      {
+        "ID": "list",
+        "Tag": "ul",
+        "Attributes": {}
+      }
+    ],
+    "Bindings": [
+      {
+        "Node": "root",
+        "Name": "aria-label",
+        "Prop": "label",
+        "Kind": "attribute"
+      }
+    ],
+    "Children": [
+      {
+        "Parent": "list",
+        "Node": "",
+        "Slot": "default"
+      },
+      {
+        "Parent": "root",
+        "Node": "list",
+        "Slot": ""
+      }
+    ],
+    "Requirements": [
+      "Caller owns li/link anatomy, destinations and current page. No routing, page calculations or disabled-anchor emulation."
+    ],
+    "Events": [],
+    "Styling": [
+      "Presentation comes from local recipes; every owned part is overridable."
+    ],
+    "Features": []
+  },
+  {
+    "Name": "empty",
+    "Title": "Empty",
+    "Summary": "Local native empty building block.",
+    "Status": "native",
+    "RootType": "HTMLDivElement",
+    "Props": [],
+    "Slots": [
+      {
+        "Name": "media",
+        "Description": "Optional decorative icon or accessible image.",
+        "Required": false,
+        "Scope": []
+      },
+      {
+        "Name": "title",
+        "Description": "Empty-state title.",
+        "Required": true,
+        "Scope": []
+      },
+      {
+        "Name": "description",
+        "Description": "Supporting explanation.",
+        "Required": false,
+        "Scope": []
+      },
+      {
+        "Name": "content",
+        "Description": "Actions composed from local primitives.",
+        "Required": false,
+        "Scope": []
+      }
+    ],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "div",
+        "Attributes": {}
+      },
+      {
+        "ID": "header",
+        "Tag": "div",
+        "Attributes": {}
+      },
+      {
+        "ID": "media",
+        "Tag": "div",
+        "Attributes": {}
+      },
+      {
+        "ID": "title",
+        "Tag": "div",
+        "Attributes": {}
+      },
+      {
+        "ID": "description",
+        "Tag": "div",
+        "Attributes": {}
+      },
+      {
+        "ID": "content",
+        "Tag": "div",
+        "Attributes": {}
+      }
+    ],
+    "Bindings": [],
+    "Children": [
+      {
+        "Parent": "media",
+        "Node": "",
+        "Slot": "media"
+      },
+      {
+        "Parent": "title",
+        "Node": "",
+        "Slot": "title"
+      },
+      {
+        "Parent": "description",
+        "Node": "",
+        "Slot": "description"
+      },
+      {
+        "Parent": "header",
+        "Node": "media",
+        "Slot": ""
+      },
+      {
+        "Parent": "header",
+        "Node": "title",
+        "Slot": ""
+      },
+      {
+        "Parent": "header",
+        "Node": "description",
+        "Slot": ""
+      },
+      {
+        "Parent": "content",
+        "Node": "",
+        "Slot": "content"
+      },
+      {
+        "Parent": "root",
+        "Node": "header",
+        "Slot": ""
+      },
+      {
+        "Parent": "root",
+        "Node": "content",
+        "Slot": ""
+      }
+    ],
+    "Requirements": [
+      "Application owns loading and empty conditions. Set aria-hidden on decorative media; meaningful images need accessible names. Title is a visual container; callers can supply the appropriate heading level."
+    ],
+    "Events": [],
+    "Styling": [
+      "Presentation comes from local recipes; every owned part is overridable."
+    ],
+    "Features": []
+  },
+  {
+    "Name": "item",
+    "Title": "Item",
+    "Summary": "Local native item building block.",
+    "Status": "native",
+    "RootType": "HTMLDivElement",
+    "Props": [],
+    "Slots": [
+      {
+        "Name": "media",
+        "Description": "Icon or image.",
+        "Required": false,
+        "Scope": []
+      },
+      {
+        "Name": "title",
+        "Description": "Item title.",
+        "Required": true,
+        "Scope": []
+      },
+      {
+        "Name": "description",
+        "Description": "Supporting content.",
+        "Required": false,
+        "Scope": []
+      },
+      {
+        "Name": "actions",
+        "Description": "Local button or link actions.",
+        "Required": false,
+        "Scope": []
+      }
+    ],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "div",
+        "Attributes": {}
+      },
+      {
+        "ID": "media",
+        "Tag": "div",
+        "Attributes": {}
+      },
+      {
+        "ID": "content",
+        "Tag": "div",
+        "Attributes": {}
+      },
+      {
+        "ID": "title",
+        "Tag": "div",
+        "Attributes": {}
+      },
+      {
+        "ID": "description",
+        "Tag": "div",
+        "Attributes": {}
+      },
+      {
+        "ID": "actions",
+        "Tag": "div",
+        "Attributes": {}
+      }
+    ],
+    "Bindings": [],
+    "Children": [
+      {
+        "Parent": "media",
+        "Node": "",
+        "Slot": "media"
+      },
+      {
+        "Parent": "title",
+        "Node": "",
+        "Slot": "title"
+      },
+      {
+        "Parent": "description",
+        "Node": "",
+        "Slot": "description"
+      },
+      {
+        "Parent": "content",
+        "Node": "title",
+        "Slot": ""
+      },
+      {
+        "Parent": "content",
+        "Node": "description",
+        "Slot": ""
+      },
+      {
+        "Parent": "actions",
+        "Node": "",
+        "Slot": "actions"
+      },
+      {
+        "Parent": "root",
+        "Node": "media",
+        "Slot": ""
+      },
+      {
+        "Parent": "root",
+        "Node": "content",
+        "Slot": ""
+      },
+      {
+        "Parent": "root",
+        "Node": "actions",
+        "Slot": ""
+      }
+    ],
+    "Requirements": [
+      "Noninteractive content row. Compose links/buttons in title or actions; no render-as-link root, list role, click handler, header/footer or navigation behavior."
+    ],
+    "Events": [],
+    "Styling": [
+      "Presentation comes from local recipes; every owned part is overridable."
+    ],
+    "Features": []
+  },
+  {
+    "Name": "input-group",
+    "Title": "Input Group",
+    "Summary": "Native single input with an associated label and separate inline addons.",
+    "Status": "native",
+    "RootType": "HTMLDivElement",
+    "Props": [
+      {
+        "Name": "name",
+        "Type": "string",
+        "Description": "Form field name.",
+        "Required": false
+      },
+      {
+        "Name": "disabled",
+        "Type": "boolean",
+        "Description": "Disables the control.",
+        "Required": false,
+        "Default": false
+      },
+      {
+        "Name": "required",
+        "Type": "boolean",
+        "Description": "Requires a value or checked state for submission.",
+        "Required": false,
+        "Default": false
+      },
+      {
+        "Name": "value",
+        "Type": "string",
+        "Description": "Initial text value.",
+        "Required": false,
+        "Default": ""
+      },
+      {
+        "Name": "placeholder",
+        "Type": "string",
+        "Description": "Hint; does not replace the label.",
+        "Required": false
+      },
+      {
+        "Name": "id",
+        "Type": "string",
+        "Description": "Native input id.",
+        "Required": true
+      },
+      {
+        "Name": "type",
+        "Type": "\"text\" | \"email\" | \"password\"",
+        "Description": "Native input type.",
+        "Required": false,
+        "Default": "text"
+      },
+      {
+        "Name": "autocomplete",
+        "Type": "string",
+        "Description": "Native input autocomplete.",
+        "Required": false
+      },
+      {
+        "Name": "readOnly",
+        "Type": "boolean",
+        "Description": "Native readonly control remains focusable and submitted.",
+        "Required": false,
+        "Default": false
+      },
+      {
+        "Name": "minLength",
+        "Type": "number",
+        "Description": "Minimum user-entered string length.",
+        "Required": false
+      },
+      {
+        "Name": "maxLength",
+        "Type": "number",
+        "Description": "Maximum user-entered string length.",
+        "Required": false
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "label",
+        "Description": "Associated input label.",
+        "Required": true,
+        "Scope": []
+      },
+      {
+        "Name": "start",
+        "Description": "Leading icon, text or local actions.",
+        "Required": false,
+        "Scope": []
+      },
+      {
+        "Name": "end",
+        "Description": "Trailing text or local actions.",
+        "Required": false,
+        "Scope": []
+      }
+    ],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "div",
+        "Attributes": {}
+      },
+      {
+        "ID": "label",
+        "Tag": "label",
+        "Attributes": {}
+      },
+      {
+        "ID": "surface",
+        "Tag": "div",
+        "Attributes": {}
+      },
+      {
+        "ID": "start",
+        "Tag": "div",
+        "Attributes": {}
+      },
+      {
+        "ID": "control",
+        "Tag": "input",
+        "Attributes": {}
+      },
+      {
+        "ID": "end",
+        "Tag": "div",
+        "Attributes": {}
+      }
+    ],
+    "Bindings": [
+      {
+        "Node": "control",
+        "Name": "name",
+        "Prop": "name",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "disabled",
+        "Prop": "disabled",
+        "Kind": "property"
+      },
+      {
+        "Node": "control",
+        "Name": "required",
+        "Prop": "required",
+        "Kind": "property"
+      },
+      {
+        "Node": "control",
+        "Name": "defaultValue",
+        "Prop": "value",
+        "Kind": "property"
+      },
+      {
+        "Node": "control",
+        "Name": "value",
+        "Prop": "value",
+        "Kind": "property"
+      },
+      {
+        "Node": "control",
+        "Name": "placeholder",
+        "Prop": "placeholder",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "id",
+        "Prop": "id",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "type",
+        "Prop": "type",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "autocomplete",
+        "Prop": "autocomplete",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "label",
+        "Name": "for",
+        "Prop": "id",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "readOnly",
+        "Prop": "readOnly",
+        "Kind": "property"
+      },
+      {
+        "Node": "control",
+        "Name": "minlength",
+        "Prop": "minLength",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "maxlength",
+        "Prop": "maxLength",
+        "Kind": "attribute"
+      }
+    ],
+    "Children": [
+      {
+        "Parent": "label",
+        "Node": "",
+        "Slot": "label"
+      },
+      {
+        "Parent": "start",
+        "Node": "",
+        "Slot": "start"
+      },
+      {
+        "Parent": "end",
+        "Node": "",
+        "Slot": "end"
+      },
+      {
+        "Parent": "surface",
+        "Node": "start",
+        "Slot": ""
+      },
+      {
+        "Parent": "surface",
+        "Node": "control",
+        "Slot": ""
+      },
+      {
+        "Parent": "surface",
+        "Node": "end",
+        "Slot": ""
+      },
+      {
+        "Parent": "root",
+        "Node": "label",
+        "Slot": ""
+      },
+      {
+        "Parent": "root",
+        "Node": "surface",
+        "Slot": ""
+      }
+    ],
+    "Requirements": [
+      "id must be unique; separate native label associates with the input. Addon buttons are siblings, never nested inside a label.",
+      "Single text/email/password input with inline-start/end addons; no textarea, block addons or click-to-focus addon handler.",
+      "Application owns addon action disabled state; disabling the input does not implicitly disable its sibling buttons.",
+      "Value model, native reset and constraints use the shared converter behavior; addons compose local primitives."
+    ],
+    "Events": [
+      {
+        "Name": "input",
+        "Target": "control",
+        "State": {
+          "value": "value"
+        },
+        "Type": "Event",
+        "Description": "Native notification; adapters own application state updates."
+      },
+      {
+        "Name": "change",
+        "Target": "control",
+        "State": {
+          "value": "value"
+        },
+        "Type": "Event",
+        "Description": "Native notification; adapters own application state updates."
+      }
+    ],
+    "Styling": [
+      "Choose spacing, typography, and focus indicators in the consuming design system. Preserve native keyboard and disabled semantics."
+    ],
+    "Features": []
+  },
+  {
+    "Name": "radio",
+    "Title": "Radio",
+    "Summary": "Local native radio building block.",
+    "Status": "native",
+    "RootType": "HTMLLabelElement",
+    "Props": [
+      {
+        "Name": "name",
+        "Type": "string",
+        "Description": "Shared native radio group name.",
+        "Required": true
+      },
+      {
+        "Name": "value",
+        "Type": "string",
+        "Description": "Submitted value when this radio is selected.",
+        "Required": true
+      },
+      {
+        "Name": "defaultChecked",
+        "Type": "boolean",
+        "Description": "Mount-time checked/reset baseline; no individual checked model.",
+        "Required": false,
+        "Default": false
+      },
+      {
+        "Name": "disabled",
+        "Type": "boolean",
+        "Description": "Disables this control; fieldset also propagates disabled.",
+        "Required": false,
+        "Default": false
+      },
+      {
+        "Name": "required",
+        "Type": "boolean",
+        "Description": "Native required validation for the named radio group.",
+        "Required": false,
+        "Default": false
+      },
+      {
+        "Name": "id",
+        "Type": "string",
+        "Description": "Optional control id.",
+        "Required": false
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "label",
+        "Description": "Stable noninteractive native radio label.",
+        "Required": true,
+        "Scope": []
+      }
+    ],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "label",
+        "Attributes": {}
+      },
+      {
+        "ID": "control",
+        "Tag": "input",
+        "Attributes": {
+          "type": "radio"
+        }
+      }
+    ],
+    "Bindings": [
+      {
+        "Node": "control",
+        "Name": "name",
+        "Prop": "name",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "value",
+        "Prop": "value",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "defaultChecked",
+        "Prop": "defaultChecked",
+        "Kind": "property"
+      },
+      {
+        "Node": "control",
+        "Name": "disabled",
+        "Prop": "disabled",
+        "Kind": "property"
+      },
+      {
+        "Node": "control",
+        "Name": "required",
+        "Prop": "required",
+        "Kind": "property"
+      },
+      {
+        "Node": "control",
+        "Name": "id",
+        "Prop": "id",
+        "Kind": "attribute"
+      }
+    ],
+    "Children": [
+      {
+        "Parent": "root",
+        "Node": "control",
+        "Slot": ""
+      },
+      {
+        "Parent": "root",
+        "Node": "",
+        "Slot": "label"
+      }
+    ],
+    "Requirements": [
+      "Use the scoped RadioGroup name for every member. Native radio exclusivity and keyboard navigation own selection.",
+      "Read the selected group value from change events or FormData; no per-radio checked model, which would miss sibling unchecks.",
+      "defaultChecked is the mount-time reset baseline. Use native form reset to restore it; application owns programmatic selection."
+    ],
+    "Events": [
+      {
+        "Name": "change",
+        "Target": "control",
+        "State": {},
+        "Type": "Event",
+        "Description": "Native selection notification; read the named group value through the event or FormData."
+      }
+    ],
+    "Styling": [
+      "Presentation comes from local recipes; every owned part is overridable."
     ],
     "Features": []
   }
