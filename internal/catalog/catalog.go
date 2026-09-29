@@ -72,6 +72,7 @@ type Recipe struct {
 	Requirements []string
 	Styling      []string
 	Features     []Feature
+	UI           UIContract
 }
 
 var recipes = load()
@@ -81,6 +82,7 @@ func load() []Recipe {
 	if err := json.Unmarshal(data, &result); err != nil {
 		panic(err)
 	}
+	attachUI(result)
 	sort.Slice(result, func(i, j int) bool { return result[i].Name < result[j].Name })
 	return result
 }
@@ -163,5 +165,5 @@ func Validate(r Recipe) error {
 			}
 		}
 	}
-	return nil
+	return validateUI(r)
 }

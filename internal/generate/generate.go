@@ -34,6 +34,21 @@ func comment(s string) string { return strings.ReplaceAll(s, "*/", "* /") }
 
 // Source emits a standalone TypeScript module. No framework or runtime imports are needed.
 func Source(r catalog.Recipe) string {
+	return source(r, 2)
+}
+
+// SourceVersion emits a supported source contract for an explicitly selected version.
+func SourceVersion(r catalog.Recipe, version int) (string, error) {
+	if version != 1 && version != 2 {
+		return "", fmt.Errorf("unsupported contract version %d", version)
+	}
+	if err := catalog.Validate(r); err != nil {
+		return "", err
+	}
+	return source(r, version), nil
+}
+
+func source(r catalog.Recipe, version int) string {
 	var b strings.Builder
 	p := func(f string, a ...any) { fmt.Fprintf(&b, f, a...) }
 	t := title(r.Name)
@@ -41,8 +56,8 @@ func Source(r catalog.Recipe) string {
 	if factory == "switch" {
 		factory = "switchControl"
 	}
-	p("/**\n * %s\n * %s\n * Behavior: %s. See `html-ui --docs %s`.\n * Source conversion contract v1; native factory initializes once.\n */\n", r.Title, comment(r.Summary), r.Status, r.Name)
-	p("export const contractVersion = 1 as const;\n\nexport interface %sProps {\n", t)
+	p("/**\n * %s\n * %s\n * Behavior: %s. See `html-ui --docs %s`.\n * Source conversion contract v%d; native factory initializes once.\n */\n", r.Title, comment(r.Summary), r.Status, r.Name, version)
+	p("export const contractVersion = %d as const;\n\nexport interface %sProps {\n", version, t)
 	for _, v := range r.Props {
 		p("  /** %s */\n  %s%s: %s;\n", comment(v.Description), v.Name, optional(v.Required), v.Type)
 	}
@@ -76,7 +91,11 @@ func Source(r catalog.Recipe) string {
 		}
 		p(" } },\n")
 	}
-	p("} as const;\n\n/** Build initial native structure; converters parse this body without executing it. */\nexport function %s(props: %sProps, slots: %sSlots<HTMLElement>): %s {\n", factory, t, t, r.RootType)
+	p("} as const;\n\n")
+	if version == 2 {
+		b.WriteString(uiSource(r, t))
+	}
+	p("/** Build initial native structure; converters parse this body without executing it. */\nexport function %s(props: %sProps, slots: %sSlots<HTMLElement>): %s {\n", factory, t, t, r.RootType)
 	if len(r.Props) > 0 {
 		var fields []string
 		for _, v := range r.Props {
@@ -94,6 +113,13 @@ func Source(r catalog.Recipe) string {
 	for _, n := range r.Nodes {
 		for _, k := range keys(n.Attributes) {
 			p("  %s.setAttribute(%q, %q);\n", n.ID, k, n.Attributes[k])
+		}
+	}
+	if version == 2 {
+		for _, name := range keys(r.UI.Parts) {
+			part := r.UI.Parts[name]
+			p("  %s.setAttribute(\"data-ui\", %q);\n", part.Node, r.Name)
+			p("  %s.setAttribute(\"data-ui-part\", %q);\n", part.Node, name)
 		}
 	}
 	props := map[string]catalog.Prop{}

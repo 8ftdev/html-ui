@@ -1,0 +1,1371 @@
+{
+  "accordion": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "disclosure",
+        "state": {
+          "expanded": {
+            "source": {
+              "node": "root",
+              "attribute": "open",
+              "present": true
+            }
+          }
+        }
+      },
+      "trigger": {
+        "node": "summary",
+        "styleRole": "disclosure-trigger",
+        "state": {
+          "expanded": {
+            "source": {
+              "node": "root",
+              "attribute": "open",
+              "present": true
+            }
+          },
+          "focusVisible": {
+            "source": {
+              "node": "summary",
+              "pseudo": "focus-visible"
+            }
+          },
+          "hover": {
+            "source": {
+              "node": "summary",
+              "pseudo": "hover"
+            }
+          }
+        }
+      },
+      "content": {
+        "node": "content",
+        "styleRole": "disclosure-content",
+        "state": {
+          "expanded": {
+            "source": {
+              "node": "root",
+              "attribute": "open",
+              "present": true
+            }
+          }
+        }
+      }
+    }
+  },
+  "alert-dialog": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "surface"
+      },
+      "trigger": {
+        "node": "trigger",
+        "styleRole": "action",
+        "state": {
+          "active": {
+            "source": {
+              "node": "trigger",
+              "pseudo": "active"
+            }
+          },
+          "disabled": {
+            "source": {
+              "node": "trigger",
+              "pseudo": "disabled"
+            }
+          },
+          "focusVisible": {
+            "source": {
+              "node": "trigger",
+              "pseudo": "focus-visible"
+            }
+          },
+          "hover": {
+            "source": {
+              "node": "trigger",
+              "pseudo": "hover"
+            }
+          }
+        }
+      },
+      "dialog": {
+        "node": "dialog",
+        "styleRole": "dialog",
+        "state": {
+          "open": {
+            "source": {
+              "node": "dialog",
+              "attribute": "open",
+              "present": true
+            }
+          }
+        }
+      },
+      "title": {
+        "node": "title",
+        "styleRole": "heading"
+      },
+      "close": {
+        "node": "close",
+        "styleRole": "action",
+        "state": {
+          "active": {
+            "source": {
+              "node": "close",
+              "pseudo": "active"
+            }
+          },
+          "disabled": {
+            "source": {
+              "node": "close",
+              "pseudo": "disabled"
+            }
+          },
+          "focusVisible": {
+            "source": {
+              "node": "close",
+              "pseudo": "focus-visible"
+            }
+          },
+          "hover": {
+            "source": {
+              "node": "close",
+              "pseudo": "hover"
+            }
+          }
+        }
+      }
+    }
+  },
+  "autocomplete": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "field",
+        "state": {
+          "disabled": {
+            "source": {
+              "node": "control",
+              "pseudo": "disabled"
+            }
+          }
+        }
+      },
+      "control": {
+        "node": "control",
+        "styleRole": "input",
+        "state": {
+          "disabled": {
+            "source": {
+              "node": "control",
+              "pseudo": "disabled"
+            }
+          },
+          "focusVisible": {
+            "source": {
+              "node": "control",
+              "pseudo": "focus-visible"
+            }
+          },
+          "hover": {
+            "source": {
+              "node": "control",
+              "pseudo": "hover"
+            }
+          },
+          "invalid": {
+            "source": {
+              "node": "control",
+              "pseudo": "invalid"
+            }
+          },
+          "required": {
+            "source": {
+              "node": "control",
+              "pseudo": "required"
+            }
+          }
+        }
+      },
+      "options": {
+        "node": "options",
+        "styleRole": "options"
+      }
+    }
+  },
+  "avatar": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "image"
+      }
+    }
+  },
+  "button": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "action",
+        "state": {
+          "active": {
+            "source": {
+              "node": "root",
+              "pseudo": "active"
+            }
+          },
+          "disabled": {
+            "source": {
+              "node": "root",
+              "pseudo": "disabled"
+            }
+          },
+          "focusVisible": {
+            "source": {
+              "node": "root",
+              "pseudo": "focus-visible"
+            }
+          },
+          "hover": {
+            "source": {
+              "node": "root",
+              "pseudo": "hover"
+            }
+          }
+        }
+      }
+    }
+  },
+  "checkbox": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "field",
+        "state": {
+          "disabled": {
+            "source": {
+              "node": "control",
+              "pseudo": "disabled"
+            }
+          }
+        }
+      },
+      "control": {
+        "node": "control",
+        "styleRole": "checkbox",
+        "state": {
+          "checked": {
+            "source": {
+              "node": "control",
+              "pseudo": "checked"
+            }
+          },
+          "disabled": {
+            "source": {
+              "node": "control",
+              "pseudo": "disabled"
+            }
+          },
+          "focusVisible": {
+            "source": {
+              "node": "control",
+              "pseudo": "focus-visible"
+            }
+          },
+          "hover": {
+            "source": {
+              "node": "control",
+              "pseudo": "hover"
+            }
+          },
+          "invalid": {
+            "source": {
+              "node": "control",
+              "pseudo": "invalid"
+            }
+          },
+          "required": {
+            "source": {
+              "node": "control",
+              "pseudo": "required"
+            }
+          }
+        }
+      }
+    }
+  },
+  "checkbox-group": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "group",
+        "state": {
+          "disabled": {
+            "source": {
+              "node": "root",
+              "pseudo": "disabled"
+            }
+          }
+        }
+      },
+      "legend": {
+        "node": "legend",
+        "styleRole": "group-label"
+      }
+    }
+  },
+  "collapsible": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "disclosure",
+        "state": {
+          "expanded": {
+            "source": {
+              "node": "root",
+              "attribute": "open",
+              "present": true
+            }
+          }
+        }
+      },
+      "trigger": {
+        "node": "summary",
+        "styleRole": "disclosure-trigger",
+        "state": {
+          "expanded": {
+            "source": {
+              "node": "root",
+              "attribute": "open",
+              "present": true
+            }
+          },
+          "focusVisible": {
+            "source": {
+              "node": "summary",
+              "pseudo": "focus-visible"
+            }
+          },
+          "hover": {
+            "source": {
+              "node": "summary",
+              "pseudo": "hover"
+            }
+          }
+        }
+      },
+      "content": {
+        "node": "content",
+        "styleRole": "disclosure-content",
+        "state": {
+          "expanded": {
+            "source": {
+              "node": "root",
+              "attribute": "open",
+              "present": true
+            }
+          }
+        }
+      }
+    }
+  },
+  "combobox": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "combobox"
+      },
+      "label": {
+        "node": "label",
+        "styleRole": "label"
+      },
+      "input": {
+        "node": "input",
+        "styleRole": "input",
+        "state": {
+          "disabled": {
+            "source": {
+              "node": "input",
+              "pseudo": "disabled"
+            }
+          },
+          "expanded": {
+            "source": {
+              "node": "input",
+              "attribute": "aria-expanded",
+              "value": "true"
+            }
+          },
+          "focusVisible": {
+            "source": {
+              "node": "input",
+              "pseudo": "focus-visible"
+            }
+          },
+          "hover": {
+            "source": {
+              "node": "input",
+              "pseudo": "hover"
+            }
+          },
+          "invalid": {
+            "source": {
+              "node": "input",
+              "pseudo": "invalid"
+            }
+          },
+          "required": {
+            "source": {
+              "node": "input",
+              "pseudo": "required"
+            }
+          }
+        }
+      },
+      "list": {
+        "node": "list",
+        "styleRole": "option-list"
+      }
+    }
+  },
+  "context-menu": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "surface"
+      },
+      "trigger": {
+        "node": "trigger",
+        "styleRole": "action",
+        "state": {
+          "active": {
+            "source": {
+              "node": "trigger",
+              "pseudo": "active"
+            }
+          },
+          "disabled": {
+            "source": {
+              "node": "trigger",
+              "pseudo": "disabled"
+            }
+          },
+          "focusVisible": {
+            "source": {
+              "node": "trigger",
+              "pseudo": "focus-visible"
+            }
+          },
+          "hover": {
+            "source": {
+              "node": "trigger",
+              "pseudo": "hover"
+            }
+          }
+        }
+      },
+      "popup": {
+        "node": "popup",
+        "styleRole": "menu",
+        "state": {
+          "open": {
+            "source": {
+              "node": "popup",
+              "pseudo": "popover-open"
+            }
+          }
+        }
+      }
+    }
+  },
+  "dialog": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "surface"
+      },
+      "trigger": {
+        "node": "trigger",
+        "styleRole": "action",
+        "state": {
+          "active": {
+            "source": {
+              "node": "trigger",
+              "pseudo": "active"
+            }
+          },
+          "disabled": {
+            "source": {
+              "node": "trigger",
+              "pseudo": "disabled"
+            }
+          },
+          "focusVisible": {
+            "source": {
+              "node": "trigger",
+              "pseudo": "focus-visible"
+            }
+          },
+          "hover": {
+            "source": {
+              "node": "trigger",
+              "pseudo": "hover"
+            }
+          }
+        }
+      },
+      "dialog": {
+        "node": "dialog",
+        "styleRole": "dialog",
+        "state": {
+          "open": {
+            "source": {
+              "node": "dialog",
+              "attribute": "open",
+              "present": true
+            }
+          }
+        }
+      },
+      "title": {
+        "node": "title",
+        "styleRole": "heading"
+      },
+      "close": {
+        "node": "close",
+        "styleRole": "action",
+        "state": {
+          "active": {
+            "source": {
+              "node": "close",
+              "pseudo": "active"
+            }
+          },
+          "disabled": {
+            "source": {
+              "node": "close",
+              "pseudo": "disabled"
+            }
+          },
+          "focusVisible": {
+            "source": {
+              "node": "close",
+              "pseudo": "focus-visible"
+            }
+          },
+          "hover": {
+            "source": {
+              "node": "close",
+              "pseudo": "hover"
+            }
+          }
+        }
+      }
+    }
+  },
+  "drawer": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "surface"
+      },
+      "trigger": {
+        "node": "trigger",
+        "styleRole": "action",
+        "state": {
+          "active": {
+            "source": {
+              "node": "trigger",
+              "pseudo": "active"
+            }
+          },
+          "disabled": {
+            "source": {
+              "node": "trigger",
+              "pseudo": "disabled"
+            }
+          },
+          "focusVisible": {
+            "source": {
+              "node": "trigger",
+              "pseudo": "focus-visible"
+            }
+          },
+          "hover": {
+            "source": {
+              "node": "trigger",
+              "pseudo": "hover"
+            }
+          }
+        }
+      },
+      "dialog": {
+        "node": "dialog",
+        "styleRole": "dialog",
+        "state": {
+          "open": {
+            "source": {
+              "node": "dialog",
+              "attribute": "open",
+              "present": true
+            }
+          }
+        }
+      },
+      "title": {
+        "node": "title",
+        "styleRole": "heading"
+      },
+      "close": {
+        "node": "close",
+        "styleRole": "action",
+        "state": {
+          "active": {
+            "source": {
+              "node": "close",
+              "pseudo": "active"
+            }
+          },
+          "disabled": {
+            "source": {
+              "node": "close",
+              "pseudo": "disabled"
+            }
+          },
+          "focusVisible": {
+            "source": {
+              "node": "close",
+              "pseudo": "focus-visible"
+            }
+          },
+          "hover": {
+            "source": {
+              "node": "close",
+              "pseudo": "hover"
+            }
+          }
+        }
+      }
+    }
+  },
+  "field": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "field"
+      },
+      "label": {
+        "node": "label",
+        "styleRole": "label"
+      },
+      "description": {
+        "node": "description",
+        "styleRole": "description"
+      }
+    }
+  },
+  "fieldset": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "group",
+        "state": {
+          "disabled": {
+            "source": {
+              "node": "root",
+              "pseudo": "disabled"
+            }
+          }
+        }
+      },
+      "legend": {
+        "node": "legend",
+        "styleRole": "group-label"
+      }
+    }
+  },
+  "form": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "form"
+      }
+    }
+  },
+  "input": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "field",
+        "state": {
+          "disabled": {
+            "source": {
+              "node": "control",
+              "pseudo": "disabled"
+            }
+          }
+        }
+      },
+      "control": {
+        "node": "control",
+        "styleRole": "input",
+        "state": {
+          "disabled": {
+            "source": {
+              "node": "control",
+              "pseudo": "disabled"
+            }
+          },
+          "focusVisible": {
+            "source": {
+              "node": "control",
+              "pseudo": "focus-visible"
+            }
+          },
+          "hover": {
+            "source": {
+              "node": "control",
+              "pseudo": "hover"
+            }
+          },
+          "invalid": {
+            "source": {
+              "node": "control",
+              "pseudo": "invalid"
+            }
+          },
+          "required": {
+            "source": {
+              "node": "control",
+              "pseudo": "required"
+            }
+          }
+        }
+      }
+    }
+  },
+  "menu": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "surface"
+      },
+      "trigger": {
+        "node": "trigger",
+        "styleRole": "action",
+        "state": {
+          "active": {
+            "source": {
+              "node": "trigger",
+              "pseudo": "active"
+            }
+          },
+          "disabled": {
+            "source": {
+              "node": "trigger",
+              "pseudo": "disabled"
+            }
+          },
+          "focusVisible": {
+            "source": {
+              "node": "trigger",
+              "pseudo": "focus-visible"
+            }
+          },
+          "hover": {
+            "source": {
+              "node": "trigger",
+              "pseudo": "hover"
+            }
+          }
+        }
+      },
+      "popup": {
+        "node": "popup",
+        "styleRole": "menu",
+        "state": {
+          "open": {
+            "source": {
+              "node": "popup",
+              "pseudo": "popover-open"
+            }
+          }
+        }
+      }
+    }
+  },
+  "menubar": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "menu-bar"
+      }
+    }
+  },
+  "meter": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "meter"
+      }
+    }
+  },
+  "navigation-menu": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "navigation"
+      }
+    }
+  },
+  "number-field": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "field",
+        "state": {
+          "disabled": {
+            "source": {
+              "node": "control",
+              "pseudo": "disabled"
+            }
+          }
+        }
+      },
+      "control": {
+        "node": "control",
+        "styleRole": "input",
+        "state": {
+          "disabled": {
+            "source": {
+              "node": "control",
+              "pseudo": "disabled"
+            }
+          },
+          "focusVisible": {
+            "source": {
+              "node": "control",
+              "pseudo": "focus-visible"
+            }
+          },
+          "hover": {
+            "source": {
+              "node": "control",
+              "pseudo": "hover"
+            }
+          },
+          "invalid": {
+            "source": {
+              "node": "control",
+              "pseudo": "invalid"
+            }
+          },
+          "required": {
+            "source": {
+              "node": "control",
+              "pseudo": "required"
+            }
+          }
+        }
+      }
+    }
+  },
+  "otp-field": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "field",
+        "state": {
+          "disabled": {
+            "source": {
+              "node": "control",
+              "pseudo": "disabled"
+            }
+          }
+        }
+      },
+      "control": {
+        "node": "control",
+        "styleRole": "input",
+        "state": {
+          "disabled": {
+            "source": {
+              "node": "control",
+              "pseudo": "disabled"
+            }
+          },
+          "focusVisible": {
+            "source": {
+              "node": "control",
+              "pseudo": "focus-visible"
+            }
+          },
+          "hover": {
+            "source": {
+              "node": "control",
+              "pseudo": "hover"
+            }
+          },
+          "invalid": {
+            "source": {
+              "node": "control",
+              "pseudo": "invalid"
+            }
+          },
+          "required": {
+            "source": {
+              "node": "control",
+              "pseudo": "required"
+            }
+          }
+        }
+      }
+    }
+  },
+  "popover": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "surface"
+      },
+      "trigger": {
+        "node": "trigger",
+        "styleRole": "action",
+        "state": {
+          "active": {
+            "source": {
+              "node": "trigger",
+              "pseudo": "active"
+            }
+          },
+          "disabled": {
+            "source": {
+              "node": "trigger",
+              "pseudo": "disabled"
+            }
+          },
+          "focusVisible": {
+            "source": {
+              "node": "trigger",
+              "pseudo": "focus-visible"
+            }
+          },
+          "hover": {
+            "source": {
+              "node": "trigger",
+              "pseudo": "hover"
+            }
+          }
+        }
+      },
+      "popup": {
+        "node": "popup",
+        "styleRole": "popover",
+        "state": {
+          "open": {
+            "source": {
+              "node": "popup",
+              "pseudo": "popover-open"
+            }
+          }
+        }
+      }
+    }
+  },
+  "preview-card": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "surface"
+      },
+      "trigger": {
+        "node": "trigger",
+        "styleRole": "action",
+        "state": {
+          "active": {
+            "source": {
+              "node": "trigger",
+              "pseudo": "active"
+            }
+          },
+          "disabled": {
+            "source": {
+              "node": "trigger",
+              "pseudo": "disabled"
+            }
+          },
+          "focusVisible": {
+            "source": {
+              "node": "trigger",
+              "pseudo": "focus-visible"
+            }
+          },
+          "hover": {
+            "source": {
+              "node": "trigger",
+              "pseudo": "hover"
+            }
+          }
+        }
+      },
+      "popup": {
+        "node": "popup",
+        "styleRole": "popover",
+        "state": {
+          "open": {
+            "source": {
+              "node": "popup",
+              "pseudo": "popover-open"
+            }
+          }
+        }
+      }
+    }
+  },
+  "progress": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "progress",
+        "state": {
+          "indeterminate": {
+            "source": {
+              "node": "root",
+              "pseudo": "indeterminate"
+            }
+          }
+        }
+      }
+    }
+  },
+  "radio-group": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "group",
+        "state": {
+          "disabled": {
+            "source": {
+              "node": "root",
+              "pseudo": "disabled"
+            }
+          }
+        }
+      },
+      "legend": {
+        "node": "legend",
+        "styleRole": "group-label"
+      }
+    }
+  },
+  "scroll-area": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "scroll-area"
+      }
+    }
+  },
+  "select": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "field",
+        "state": {
+          "disabled": {
+            "source": {
+              "node": "control",
+              "pseudo": "disabled"
+            }
+          }
+        }
+      },
+      "control": {
+        "node": "control",
+        "styleRole": "select",
+        "state": {
+          "disabled": {
+            "source": {
+              "node": "control",
+              "pseudo": "disabled"
+            }
+          },
+          "focusVisible": {
+            "source": {
+              "node": "control",
+              "pseudo": "focus-visible"
+            }
+          },
+          "hover": {
+            "source": {
+              "node": "control",
+              "pseudo": "hover"
+            }
+          },
+          "invalid": {
+            "source": {
+              "node": "control",
+              "pseudo": "invalid"
+            }
+          },
+          "required": {
+            "source": {
+              "node": "control",
+              "pseudo": "required"
+            }
+          }
+        }
+      }
+    }
+  },
+  "separator": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "separator"
+      }
+    }
+  },
+  "slider": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "field",
+        "state": {
+          "disabled": {
+            "source": {
+              "node": "control",
+              "pseudo": "disabled"
+            }
+          }
+        }
+      },
+      "control": {
+        "node": "control",
+        "styleRole": "slider",
+        "state": {
+          "disabled": {
+            "source": {
+              "node": "control",
+              "pseudo": "disabled"
+            }
+          },
+          "focusVisible": {
+            "source": {
+              "node": "control",
+              "pseudo": "focus-visible"
+            }
+          },
+          "hover": {
+            "source": {
+              "node": "control",
+              "pseudo": "hover"
+            }
+          }
+        }
+      }
+    }
+  },
+  "switch": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "field",
+        "state": {
+          "disabled": {
+            "source": {
+              "node": "control",
+              "pseudo": "disabled"
+            }
+          }
+        }
+      },
+      "control": {
+        "node": "control",
+        "styleRole": "switch",
+        "state": {
+          "checked": {
+            "source": {
+              "node": "control",
+              "pseudo": "checked"
+            }
+          },
+          "disabled": {
+            "source": {
+              "node": "control",
+              "pseudo": "disabled"
+            }
+          },
+          "focusVisible": {
+            "source": {
+              "node": "control",
+              "pseudo": "focus-visible"
+            }
+          },
+          "hover": {
+            "source": {
+              "node": "control",
+              "pseudo": "hover"
+            }
+          },
+          "invalid": {
+            "source": {
+              "node": "control",
+              "pseudo": "invalid"
+            }
+          },
+          "required": {
+            "source": {
+              "node": "control",
+              "pseudo": "required"
+            }
+          }
+        }
+      }
+    }
+  },
+  "tabs": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "tabs"
+      },
+      "list": {
+        "node": "tablist",
+        "styleRole": "tab-list"
+      }
+    }
+  },
+  "toast": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "status"
+      }
+    }
+  },
+  "toggle": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "action",
+        "state": {
+          "active": {
+            "source": {
+              "node": "root",
+              "pseudo": "active"
+            }
+          },
+          "disabled": {
+            "source": {
+              "node": "root",
+              "pseudo": "disabled"
+            }
+          },
+          "focusVisible": {
+            "source": {
+              "node": "root",
+              "pseudo": "focus-visible"
+            }
+          },
+          "hover": {
+            "source": {
+              "node": "root",
+              "pseudo": "hover"
+            }
+          },
+          "pressed": {
+            "source": {
+              "node": "root",
+              "attribute": "aria-pressed",
+              "value": "true"
+            }
+          }
+        }
+      }
+    }
+  },
+  "toggle-group": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "group"
+      }
+    }
+  },
+  "toolbar": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "toolbar"
+      }
+    }
+  },
+  "tooltip": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "surface"
+      },
+      "trigger": {
+        "node": "trigger",
+        "styleRole": "action",
+        "state": {
+          "active": {
+            "source": {
+              "node": "trigger",
+              "pseudo": "active"
+            }
+          },
+          "disabled": {
+            "source": {
+              "node": "trigger",
+              "pseudo": "disabled"
+            }
+          },
+          "focusVisible": {
+            "source": {
+              "node": "trigger",
+              "pseudo": "focus-visible"
+            }
+          },
+          "hover": {
+            "source": {
+              "node": "trigger",
+              "pseudo": "hover"
+            }
+          }
+        }
+      },
+      "tooltip": {
+        "node": "tooltip",
+        "styleRole": "tooltip"
+      }
+    }
+  },
+  "card": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "surface"
+      }
+    }
+  },
+  "grid": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "group"
+      }
+    }
+  },
+  "icon": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "surface"
+      }
+    }
+  }
+}

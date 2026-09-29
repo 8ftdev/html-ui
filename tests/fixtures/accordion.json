@@ -1,17 +1,78 @@
 {
-  "props": { "name": { "type": "string", "optional": true }, "open": { "type": "boolean", "optional": true } },
-  "defaults": { "open": false },
-  "slots": { "summary": { "optional": false, "scope": {} }, "content": { "optional": true, "scope": { "open": "boolean" } } },
-  "events": { "toggle": { "target": "root", "state": { "open": "open" } } },
+  "props": {
+    "name": {
+      "type": "string",
+      "optional": true
+    },
+    "open": {
+      "type": "boolean",
+      "optional": true
+    }
+  },
+  "defaults": {
+    "open": false
+  },
+  "slots": {
+    "summary": {
+      "optional": false,
+      "scope": {}
+    },
+    "content": {
+      "optional": true,
+      "scope": {
+        "open": "boolean"
+      }
+    }
+  },
+  "events": {
+    "toggle": {
+      "target": "root",
+      "state": {
+        "open": "open"
+      }
+    }
+  },
   "tree": {
     "tag": "details",
     "bindings": [
-      { "kind": "attribute", "name": "name", "prop": "name", "optional": true },
-      { "kind": "property", "name": "open", "prop": "open", "optional": false }
+      {
+        "kind": "attribute",
+        "name": "name",
+        "prop": "name",
+        "optional": true
+      },
+      {
+        "kind": "property",
+        "name": "open",
+        "prop": "open",
+        "optional": false
+      }
     ],
     "children": [
-      { "tag": "summary", "bindings": [], "children": [{ "slot": "summary", "scope": {}, "optional": false }] },
-      { "slot": "content", "scope": { "open": "open" }, "optional": true }
+      {
+        "tag": "summary",
+        "bindings": [],
+        "children": [
+          {
+            "slot": "summary",
+            "scope": {},
+            "optional": false
+          }
+        ]
+      },
+      {
+        "tag": "div",
+        "bindings": [],
+        "children": [
+          {
+            "slot": "content",
+            "scope": {
+              "open": "open"
+            },
+            "optional": true
+          }
+        ]
+      }
     ]
   }
 }

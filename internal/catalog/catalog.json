@@ -50,6 +50,11 @@
         "ID": "summary",
         "Tag": "summary",
         "Attributes": {}
+      },
+      {
+        "ID": "content",
+        "Tag": "div",
+        "Attributes": {}
       }
     ],
     "Bindings": [
@@ -78,15 +83,21 @@
         "Slot": ""
       },
       {
-        "Parent": "root",
+        "Parent": "content",
         "Node": "",
         "Slot": "content"
+      },
+      {
+        "Parent": "root",
+        "Node": "content",
+        "Slot": ""
       }
     ],
     "Requirements": [
       "The summary is the first child. Its native activation opens or closes the details.",
       "Read root.open on toggle to synchronize adapter state; slot scope is an initial snapshot in the native factory.",
-      "For exclusive groups use the same nonempty name in the same tree, not necessarily siblings. Do not nest members of the same named group."
+      "For exclusive groups use the same nonempty name in the same tree, not necessarily siblings. Do not nest members of the same named group.",
+      "The owned content wrapper is the styling and motion target; adapters preserve native details semantics."
     ],
     "Events": [
       {
@@ -538,6 +549,12 @@
         "Description": "Button action.",
         "Required": false,
         "Default": "button"
+      },
+      {
+        "Name": "ariaLabel",
+        "Type": "string",
+        "Description": "Accessible name for icon-only buttons.",
+        "Required": false
       }
     ],
     "Slots": [
@@ -567,6 +584,12 @@
         "Name": "type",
         "Prop": "type",
         "Kind": "property"
+      },
+      {
+        "Node": "root",
+        "Name": "aria-label",
+        "Prop": "ariaLabel",
+        "Kind": "attribute"
       }
     ],
     "Children": [
@@ -867,6 +890,11 @@
         "ID": "summary",
         "Tag": "summary",
         "Attributes": {}
+      },
+      {
+        "ID": "content",
+        "Tag": "div",
+        "Attributes": {}
       }
     ],
     "Bindings": [
@@ -889,15 +917,21 @@
         "Slot": ""
       },
       {
-        "Parent": "root",
+        "Parent": "content",
         "Node": "",
         "Slot": "content"
+      },
+      {
+        "Parent": "root",
+        "Node": "content",
+        "Slot": ""
       }
     ],
     "Requirements": [
       "The summary is the first child. Its native activation opens or closes the details.",
       "Read root.open on toggle to synchronize adapter state; slot scope is an initial snapshot in the native factory.",
-      "Animation and controlled state updates belong to the converter."
+      "Animation and controlled state updates belong to the converter.",
+      "The owned content wrapper is the styling and motion target; adapters preserve native details semantics."
     ],
     "Events": [
       {
@@ -1930,6 +1964,25 @@
         "Type": "string",
         "Description": "Hint; does not replace the label.",
         "Required": false
+      },
+      {
+        "Name": "id",
+        "Type": "string",
+        "Description": "Native input id.",
+        "Required": false
+      },
+      {
+        "Name": "type",
+        "Type": "\"text\" | \"email\" | \"password\"",
+        "Description": "Native input type.",
+        "Required": false,
+        "Default": "text"
+      },
+      {
+        "Name": "autocomplete",
+        "Type": "string",
+        "Description": "Native input autocomplete.",
+        "Required": false
       }
     ],
     "Slots": [
@@ -1949,9 +2002,7 @@
       {
         "ID": "control",
         "Tag": "input",
-        "Attributes": {
-          "type": "text"
-        }
+        "Attributes": {}
       }
     ],
     "Bindings": [
@@ -1989,6 +2040,24 @@
         "Node": "control",
         "Name": "placeholder",
         "Prop": "placeholder",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "id",
+        "Prop": "id",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "type",
+        "Prop": "type",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "autocomplete",
+        "Prop": "autocomplete",
         "Kind": "attribute"
       }
     ],
@@ -3984,6 +4053,125 @@
     "Events": [],
     "Styling": [
       "Position and size with consuming CSS; ensure the tooltip remains hoverable and visible without obscuring its trigger."
+    ],
+    "Features": []
+  },
+  {
+    "Name": "card",
+    "Title": "Card",
+    "Summary": "Local card building block.",
+    "Status": "native",
+    "RootType": "HTMLDivElement",
+    "Props": [],
+    "Slots": [
+      {
+        "Name": "default",
+        "Description": "Content.",
+        "Required": false,
+        "Scope": []
+      }
+    ],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "div",
+        "Attributes": {}
+      }
+    ],
+    "Bindings": [],
+    "Children": [
+      {
+        "Parent": "root",
+        "Node": "",
+        "Slot": "default"
+      }
+    ],
+    "Requirements": [
+      "Layout container only; application semantics and content remain caller-owned."
+    ],
+    "Events": [],
+    "Styling": [
+      "Presentation is supplied by the selected UI plugin."
+    ],
+    "Features": []
+  },
+  {
+    "Name": "grid",
+    "Title": "Grid",
+    "Summary": "Local grid building block.",
+    "Status": "native",
+    "RootType": "HTMLDivElement",
+    "Props": [],
+    "Slots": [
+      {
+        "Name": "default",
+        "Description": "Content.",
+        "Required": false,
+        "Scope": []
+      }
+    ],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "div",
+        "Attributes": {}
+      }
+    ],
+    "Bindings": [],
+    "Children": [
+      {
+        "Parent": "root",
+        "Node": "",
+        "Slot": "default"
+      }
+    ],
+    "Requirements": [
+      "Layout container only; application semantics and content remain caller-owned."
+    ],
+    "Events": [],
+    "Styling": [
+      "Presentation is supplied by the selected UI plugin."
+    ],
+    "Features": []
+  },
+  {
+    "Name": "icon",
+    "Title": "Icon",
+    "Summary": "Local icon building block.",
+    "Status": "native",
+    "RootType": "HTMLSpanElement",
+    "Props": [],
+    "Slots": [
+      {
+        "Name": "default",
+        "Description": "Content.",
+        "Required": false,
+        "Scope": []
+      }
+    ],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "span",
+        "Attributes": {
+          "aria-hidden": "true"
+        }
+      }
+    ],
+    "Bindings": [],
+    "Children": [
+      {
+        "Parent": "root",
+        "Node": "",
+        "Slot": "default"
+      }
+    ],
+    "Requirements": [
+      "Decorative icon; put accessible text on the containing control."
+    ],
+    "Events": [],
+    "Styling": [
+      "Presentation is supplied by the selected UI plugin."
     ],
     "Features": []
   }

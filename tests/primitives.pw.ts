@@ -47,7 +47,7 @@ test("accordion initializes booleans, slot scope and child order", async ({ page
 			children: Array.from(root.children, (child) => [child.tagName, child.textContent]) };
 	});
 	expect(result).toEqual({ tag: "DETAILS", open: false, name: false, scope: { open: false },
-		children: [["SUMMARY", "Heading"], ["SPAN", "Body"]] });
+		children: [["SUMMARY", "Heading"], ["DIV", "Body"]] });
 });
 
 test("accordion preserves group and open state with optional content omitted", async ({ page }) => {
@@ -56,7 +56,8 @@ test("accordion preserves group and open state with optional content omitted", a
 	)));
 	await expect(page.locator("details")).toHaveAttribute("name", "group");
 	await expect(page.locator("details")).toHaveJSProperty("open", true);
-	await expect(page.locator("details > *")).toHaveCount(1);
+	await expect(page.locator("details > *")).toHaveCount(2);
+	await expect(page.locator("details > div")).toBeEmpty();
 });
 
 test("named accordion group keeps only the activated disclosure open", async ({ page }) => {

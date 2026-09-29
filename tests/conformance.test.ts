@@ -65,8 +65,8 @@ function diagnostics(program) {
 	);
 }
 
-test("all 37 generated modules and declarations type-check, including slot specialization", () => {
-	assert.equal(names.length, 37);
+test("all generated modules and declarations type-check, including slot specialization", () => {
+	assert.equal(names.length, JSON.parse(readFileSync("internal/catalog/catalog.json", "utf8")).length);
 	const program = ts.createProgram(roots, options);
 	assert.equal(diagnostics(program), "");
 	assert.equal(program.emit().emitSkipped, false);
@@ -80,15 +80,15 @@ test("all 37 generated modules and declarations type-check, including slot speci
 	assert.equal(diagnostics(declarations), "");
 });
 
-test("accordion AST preserves defaults, optional props, slot scope, events and child order", () => {
+test("legacy accordion AST preserves defaults, optional props, slot scope, events and child order", () => {
 	const expected = JSON.parse(
 		readFileSync("tests/fixtures/accordion.json", "utf8"),
 	);
-	assert.deepEqual(projectAccordion(run("accordion")), expected);
+	assert.deepEqual(projectAccordion(run("accordion", "--contract-version=1")), expected);
 });
 
 test("source consumer rejects unknown calls and syntax without executing source", () => {
-	const source = run("accordion");
+	const source = run("accordion", "--contract-version=1");
 	const attacks = [
 		source.replace(
 			"  return root;",

@@ -61,3 +61,53 @@ func TestSourceAlias(t *testing.T) {
 		t.Fatal("--ts differs from default")
 	}
 }
+
+func TestContractVersionSelection(t *testing.T) {
+	for _, args := range [][]string{
+		{"accordion", "--contract-version=2"},
+		{"--contract-version", "2", "--ts", "accordion"},
+		{"--ts", "accordion", "--contract-version", "2"},
+	} {
+		t.Run(strings.Join(args, " "), func(t *testing.T) {
+			var out, err bytes.Buffer
+			if code := cli.Run(args, &out, &err); code != 0 || err.Len() != 0 {
+				t.Fatalf("v2 selection failed (exit %d): %s", code, &err)
+			}
+			if !strings.Contains(out.String(), "export const contractVersion = 2 as const;") {
+				t.Fatal("explicit v2 did not emit version 2")
+			}
+		})
+	}
+	var implicit, explicit, err bytes.Buffer
+	cli.Run([]string{"accordion"}, &implicit, &err)
+	if code := cli.Run([]string{"accordion", "--contract-version=2"}, &explicit, &err); code != 0 {
+		t.Fatalf("explicit v2 failed: %s", &err)
+	}
+	if implicit.String() != explicit.String() {
+		t.Fatal("default output must use v2")
+	}
+}
+
+func TestInvalidContractVersionSelection(t *testing.T) {
+	for _, args := range [][]string{
+		{"accordion", "--contract-version=3"},
+		{"accordion", "--contract-version=0"},
+		{"accordion", "--contract-version="},
+		{"accordion", "--contract-version=02"},
+		{"accordion", "--contract-version"},
+		{"accordion", "--contract-version", "--ts"},
+		{"accordion", "--contract-version=2", "--contract-version=2"},
+		{"accordion", "--contract-version=1", "--contract-version=2"},
+		{"--docs", "accordion", "--contract-version=2"},
+		{"--help", "--contract-version=2"},
+		{"--list", "--contract-version=2"},
+		{"--version", "--contract-version=2"},
+	} {
+		t.Run(strings.Join(args, " "), func(t *testing.T) {
+			var out, err bytes.Buffer
+			if code := cli.Run(args, &out, &err); code != 2 || out.Len() != 0 || err.Len() == 0 {
+				t.Fatalf("exit %d, stdout=%q stderr=%q", code, out.String(), err.String())
+			}
+		})
+	}
+}

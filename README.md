@@ -6,6 +6,25 @@ An unstyled primitive **code generator written in Go**. It emits standalone Type
 html-ui accordion | html-ui-vue > Accordion.vue
 ```
 
+## Portable UI contracts
+
+Version 2 is the default and exposes owned styling parts, native state bindings, semantic style roles, and generated TypeScript override types:
+
+```sh
+html-ui accordion > accordion.ts
+```
+
+The source additionally exports `ui`, `AccordionStyle<Style>`, and `AccordionClasses<Style>`. Owned elements receive `data-ui`/`data-ui-part` markers. No CSS, tokens, framework imports, wrappers, or interaction code are added. All 40 primitives expose their owned parts; slot-provided elements are not assumed to belong to the producer.
+
+The intended downstream pipeline separates framework and theme selection:
+
+```sh
+# Proposed downstream tools, not included in this repository:
+html-ui accordion | html-ui-react | html-ui-shadcn > accordion.tsx
+```
+
+Framework converters must preserve UI metadata and styling targets for the theme stage. The Vue Vapor converter consumes version 2 and preserves its metadata/types and element markers. Explicit `--contract-version=1` remains available for legacy consumers. See [the v2 contract](docs/contract-v2.md) for the full schema and intermediate-output requirements.
+
 ## Stdout
 
 ```typescript
@@ -41,7 +60,7 @@ npx tsc accordion.ts --strict --target ES2022 --lib ES2022,DOM \
 
 ## Testing
 
-To build an offline preview of all 37 primitives:
+To build an offline preview of all 40 primitives:
 
 ```sh
 bun run preview
@@ -62,3 +81,7 @@ make check
 Generated TypeScript and declaration artifacts remain under `.test-output/`. Browser failures retain traces under `test-results/`.
 
 See [verification and coverage](docs/verification.md).
+
+### Local UI building blocks
+
+The catalog includes `card` and `grid` native containers and an `icon` decorative span with a default slot for local SVG content. Their appearance belongs to UI plugins. `button` supports `ariaLabel` for icon-only accessible names. `input` binds `id`, `type` (text/email/password), and `autocomplete` to its native input, retaining its enclosing label and model/reset semantics.
