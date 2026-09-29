@@ -145,6 +145,13 @@
         "Type": "string",
         "Description": "Unique ID on the slotted alert description.",
         "Required": true
+      },
+      {
+        "Name": "disabled",
+        "Type": "boolean",
+        "Required": false,
+        "Default": false,
+        "Description": "Disables the opening trigger."
       }
     ],
     "Slots": [
@@ -244,6 +251,12 @@
         "Name": "aria-describedby",
         "Prop": "descriptionId",
         "Kind": "attribute"
+      },
+      {
+        "Node": "trigger",
+        "Kind": "property",
+        "Name": "disabled",
+        "Prop": "disabled"
       }
     ],
     "Children": [
@@ -1161,6 +1174,19 @@
         "Type": "string",
         "Description": "Unique popup ID.",
         "Required": true
+      },
+      {
+        "Name": "label",
+        "Type": "string",
+        "Required": true,
+        "Description": "Accessible popup menu name."
+      },
+      {
+        "Name": "disabled",
+        "Type": "boolean",
+        "Required": false,
+        "Default": false,
+        "Description": "Disables the opening trigger."
       }
     ],
     "Slots": [
@@ -1211,6 +1237,18 @@
         "Name": "id",
         "Prop": "id",
         "Kind": "attribute"
+      },
+      {
+        "Node": "popup",
+        "Kind": "attribute",
+        "Name": "aria-label",
+        "Prop": "label"
+      },
+      {
+        "Node": "trigger",
+        "Kind": "property",
+        "Name": "disabled",
+        "Prop": "disabled"
       }
     ],
     "Children": [
@@ -1278,6 +1316,13 @@
         "Type": "string",
         "Description": "Unique title ID.",
         "Required": true
+      },
+      {
+        "Name": "disabled",
+        "Type": "boolean",
+        "Required": false,
+        "Default": false,
+        "Description": "Disables the opening trigger."
       }
     ],
     "Slots": [
@@ -1369,6 +1414,12 @@
         "Name": "aria-labelledby",
         "Prop": "titleId",
         "Kind": "attribute"
+      },
+      {
+        "Node": "trigger",
+        "Kind": "property",
+        "Name": "disabled",
+        "Prop": "disabled"
       }
     ],
     "Children": [
@@ -1464,6 +1515,13 @@
         "Type": "string",
         "Description": "Unique title ID.",
         "Required": true
+      },
+      {
+        "Name": "disabled",
+        "Type": "boolean",
+        "Required": false,
+        "Default": false,
+        "Description": "Disables the opening trigger."
       }
     ],
     "Slots": [
@@ -1555,6 +1613,12 @@
         "Name": "aria-labelledby",
         "Prop": "titleId",
         "Kind": "attribute"
+      },
+      {
+        "Node": "trigger",
+        "Kind": "property",
+        "Name": "disabled",
+        "Prop": "disabled"
       }
     ],
     "Children": [
@@ -2115,6 +2179,19 @@
         "Type": "string",
         "Description": "Unique popup ID.",
         "Required": true
+      },
+      {
+        "Name": "label",
+        "Type": "string",
+        "Required": true,
+        "Description": "Accessible popup menu name."
+      },
+      {
+        "Name": "disabled",
+        "Type": "boolean",
+        "Required": false,
+        "Default": false,
+        "Description": "Disables the opening trigger."
       }
     ],
     "Slots": [
@@ -2165,6 +2242,18 @@
         "Name": "id",
         "Prop": "id",
         "Kind": "attribute"
+      },
+      {
+        "Node": "popup",
+        "Kind": "attribute",
+        "Name": "aria-label",
+        "Prop": "label"
+      },
+      {
+        "Node": "trigger",
+        "Kind": "property",
+        "Name": "disabled",
+        "Prop": "disabled"
       }
     ],
     "Children": [
@@ -2769,6 +2858,13 @@
         "Type": "string",
         "Description": "Unique popup ID.",
         "Required": true
+      },
+      {
+        "Name": "disabled",
+        "Type": "boolean",
+        "Required": false,
+        "Default": false,
+        "Description": "Disables the opening trigger."
       }
     ],
     "Slots": [
@@ -2818,6 +2914,12 @@
         "Name": "id",
         "Prop": "id",
         "Kind": "attribute"
+      },
+      {
+        "Node": "trigger",
+        "Kind": "property",
+        "Name": "disabled",
+        "Prop": "disabled"
       }
     ],
     "Children": [
@@ -3968,6 +4070,13 @@
         "Description": "Initial tooltip visibility.",
         "Required": false,
         "Default": true
+      },
+      {
+        "Name": "disabled",
+        "Type": "boolean",
+        "Required": false,
+        "Default": false,
+        "Description": "Disables the opening trigger."
       }
     ],
     "Slots": [
@@ -4023,6 +4132,12 @@
         "Name": "hidden",
         "Prop": "hidden",
         "Kind": "property"
+      },
+      {
+        "Node": "trigger",
+        "Kind": "property",
+        "Name": "disabled",
+        "Prop": "disabled"
       }
     ],
     "Children": [
@@ -5830,6 +5945,783 @@
     ],
     "Styling": [
       "Presentation comes from local recipes; every owned part is overridable."
+    ],
+    "Features": []
+  },
+  {
+    "Name": "attachment",
+    "Title": "Attachment",
+    "Summary": "Local native content building block.",
+    "Status": "native",
+    "RootType": "HTMLAnchorElement",
+    "Props": [
+      {
+        "Name": "href",
+        "Type": "string",
+        "Required": true,
+        "Description": "Attachment URL."
+      },
+      {
+        "Name": "download",
+        "Type": "string",
+        "Required": false,
+        "Description": "Optional filename; cross-origin download remains browser-defined."
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "default",
+        "Description": "Application-owned semantic contents.",
+        "Required": true,
+        "Scope": []
+      }
+    ],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "a",
+        "Attributes": {}
+      }
+    ],
+    "Bindings": [
+      {
+        "Node": "root",
+        "Kind": "attribute",
+        "Name": "href",
+        "Prop": "href"
+      },
+      {
+        "Node": "root",
+        "Kind": "attribute",
+        "Name": "download",
+        "Prop": "download"
+      }
+    ],
+    "Children": [
+      {
+        "Parent": "root",
+        "Node": "",
+        "Slot": "default"
+      }
+    ],
+    "Requirements": [
+      "Native attachment download/link. Caller supplies URL, optional download name and nonempty accessible content. No upload lifecycle or file preview engine."
+    ],
+    "Events": [],
+    "Styling": [
+      "All owned parts accept local styles."
+    ],
+    "Features": []
+  },
+  {
+    "Name": "bubble",
+    "Title": "Bubble",
+    "Summary": "Local native content building block.",
+    "Status": "native",
+    "RootType": "HTMLElement",
+    "Props": [],
+    "Slots": [
+      {
+        "Name": "default",
+        "Description": "Application-owned semantic contents.",
+        "Required": true,
+        "Scope": []
+      }
+    ],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "div",
+        "Attributes": {}
+      }
+    ],
+    "Bindings": [],
+    "Children": [
+      {
+        "Parent": "root",
+        "Node": "",
+        "Slot": "default"
+      }
+    ],
+    "Requirements": [
+      "Message surface; caller owns text, interactive content and sender semantics."
+    ],
+    "Events": [],
+    "Styling": [
+      "All owned parts accept local styles."
+    ],
+    "Features": []
+  },
+  {
+    "Name": "marker",
+    "Title": "Marker",
+    "Summary": "Local native content building block.",
+    "Status": "native",
+    "RootType": "HTMLElement",
+    "Props": [],
+    "Slots": [
+      {
+        "Name": "default",
+        "Description": "Application-owned semantic contents.",
+        "Required": true,
+        "Scope": []
+      }
+    ],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "span",
+        "Attributes": {}
+      }
+    ],
+    "Bindings": [],
+    "Children": [
+      {
+        "Parent": "root",
+        "Node": "",
+        "Slot": "default"
+      }
+    ],
+    "Requirements": [
+      "Inline transcript marker; caller supplies text. No streaming boundary or measurement engine."
+    ],
+    "Events": [],
+    "Styling": [
+      "All owned parts accept local styles."
+    ],
+    "Features": []
+  },
+  {
+    "Name": "message",
+    "Title": "Message",
+    "Summary": "Local native content building block.",
+    "Status": "native",
+    "RootType": "HTMLElement",
+    "Props": [
+      {
+        "Name": "label",
+        "Type": "string",
+        "Required": true,
+        "Description": "Accessible sender/message name."
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "default",
+        "Description": "Application-owned semantic contents.",
+        "Required": true,
+        "Scope": []
+      }
+    ],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "article",
+        "Attributes": {}
+      }
+    ],
+    "Bindings": [
+      {
+        "Node": "root",
+        "Kind": "attribute",
+        "Name": "aria-label",
+        "Prop": "label"
+      }
+    ],
+    "Children": [
+      {
+        "Parent": "root",
+        "Node": "",
+        "Slot": "default"
+      }
+    ],
+    "Requirements": [
+      "Application owns content and business logic."
+    ],
+    "Events": [],
+    "Styling": [
+      "All owned parts accept local styles."
+    ],
+    "Features": []
+  },
+  {
+    "Name": "message-scroller",
+    "Title": "Message Scroller",
+    "Summary": "Local native content building block.",
+    "Status": "native",
+    "RootType": "HTMLElement",
+    "Props": [
+      {
+        "Name": "label",
+        "Type": "string",
+        "Required": true,
+        "Description": "Conversation region name."
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "default",
+        "Description": "Application-owned semantic contents.",
+        "Required": true,
+        "Scope": []
+      }
+    ],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "div",
+        "Attributes": {
+          "role": "region",
+          "tabindex": "0"
+        }
+      }
+    ],
+    "Bindings": [
+      {
+        "Node": "root",
+        "Kind": "attribute",
+        "Name": "aria-label",
+        "Prop": "label"
+      }
+    ],
+    "Children": [
+      {
+        "Parent": "root",
+        "Node": "",
+        "Slot": "default"
+      }
+    ],
+    "Requirements": [
+      "Native overflow region. Caller owns messages, streaming announcements and auto-scroll policy; no forced scrolling while reading history."
+    ],
+    "Events": [],
+    "Styling": [
+      "All owned parts accept local styles."
+    ],
+    "Features": []
+  },
+  {
+    "Name": "carousel",
+    "Title": "Carousel",
+    "Summary": "Local native content building block.",
+    "Status": "native",
+    "RootType": "HTMLElement",
+    "Props": [
+      {
+        "Name": "label",
+        "Type": "string",
+        "Required": true,
+        "Description": "Carousel region name."
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "default",
+        "Description": "Application-owned semantic contents.",
+        "Required": true,
+        "Scope": []
+      }
+    ],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "div",
+        "Attributes": {
+          "role": "region",
+          "tabindex": "0"
+        }
+      }
+    ],
+    "Bindings": [
+      {
+        "Node": "root",
+        "Kind": "attribute",
+        "Name": "aria-label",
+        "Prop": "label"
+      }
+    ],
+    "Children": [
+      {
+        "Parent": "root",
+        "Node": "",
+        "Slot": "default"
+      }
+    ],
+    "Requirements": [
+      "Native horizontal scroll-snap container. Caller provides semantic slides; browser scrolling, touch and focused arrow keys are used. No loop, autoplay or generated previous/next controls."
+    ],
+    "Events": [],
+    "Styling": [
+      "All owned parts accept local styles."
+    ],
+    "Features": []
+  },
+  {
+    "Name": "resizable",
+    "Title": "Resizable",
+    "Summary": "Local native content building block.",
+    "Status": "native",
+    "RootType": "HTMLElement",
+    "Props": [],
+    "Slots": [
+      {
+        "Name": "default",
+        "Description": "Application-owned semantic contents.",
+        "Required": true,
+        "Scope": []
+      }
+    ],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "div",
+        "Attributes": {
+          "tabindex": "0"
+        }
+      }
+    ],
+    "Bindings": [],
+    "Children": [
+      {
+        "Parent": "root",
+        "Node": "",
+        "Slot": "default"
+      }
+    ],
+    "Requirements": [
+      "Native CSS resize surface; no split-pane keyboard handle or proportional panel controller. Content and size limits remain editable."
+    ],
+    "Events": [],
+    "Styling": [
+      "All owned parts accept local styles."
+    ],
+    "Features": []
+  },
+  {
+    "Name": "sidebar",
+    "Title": "Sidebar",
+    "Summary": "Local native content building block.",
+    "Status": "native",
+    "RootType": "HTMLElement",
+    "Props": [
+      {
+        "Name": "label",
+        "Type": "string",
+        "Required": true,
+        "Description": "Sidebar accessible name."
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "default",
+        "Description": "Application-owned semantic contents.",
+        "Required": true,
+        "Scope": []
+      }
+    ],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "aside",
+        "Attributes": {}
+      }
+    ],
+    "Bindings": [
+      {
+        "Node": "root",
+        "Kind": "attribute",
+        "Name": "aria-label",
+        "Prop": "label"
+      }
+    ],
+    "Children": [
+      {
+        "Parent": "root",
+        "Node": "",
+        "Slot": "default"
+      }
+    ],
+    "Requirements": [
+      "Native complementary sidebar surface; application composes links and local Sheet for mobile disclosure. No provider or persistence engine."
+    ],
+    "Events": [],
+    "Styling": [
+      "All owned parts accept local styles."
+    ],
+    "Features": []
+  },
+  {
+    "Name": "questionnaire",
+    "Title": "Questionnaire",
+    "Summary": "Native fieldset with a legend.",
+    "Status": "native",
+    "RootType": "HTMLFieldSetElement",
+    "Props": [
+      {
+        "Name": "disabled",
+        "Type": "boolean",
+        "Description": "Disables descendant form controls.",
+        "Required": false,
+        "Default": false
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "legend",
+        "Description": "Accessible group label.",
+        "Required": true,
+        "Scope": []
+      },
+      {
+        "Name": "content",
+        "Description": "Group controls.",
+        "Required": true,
+        "Scope": []
+      }
+    ],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "fieldset",
+        "Attributes": {}
+      },
+      {
+        "ID": "legend",
+        "Tag": "legend",
+        "Attributes": {}
+      }
+    ],
+    "Bindings": [
+      {
+        "Node": "root",
+        "Name": "disabled",
+        "Prop": "disabled",
+        "Kind": "property"
+      }
+    ],
+    "Children": [
+      {
+        "Parent": "legend",
+        "Node": "",
+        "Slot": "legend"
+      },
+      {
+        "Parent": "root",
+        "Node": "legend",
+        "Slot": ""
+      },
+      {
+        "Parent": "root",
+        "Node": "",
+        "Slot": "content"
+      }
+    ],
+    "Requirements": [
+      "Native fieldset and legend for composed questions. Application owns answers, validation, branching and submission."
+    ],
+    "Events": [
+      {
+        "Name": "change",
+        "Target": "root",
+        "State": {},
+        "Type": "Event",
+        "Description": "Native notification; adapters own application state updates."
+      }
+    ],
+    "Styling": [
+      "Choose spacing, typography, and focus indicators in the consuming design system. Preserve native keyboard and disabled semantics."
+    ],
+    "Features": []
+  },
+  {
+    "Name": "notification",
+    "Title": "Notification",
+    "Summary": "Local native content building block.",
+    "Status": "native",
+    "RootType": "HTMLElement",
+    "Props": [],
+    "Slots": [
+      {
+        "Name": "default",
+        "Description": "Notification inserted after region is mounted.",
+        "Required": false,
+        "Scope": []
+      }
+    ],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "div",
+        "Attributes": {
+          "role": "status",
+          "aria-live": "polite",
+          "aria-atomic": "true"
+        }
+      }
+    ],
+    "Bindings": [],
+    "Children": [
+      {
+        "Parent": "root",
+        "Node": "",
+        "Slot": "default"
+      }
+    ],
+    "Requirements": [
+      "Mount an empty persistent region before inserting announcements. Application owns queue, timing, actions and dismissal. Do not steal focus."
+    ],
+    "Events": [],
+    "Styling": [
+      "All owned parts accept local styles."
+    ],
+    "Features": []
+  },
+  {
+    "Name": "chart",
+    "Title": "Chart",
+    "Summary": "Local native content building block.",
+    "Status": "native",
+    "RootType": "HTMLElement",
+    "Props": [],
+    "Slots": [
+      {
+        "Name": "default",
+        "Description": "Accessible chart graphic or data table supplied by application.",
+        "Required": true,
+        "Scope": []
+      },
+      {
+        "Name": "caption",
+        "Description": "Required chart caption.",
+        "Required": true,
+        "Scope": []
+      }
+    ],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "figure",
+        "Attributes": {}
+      },
+      {
+        "ID": "caption",
+        "Tag": "figcaption",
+        "Attributes": {}
+      }
+    ],
+    "Bindings": [],
+    "Children": [
+      {
+        "Parent": "root",
+        "Node": "",
+        "Slot": "default"
+      },
+      {
+        "Parent": "root",
+        "Node": "caption",
+        "Slot": ""
+      },
+      {
+        "Parent": "caption",
+        "Node": "",
+        "Slot": "caption"
+      }
+    ],
+    "Requirements": [
+      "Semantic figure and caption around caller-owned SVG, canvas or table. This block provides no plotting/data engine."
+    ],
+    "Events": [],
+    "Styling": [
+      "All owned parts accept local styles."
+    ],
+    "Features": []
+  },
+  {
+    "Name": "date-field",
+    "Title": "Date Field",
+    "Summary": "Native date input with ISO string value model and browser picker.",
+    "Status": "native",
+    "RootType": "HTMLLabelElement",
+    "Props": [
+      {
+        "Name": "name",
+        "Type": "string",
+        "Description": "Form field name.",
+        "Required": false
+      },
+      {
+        "Name": "disabled",
+        "Type": "boolean",
+        "Description": "Disables the control.",
+        "Required": false,
+        "Default": false
+      },
+      {
+        "Name": "required",
+        "Type": "boolean",
+        "Description": "Requires a value or checked state for submission.",
+        "Required": false,
+        "Default": false
+      },
+      {
+        "Name": "value",
+        "Type": "string",
+        "Description": "Initial text value.",
+        "Required": false,
+        "Default": ""
+      },
+      {
+        "Name": "placeholder",
+        "Type": "string",
+        "Description": "Hint; does not replace the label.",
+        "Required": false
+      },
+      {
+        "Name": "id",
+        "Type": "string",
+        "Description": "Native input id.",
+        "Required": false
+      },
+      {
+        "Name": "autocomplete",
+        "Type": "string",
+        "Description": "Native input autocomplete.",
+        "Required": false
+      },
+      {
+        "Name": "min",
+        "Type": "string",
+        "Required": false,
+        "Description": "ISO date bound."
+      },
+      {
+        "Name": "max",
+        "Type": "string",
+        "Required": false,
+        "Description": "ISO date bound."
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "label",
+        "Description": "Accessible label as noninteractive phrasing content.",
+        "Required": true,
+        "Scope": []
+      }
+    ],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "label",
+        "Attributes": {}
+      },
+      {
+        "ID": "control",
+        "Tag": "input",
+        "Attributes": {
+          "type": "date"
+        }
+      }
+    ],
+    "Bindings": [
+      {
+        "Node": "control",
+        "Name": "name",
+        "Prop": "name",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "disabled",
+        "Prop": "disabled",
+        "Kind": "property"
+      },
+      {
+        "Node": "control",
+        "Name": "required",
+        "Prop": "required",
+        "Kind": "property"
+      },
+      {
+        "Node": "control",
+        "Name": "defaultValue",
+        "Prop": "value",
+        "Kind": "property"
+      },
+      {
+        "Node": "control",
+        "Name": "value",
+        "Prop": "value",
+        "Kind": "property"
+      },
+      {
+        "Node": "control",
+        "Name": "placeholder",
+        "Prop": "placeholder",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "id",
+        "Prop": "id",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "autocomplete",
+        "Prop": "autocomplete",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Kind": "attribute",
+        "Name": "min",
+        "Prop": "min"
+      },
+      {
+        "Node": "control",
+        "Kind": "attribute",
+        "Name": "max",
+        "Prop": "max"
+      }
+    ],
+    "Children": [
+      {
+        "Parent": "root",
+        "Node": "",
+        "Slot": "label"
+      },
+      {
+        "Parent": "root",
+        "Node": "control",
+        "Slot": ""
+      }
+    ],
+    "Requirements": [
+      "Native single-date browser picker. Value is an ISO YYYY-MM-DD string, not a timezone Date. Label required; native constraints and form reset apply. No custom month grid, range or disabled-day predicate."
+    ],
+    "Events": [
+      {
+        "Name": "input",
+        "Target": "control",
+        "State": {
+          "value": "value"
+        },
+        "Type": "Event",
+        "Description": "Native notification; adapters own application state updates."
+      },
+      {
+        "Name": "change",
+        "Target": "control",
+        "State": {
+          "value": "value"
+        },
+        "Type": "Event",
+        "Description": "Native notification; adapters own application state updates."
+      }
+    ],
+    "Styling": [
+      "Choose spacing, typography, and focus indicators in the consuming design system. Preserve native keyboard and disabled semantics."
     ],
     "Features": []
   }

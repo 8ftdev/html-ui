@@ -1794,5 +1794,175 @@
         }
       }
     }
+  },
+  "attachment": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "attachment",
+        "state": {
+          "hover": {
+            "source": {
+              "node": "root",
+              "pseudo": "hover"
+            }
+          },
+          "focusVisible": {
+            "source": {
+              "node": "root",
+              "pseudo": "focus-visible"
+            }
+          }
+        }
+      }
+    }
+  },
+  "bubble": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "bubble"
+      }
+    }
+  },
+  "marker": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "marker"
+      }
+    }
+  },
+  "message": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "message"
+      }
+    }
+  },
+  "message-scroller": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "message-scroller"
+      }
+    }
+  },
+  "carousel": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "carousel"
+      }
+    }
+  },
+  "resizable": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "resizable"
+      }
+    }
+  },
+  "sidebar": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "sidebar"
+      }
+    }
+  },
+  "questionnaire": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "group",
+        "state": {
+          "disabled": {
+            "source": {
+              "node": "root",
+              "pseudo": "disabled"
+            }
+          }
+        }
+      },
+      "legend": {
+        "node": "legend",
+        "styleRole": "group-label"
+      }
+    }
+  },
+  "notification": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "status"
+      }
+    }
+  },
+  "chart": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "chart"
+      },
+      "caption": {
+        "node": "caption",
+        "styleRole": "caption"
+      }
+    }
+  },
+  "date-field": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "field",
+        "state": {
+          "disabled": {
+            "source": {
+              "node": "control",
+              "pseudo": "disabled"
+            }
+          }
+        }
+      },
+      "control": {
+        "node": "control",
+        "styleRole": "input",
+        "state": {
+          "disabled": {
+            "source": {
+              "node": "control",
+              "pseudo": "disabled"
+            }
+          },
+          "focusVisible": {
+            "source": {
+              "node": "control",
+              "pseudo": "focus-visible"
+            }
+          },
+          "hover": {
+            "source": {
+              "node": "control",
+              "pseudo": "hover"
+            }
+          },
+          "invalid": {
+            "source": {
+              "node": "control",
+              "pseudo": "invalid"
+            }
+          },
+          "required": {
+            "source": {
+              "node": "control",
+              "pseudo": "required"
+            }
+          }
+        }
+      }
+    }
   }
 }
