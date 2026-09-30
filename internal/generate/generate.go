@@ -126,7 +126,7 @@ func source(r catalog.Recipe, version int) string {
 	for _, v := range r.Props {
 		props[v.Name] = v
 	}
-	for _, v := range r.Bindings {
+	emitBinding := func(v catalog.Binding) {
 		prefix := ""
 		prop := props[v.Prop]
 		if !prop.Required && len(prop.Default) == 0 {
@@ -140,6 +140,21 @@ func source(r catalog.Recipe, version int) string {
 				value = "String(" + value + ")"
 			}
 			p("  %s%s.setAttribute(%q, %s);\n", prefix, v.Node, v.Name, value)
+		}
+	}
+	// A select cannot retain a value assigned before its options exist. Keep
+	// these initial assignments after slot insertion without changing the
+	// native options' defaultSelected reset baseline.
+	selectNodes := map[string]bool{}
+	for _, node := range r.Nodes {
+		selectNodes[node.ID] = node.Tag == "select"
+	}
+	var selectionBindings []catalog.Binding
+	for _, binding := range r.Bindings {
+		if selectNodes[binding.Node] && binding.Kind == "property" && binding.Name == "value" {
+			selectionBindings = append(selectionBindings, binding)
+		} else {
+			emitBinding(binding)
 		}
 	}
 	slots := map[string]catalog.Slot{}
@@ -169,6 +184,9 @@ func source(r catalog.Recipe, version int) string {
 			scope = "{ " + strings.Join(fields, ", ") + " }"
 		}
 		p("  %s%s.append(slots.%s(%s));\n", prefix, c.Parent, s.Name, scope)
+	}
+	for _, binding := range selectionBindings {
+		emitBinding(binding)
 	}
 	p("  return root;\n}\n")
 	return b.String()

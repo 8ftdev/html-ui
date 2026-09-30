@@ -632,7 +632,7 @@
   {
     "Name": "checkbox",
     "Title": "Checkbox",
-    "Summary": "Native binary checkbox.",
+    "Summary": "Native checkbox with an optional initial mixed state and decorative indicator.",
     "Status": "native",
     "RootType": "HTMLLabelElement",
     "Props": [
@@ -669,13 +669,50 @@
         "Description": "Submitted value when checked.",
         "Required": false,
         "Default": "on"
+      },
+      {
+        "Name": "id",
+        "Type": "string",
+        "Description": "Unique native control ID.",
+        "Required": false
+      },
+      {
+        "Name": "ariaLabel",
+        "Type": "string",
+        "Description": "Accessible name when no label content is supplied.",
+        "Required": false
+      },
+      {
+        "Name": "ariaLabelledby",
+        "Type": "string",
+        "Description": "IDs of elements naming the native control.",
+        "Required": false
+      },
+      {
+        "Name": "ariaDescribedby",
+        "Type": "string",
+        "Description": "IDs of help or error text describing the native control.",
+        "Required": false
+      },
+      {
+        "Name": "ariaInvalid",
+        "Type": "\"true\" | \"false\"",
+        "Description": "Explicit accessibility invalid state; native constraint validation remains independent.",
+        "Required": false
+      },
+      {
+        "Name": "indeterminate",
+        "Type": "boolean",
+        "Description": "Initial native mixed state; activation clears it. Separate from checked and the reset baseline.",
+        "Required": false,
+        "Default": false
       }
     ],
     "Slots": [
       {
         "Name": "label",
-        "Description": "Accessible label as noninteractive phrasing content.",
-        "Required": true,
+        "Description": "Optional noninteractive phrasing label. When omitted, provide an external native label or accessible name on the control.",
+        "Required": false,
         "Scope": []
       }
     ],
@@ -690,6 +727,13 @@
         "Tag": "input",
         "Attributes": {
           "type": "checkbox"
+        }
+      },
+      {
+        "ID": "indicator",
+        "Tag": "span",
+        "Attributes": {
+          "aria-hidden": "true"
         }
       }
     ],
@@ -729,25 +773,67 @@
         "Name": "value",
         "Prop": "value",
         "Kind": "property"
+      },
+      {
+        "Node": "control",
+        "Name": "id",
+        "Prop": "id",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "aria-label",
+        "Prop": "ariaLabel",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "aria-labelledby",
+        "Prop": "ariaLabelledby",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "aria-describedby",
+        "Prop": "ariaDescribedby",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "aria-invalid",
+        "Prop": "ariaInvalid",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "indeterminate",
+        "Prop": "indeterminate",
+        "Kind": "property"
       }
     ],
     "Children": [
       {
         "Parent": "root",
-        "Node": "",
-        "Slot": "label"
+        "Node": "control",
+        "Slot": ""
       },
       {
         "Parent": "root",
-        "Node": "control",
+        "Node": "indicator",
         "Slot": ""
+      },
+      {
+        "Parent": "root",
+        "Node": "",
+        "Slot": "label"
       }
     ],
     "Requirements": [
       "The label slot must contain noninteractive phrasing content. The enclosing label associates it with the input.",
       "Read the current control property after input/change; these factories only initialize values.",
-      "Indeterminate is a separate DOM property, not an HTML attribute. Set it in the adapter if needed.",
-      "Initialize both defaultChecked and checked so native form reset restores the supplied initial state. Adapters choose whether later updates change the reset baseline."
+      "indeterminate initializes a separate native DOM property, not an HTML attribute. Native activation clears it; adapters own subsequent updates.",
+      "Initialize both defaultChecked and checked so native form reset restores the supplied initial state. Adapters choose whether later updates change the reset baseline.",
+      "If the label slot is omitted, consumers must give the actual control an accessible name through an external label, ariaLabel, or ariaLabelledby."
     ],
     "Events": [
       {
@@ -770,7 +856,8 @@
       }
     ],
     "Styling": [
-      "Choose spacing, typography, and focus indicators in the consuming design system. Preserve native keyboard and disabled semantics."
+      "Choose spacing, typography, and focus indicators in the consuming design system. Preserve native keyboard and disabled semantics.",
+      "Owned presentation spans are decorative. Style them from native control state and retain a focusable, labelable native input."
     ],
     "Features": []
   },
@@ -1714,6 +1801,26 @@
         "Type": "string",
         "Description": "Optional unique description ID.",
         "Required": false
+      },
+      {
+        "Name": "errorId",
+        "Type": "string",
+        "Description": "Optional unique error text ID for the control aria-describedby link.",
+        "Required": false
+      },
+      {
+        "Name": "invalid",
+        "Type": "boolean",
+        "Description": "Presentation invalid state. Consumers set the slotted control aria-invalid independently.",
+        "Required": false,
+        "Default": false
+      },
+      {
+        "Name": "disabled",
+        "Type": "boolean",
+        "Description": "Presentation disabled state only. The slotted native control owns actual disabled behavior.",
+        "Required": false,
+        "Default": false
       }
     ],
     "Slots": [
@@ -1737,7 +1844,13 @@
       },
       {
         "Name": "description",
-        "Description": "Help or error text.",
+        "Description": "Optional help text linked from the control using descriptionId.",
+        "Required": false,
+        "Scope": []
+      },
+      {
+        "Name": "error",
+        "Description": "Optional error text linked from the control using errorId.",
         "Required": false,
         "Scope": []
       }
@@ -1757,6 +1870,16 @@
         "ID": "description",
         "Tag": "div",
         "Attributes": {}
+      },
+      {
+        "ID": "content",
+        "Tag": "div",
+        "Attributes": {}
+      },
+      {
+        "ID": "error",
+        "Tag": "div",
+        "Attributes": {}
       }
     ],
     "Bindings": [
@@ -1771,23 +1894,41 @@
         "Name": "id",
         "Prop": "descriptionId",
         "Kind": "attribute"
+      },
+      {
+        "Node": "error",
+        "Name": "id",
+        "Prop": "errorId",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "root",
+        "Name": "data-invalid",
+        "Prop": "invalid",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "root",
+        "Name": "data-disabled",
+        "Prop": "disabled",
+        "Kind": "attribute"
       }
     ],
     "Children": [
+      {
+        "Parent": "root",
+        "Node": "",
+        "Slot": "control"
+      },
       {
         "Parent": "label",
         "Node": "",
         "Slot": "label"
       },
       {
-        "Parent": "root",
+        "Parent": "content",
         "Node": "label",
         "Slot": ""
-      },
-      {
-        "Parent": "root",
-        "Node": "",
-        "Slot": "control"
       },
       {
         "Parent": "description",
@@ -1795,18 +1936,35 @@
         "Slot": "description"
       },
       {
-        "Parent": "root",
+        "Parent": "content",
         "Node": "description",
+        "Slot": ""
+      },
+      {
+        "Parent": "error",
+        "Node": "",
+        "Slot": "error"
+      },
+      {
+        "Parent": "content",
+        "Node": "error",
+        "Slot": ""
+      },
+      {
+        "Parent": "root",
+        "Node": "content",
         "Slot": ""
       }
     ],
     "Requirements": [
       "Assign the scoped id to the actual slotted control. The wrapper cannot label a control that omits it.",
-      "When rendering a description, supply descriptionId and connect aria-describedby on the control. Set aria-invalid only when applicable. Dynamic error handling belongs to the converter."
+      "When rendering a description, supply descriptionId and connect aria-describedby on the control. Set aria-invalid only when applicable. Dynamic error handling belongs to the converter.",
+      "Connect descriptionId and errorId from the caller to aria-describedby on the actual control. Field invalid and disabled props are presentation hooks; they do not change native validity or disabling."
     ],
     "Events": [],
     "Styling": [
-      "Choose spacing, typography, and focus indicators in the consuming design system. Preserve native keyboard and disabled semantics."
+      "Choose spacing, typography, and focus indicators in the consuming design system. Preserve native keyboard and disabled semantics.",
+      "Use content as a wrapper for horizontal fields. Vertical recipes may use display:contents on content and order label before control, then description and error."
     ],
     "Features": []
   },
@@ -1837,6 +1995,12 @@
         "Description": "Group controls.",
         "Required": true,
         "Scope": []
+      },
+      {
+        "Name": "description",
+        "Description": "Optional group help text.",
+        "Required": false,
+        "Scope": []
       }
     ],
     "Nodes": [
@@ -1848,6 +2012,11 @@
       {
         "ID": "legend",
         "Tag": "legend",
+        "Attributes": {}
+      },
+      {
+        "ID": "description",
+        "Tag": "div",
         "Attributes": {}
       }
     ],
@@ -1868,6 +2037,16 @@
       {
         "Parent": "root",
         "Node": "legend",
+        "Slot": ""
+      },
+      {
+        "Parent": "description",
+        "Node": "",
+        "Slot": "description"
+      },
+      {
+        "Parent": "root",
+        "Node": "description",
         "Slot": ""
       },
       {
@@ -2047,13 +2226,37 @@
         "Type": "string",
         "Description": "Native input autocomplete.",
         "Required": false
+      },
+      {
+        "Name": "ariaLabel",
+        "Type": "string",
+        "Description": "Accessible name when no label content is supplied.",
+        "Required": false
+      },
+      {
+        "Name": "ariaLabelledby",
+        "Type": "string",
+        "Description": "IDs of elements naming the native control.",
+        "Required": false
+      },
+      {
+        "Name": "ariaDescribedby",
+        "Type": "string",
+        "Description": "IDs of help or error text describing the native control.",
+        "Required": false
+      },
+      {
+        "Name": "ariaInvalid",
+        "Type": "\"true\" | \"false\"",
+        "Description": "Explicit accessibility invalid state; native constraint validation remains independent.",
+        "Required": false
       }
     ],
     "Slots": [
       {
         "Name": "label",
-        "Description": "Accessible label as noninteractive phrasing content.",
-        "Required": true,
+        "Description": "Optional noninteractive phrasing label. When omitted, provide an external native label or accessible name on the control.",
+        "Required": false,
         "Scope": []
       }
     ],
@@ -2123,6 +2326,30 @@
         "Name": "autocomplete",
         "Prop": "autocomplete",
         "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "aria-label",
+        "Prop": "ariaLabel",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "aria-labelledby",
+        "Prop": "ariaLabelledby",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "aria-describedby",
+        "Prop": "ariaDescribedby",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "aria-invalid",
+        "Prop": "ariaInvalid",
+        "Kind": "attribute"
       }
     ],
     "Children": [
@@ -2140,7 +2367,8 @@
     "Requirements": [
       "The label slot must contain noninteractive phrasing content. The enclosing label associates it with the input.",
       "Read the current control property after input/change; these factories only initialize values.",
-      "Initialize both defaultValue and value so native form reset restores the supplied initial text. Adapters choose whether later updates change the reset baseline."
+      "Initialize both defaultValue and value so native form reset restores the supplied initial text. Adapters choose whether later updates change the reset baseline.",
+      "If the label slot is omitted, consumers must give the actual control an accessible name through an external label, ariaLabel, or ariaLabelledby."
     ],
     "Events": [
       {
@@ -3324,13 +3552,43 @@
         "Description": "Requires a selection or value.",
         "Required": false,
         "Default": false
+      },
+      {
+        "Name": "id",
+        "Type": "string",
+        "Description": "Unique native control ID.",
+        "Required": false
+      },
+      {
+        "Name": "ariaLabel",
+        "Type": "string",
+        "Description": "Accessible name when no label content is supplied.",
+        "Required": false
+      },
+      {
+        "Name": "ariaLabelledby",
+        "Type": "string",
+        "Description": "IDs of elements naming the native control.",
+        "Required": false
+      },
+      {
+        "Name": "ariaDescribedby",
+        "Type": "string",
+        "Description": "IDs of help or error text describing the native control.",
+        "Required": false
+      },
+      {
+        "Name": "ariaInvalid",
+        "Type": "\"true\" | \"false\"",
+        "Description": "Explicit accessibility invalid state; native constraint validation remains independent.",
+        "Required": false
       }
     ],
     "Slots": [
       {
         "Name": "label",
-        "Description": "Accessible label as noninteractive phrasing content.",
-        "Required": true,
+        "Description": "Optional noninteractive phrasing label. When omitted, provide an external native label or accessible name on the control.",
+        "Required": false,
         "Scope": []
       },
       {
@@ -3350,6 +3608,13 @@
         "ID": "control",
         "Tag": "select",
         "Attributes": {}
+      },
+      {
+        "ID": "chevron",
+        "Tag": "span",
+        "Attributes": {
+          "aria-hidden": "true"
+        }
       }
     ],
     "Bindings": [
@@ -3370,6 +3635,36 @@
         "Name": "required",
         "Prop": "required",
         "Kind": "property"
+      },
+      {
+        "Node": "control",
+        "Name": "id",
+        "Prop": "id",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "aria-label",
+        "Prop": "ariaLabel",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "aria-labelledby",
+        "Prop": "ariaLabelledby",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "aria-describedby",
+        "Prop": "ariaDescribedby",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "aria-invalid",
+        "Prop": "ariaInvalid",
+        "Kind": "attribute"
       }
     ],
     "Children": [
@@ -3387,12 +3682,18 @@
         "Parent": "root",
         "Node": "control",
         "Slot": ""
+      },
+      {
+        "Parent": "root",
+        "Node": "chevron",
+        "Slot": ""
       }
     ],
     "Requirements": [
       "The control is associated with its enclosing label. Supply valid option elements.",
       "Mark initial selected options in the options content; single-selection keyboard behavior is native.",
-      "The native factory takes one HTMLElement per slot; framework converters can map the slot to their own multi-node content representation."
+      "The native factory takes one HTMLElement per slot; framework converters can map the slot to their own multi-node content representation.",
+      "If the label slot is omitted, consumers must give the actual control an accessible name through an external label, ariaLabel, or ariaLabelledby."
     ],
     "Events": [
       {
@@ -3411,7 +3712,8 @@
       }
     ],
     "Styling": [
-      "Choose spacing, typography, and focus indicators in the consuming design system. Preserve native keyboard and disabled semantics."
+      "Choose spacing, typography, and focus indicators in the consuming design system. Preserve native keyboard and disabled semantics.",
+      "The owned chevron is decorative; the select and options retain native interaction. Use pointer-events:none on an overlaid chevron."
     ],
     "Features": [
       {
@@ -3490,13 +3792,43 @@
         "Type": "number",
         "Description": "Positive stepping interval.",
         "Required": false
+      },
+      {
+        "Name": "id",
+        "Type": "string",
+        "Description": "Unique native control ID.",
+        "Required": false
+      },
+      {
+        "Name": "ariaLabel",
+        "Type": "string",
+        "Description": "Accessible name when no label content is supplied.",
+        "Required": false
+      },
+      {
+        "Name": "ariaLabelledby",
+        "Type": "string",
+        "Description": "IDs of elements naming the native control.",
+        "Required": false
+      },
+      {
+        "Name": "ariaDescribedby",
+        "Type": "string",
+        "Description": "IDs of help or error text describing the native control.",
+        "Required": false
+      },
+      {
+        "Name": "ariaInvalid",
+        "Type": "\"true\" | \"false\"",
+        "Description": "Explicit accessibility invalid state; native constraint validation remains independent.",
+        "Required": false
       }
     ],
     "Slots": [
       {
         "Name": "label",
-        "Description": "Accessible label as noninteractive phrasing content.",
-        "Required": true,
+        "Description": "Optional noninteractive phrasing label. When omitted, provide an external native label or accessible name on the control.",
+        "Required": false,
         "Scope": []
       }
     ],
@@ -3550,6 +3882,36 @@
         "Name": "value",
         "Prop": "value",
         "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "id",
+        "Prop": "id",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "aria-label",
+        "Prop": "ariaLabel",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "aria-labelledby",
+        "Prop": "ariaLabelledby",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "aria-describedby",
+        "Prop": "ariaDescribedby",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "aria-invalid",
+        "Prop": "ariaInvalid",
+        "Kind": "attribute"
       }
     ],
     "Children": [
@@ -3569,7 +3931,8 @@
       "Read the current control property after input/change; these factories only initialize values.",
       "Use ordered min/max and a positive step. Multiple thumbs and coordinated constraints require adapter logic.",
       "Apply min, max and step before value so browser sanitization uses the intended bounds.",
-      "Range controls always have a value; required validation does not apply."
+      "Range controls always have a value; required validation does not apply.",
+      "If the label slot is omitted, consumers must give the actual control an accessible name through an external label, ariaLabel, or ariaLabelledby."
     ],
     "Events": [
       {
@@ -3636,13 +3999,43 @@
         "Description": "Submitted value when checked.",
         "Required": false,
         "Default": "on"
+      },
+      {
+        "Name": "id",
+        "Type": "string",
+        "Description": "Unique native control ID.",
+        "Required": false
+      },
+      {
+        "Name": "ariaLabel",
+        "Type": "string",
+        "Description": "Accessible name when no label content is supplied.",
+        "Required": false
+      },
+      {
+        "Name": "ariaLabelledby",
+        "Type": "string",
+        "Description": "IDs of elements naming the native control.",
+        "Required": false
+      },
+      {
+        "Name": "ariaDescribedby",
+        "Type": "string",
+        "Description": "IDs of help or error text describing the native control.",
+        "Required": false
+      },
+      {
+        "Name": "ariaInvalid",
+        "Type": "\"true\" | \"false\"",
+        "Description": "Explicit accessibility invalid state; native constraint validation remains independent.",
+        "Required": false
       }
     ],
     "Slots": [
       {
         "Name": "label",
-        "Description": "Accessible label as noninteractive phrasing content.",
-        "Required": true,
+        "Description": "Optional noninteractive phrasing label. When omitted, provide an external native label or accessible name on the control.",
+        "Required": false,
         "Scope": []
       }
     ],
@@ -3658,6 +4051,20 @@
         "Attributes": {
           "type": "checkbox",
           "role": "switch"
+        }
+      },
+      {
+        "ID": "track",
+        "Tag": "span",
+        "Attributes": {
+          "aria-hidden": "true"
+        }
+      },
+      {
+        "ID": "thumb",
+        "Tag": "span",
+        "Attributes": {
+          "aria-hidden": "true"
         }
       }
     ],
@@ -3697,25 +4104,66 @@
         "Name": "value",
         "Prop": "value",
         "Kind": "property"
+      },
+      {
+        "Node": "control",
+        "Name": "id",
+        "Prop": "id",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "aria-label",
+        "Prop": "ariaLabel",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "aria-labelledby",
+        "Prop": "ariaLabelledby",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "aria-describedby",
+        "Prop": "ariaDescribedby",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "aria-invalid",
+        "Prop": "ariaInvalid",
+        "Kind": "attribute"
       }
     ],
     "Children": [
       {
-        "Parent": "root",
-        "Node": "",
-        "Slot": "label"
+        "Parent": "track",
+        "Node": "thumb",
+        "Slot": ""
       },
       {
         "Parent": "root",
         "Node": "control",
         "Slot": ""
+      },
+      {
+        "Parent": "root",
+        "Node": "track",
+        "Slot": ""
+      },
+      {
+        "Parent": "root",
+        "Node": "",
+        "Slot": "label"
       }
     ],
     "Requirements": [
       "The label slot must contain noninteractive phrasing content. The enclosing label associates it with the input.",
       "Read the current control property after input/change; these factories only initialize values.",
       "Expose binary checked state; switch does not support a mixed state.",
-      "Initialize both defaultChecked and checked so native form reset restores the supplied initial state. Adapters choose whether later updates change the reset baseline."
+      "Initialize both defaultChecked and checked so native form reset restores the supplied initial state. Adapters choose whether later updates change the reset baseline.",
+      "If the label slot is omitted, consumers must give the actual control an accessible name through an external label, ariaLabel, or ariaLabelledby."
     ],
     "Events": [
       {
@@ -3738,7 +4186,8 @@
       }
     ],
     "Styling": [
-      "Choose spacing, typography, and focus indicators in the consuming design system. Preserve native keyboard and disabled semantics."
+      "Choose spacing, typography, and focus indicators in the consuming design system. Preserve native keyboard and disabled semantics.",
+      "Owned presentation spans are decorative. Style them from native control state and retain a focusable, labelable native input."
     ],
     "Features": []
   },
@@ -4941,13 +5390,37 @@
         "Type": "number",
         "Description": "Maximum user-entered length, measured in UTF-16 code units.",
         "Required": false
+      },
+      {
+        "Name": "ariaLabel",
+        "Type": "string",
+        "Description": "Accessible name when no label content is supplied.",
+        "Required": false
+      },
+      {
+        "Name": "ariaLabelledby",
+        "Type": "string",
+        "Description": "IDs of elements naming the native control.",
+        "Required": false
+      },
+      {
+        "Name": "ariaDescribedby",
+        "Type": "string",
+        "Description": "IDs of help or error text describing the native control.",
+        "Required": false
+      },
+      {
+        "Name": "ariaInvalid",
+        "Type": "\"true\" | \"false\"",
+        "Description": "Explicit accessibility invalid state; native constraint validation remains independent.",
+        "Required": false
       }
     ],
     "Slots": [
       {
         "Name": "label",
-        "Description": "Accessible label as noninteractive phrasing content.",
-        "Required": true,
+        "Description": "Optional noninteractive phrasing label. When omitted, provide an external native label or accessible name on the control.",
+        "Required": false,
         "Scope": []
       }
     ],
@@ -5041,6 +5514,30 @@
         "Name": "maxlength",
         "Prop": "maxLength",
         "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "aria-label",
+        "Prop": "ariaLabel",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "aria-labelledby",
+        "Prop": "ariaLabelledby",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "aria-describedby",
+        "Prop": "ariaDescribedby",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "aria-invalid",
+        "Prop": "ariaInvalid",
+        "Kind": "attribute"
       }
     ],
     "Children": [
@@ -5059,7 +5556,8 @@
       "The label slot must contain noninteractive phrasing content. The enclosing label associates it with the input.",
       "Read the current control property after input/change; these factories only initialize values.",
       "Initialize both defaultValue and value so native form reset restores the supplied initial text. Adapters choose whether later updates change the reset baseline.",
-      "rows/cols must be positive integers; lengths must be nonnegative integers. Native validation distinguishes disabled and readonly controls."
+      "rows/cols must be positive integers; lengths must be nonnegative integers. Native validation distinguishes disabled and readonly controls.",
+      "If the label slot is omitted, consumers must give the actual control an accessible name through an external label, ariaLabel, or ariaLabelledby."
     ],
     "Events": [
       {
@@ -5855,13 +6353,37 @@
         "Type": "string",
         "Description": "Optional control id.",
         "Required": false
+      },
+      {
+        "Name": "ariaLabel",
+        "Type": "string",
+        "Description": "Accessible name when no label content is supplied.",
+        "Required": false
+      },
+      {
+        "Name": "ariaLabelledby",
+        "Type": "string",
+        "Description": "IDs of elements naming the native control.",
+        "Required": false
+      },
+      {
+        "Name": "ariaDescribedby",
+        "Type": "string",
+        "Description": "IDs of help or error text describing the native control.",
+        "Required": false
+      },
+      {
+        "Name": "ariaInvalid",
+        "Type": "\"true\" | \"false\"",
+        "Description": "Explicit accessibility invalid state; native constraint validation remains independent.",
+        "Required": false
       }
     ],
     "Slots": [
       {
         "Name": "label",
-        "Description": "Stable noninteractive native radio label.",
-        "Required": true,
+        "Description": "Optional noninteractive phrasing label. When omitted, provide an external native label or accessible name on the control.",
+        "Required": false,
         "Scope": []
       }
     ],
@@ -5876,6 +6398,13 @@
         "Tag": "input",
         "Attributes": {
           "type": "radio"
+        }
+      },
+      {
+        "ID": "indicator",
+        "Tag": "span",
+        "Attributes": {
+          "aria-hidden": "true"
         }
       }
     ],
@@ -5915,12 +6444,41 @@
         "Name": "id",
         "Prop": "id",
         "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "aria-label",
+        "Prop": "ariaLabel",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "aria-labelledby",
+        "Prop": "ariaLabelledby",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "aria-describedby",
+        "Prop": "ariaDescribedby",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "aria-invalid",
+        "Prop": "ariaInvalid",
+        "Kind": "attribute"
       }
     ],
     "Children": [
       {
         "Parent": "root",
         "Node": "control",
+        "Slot": ""
+      },
+      {
+        "Parent": "root",
+        "Node": "indicator",
         "Slot": ""
       },
       {
@@ -5932,7 +6490,8 @@
     "Requirements": [
       "Use the scoped RadioGroup name for every member. Native radio exclusivity and keyboard navigation own selection.",
       "Read the selected group value from change events or FormData; no per-radio checked model, which would miss sibling unchecks.",
-      "defaultChecked is the mount-time reset baseline. Use native form reset to restore it; application owns programmatic selection."
+      "defaultChecked is the mount-time reset baseline. Use native form reset to restore it; application owns programmatic selection.",
+      "If the label slot is omitted, consumers must give the actual control an accessible name through an external label, ariaLabel, or ariaLabelledby."
     ],
     "Events": [
       {
@@ -5944,7 +6503,8 @@
       }
     ],
     "Styling": [
-      "Presentation comes from local recipes; every owned part is overridable."
+      "Presentation comes from local recipes; every owned part is overridable.",
+      "Owned presentation spans are decorative. Style them from native control state and retain a focusable, labelable native input."
     ],
     "Features": []
   },
@@ -6722,6 +7282,345 @@
     ],
     "Styling": [
       "Choose spacing, typography, and focus indicators in the consuming design system. Preserve native keyboard and disabled semantics."
+    ],
+    "Features": []
+  },
+  {
+    "Name": "select-list",
+    "Title": "Select List",
+    "Summary": "Portable selection anatomy with a native form proxy and an adapter-managed listbox.",
+    "Status": "adapter-required",
+    "RootType": "HTMLDivElement",
+    "Props": [
+      {
+        "Name": "id",
+        "Type": "string",
+        "Description": "Unique visible trigger ID. External Field labels target this button.",
+        "Required": true
+      },
+      {
+        "Name": "popupId",
+        "Type": "string",
+        "Description": "Unique listbox popup ID, distinct from the trigger ID.",
+        "Required": true
+      },
+      {
+        "Name": "name",
+        "Type": "string",
+        "Description": "Form field name on the native select proxy.",
+        "Required": false
+      },
+      {
+        "Name": "disabled",
+        "Type": "boolean",
+        "Description": "Disables both the native form proxy and visible trigger.",
+        "Required": false,
+        "Default": false
+      },
+      {
+        "Name": "required",
+        "Type": "boolean",
+        "Description": "Requires a native selection and exposes aria-required on the trigger.",
+        "Required": false,
+        "Default": false
+      },
+      {
+        "Name": "value",
+        "Type": "string",
+        "Description": "Optional initial selection and native selection model. Omission preserves selected options.",
+        "Required": false
+      },
+      {
+        "Name": "placeholder",
+        "Type": "string",
+        "Description": "Placeholder text for the adapter-managed visible value.",
+        "Required": false,
+        "Default": "Select an option"
+      },
+      {
+        "Name": "ariaLabel",
+        "Type": "string",
+        "Description": "Accessible trigger name when no label content is supplied.",
+        "Required": false
+      },
+      {
+        "Name": "ariaLabelledby",
+        "Type": "string",
+        "Description": "IDs of elements naming the visible trigger.",
+        "Required": false
+      },
+      {
+        "Name": "ariaDescribedby",
+        "Type": "string",
+        "Description": "IDs of help or error text describing the visible trigger.",
+        "Required": false
+      },
+      {
+        "Name": "ariaInvalid",
+        "Type": "\"true\" | \"false\"",
+        "Description": "Explicit accessibility invalid state on the visible trigger; native constraint validation remains independent.",
+        "Required": false
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "label",
+        "Description": "Optional noninteractive phrasing label associated with the visible trigger. When omitted, provide an external label or accessible trigger name.",
+        "Required": false,
+        "Scope": []
+      },
+      {
+        "Name": "options",
+        "Description": "Required native option/optgroup content inserted into the select proxy. The adapter projects these options into the listbox.",
+        "Required": true,
+        "Scope": []
+      }
+    ],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "div",
+        "Attributes": {}
+      },
+      {
+        "ID": "label",
+        "Tag": "label",
+        "Attributes": {}
+      },
+      {
+        "ID": "control",
+        "Tag": "select",
+        "Attributes": {
+          "aria-hidden": "true",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "ID": "trigger",
+        "Tag": "button",
+        "Attributes": {
+          "type": "button",
+          "role": "combobox",
+          "aria-haspopup": "listbox",
+          "aria-expanded": "false"
+        }
+      },
+      {
+        "ID": "displayedValue",
+        "Tag": "span",
+        "Attributes": {}
+      },
+      {
+        "ID": "chevron",
+        "Tag": "span",
+        "Attributes": {
+          "aria-hidden": "true"
+        }
+      },
+      {
+        "ID": "popup",
+        "Tag": "div",
+        "Attributes": {
+          "role": "listbox",
+          "popover": "auto"
+        }
+      },
+      {
+        "ID": "option",
+        "Tag": "div",
+        "Attributes": {
+          "role": "option",
+          "aria-selected": "false",
+          "hidden": ""
+        }
+      }
+    ],
+    "Bindings": [
+      {
+        "Node": "label",
+        "Name": "for",
+        "Prop": "id",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "trigger",
+        "Name": "id",
+        "Prop": "id",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "popup",
+        "Name": "id",
+        "Prop": "popupId",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "trigger",
+        "Name": "aria-controls",
+        "Prop": "popupId",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "trigger",
+        "Name": "popovertarget",
+        "Prop": "popupId",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "name",
+        "Prop": "name",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "disabled",
+        "Prop": "disabled",
+        "Kind": "property"
+      },
+      {
+        "Node": "trigger",
+        "Name": "disabled",
+        "Prop": "disabled",
+        "Kind": "property"
+      },
+      {
+        "Node": "control",
+        "Name": "required",
+        "Prop": "required",
+        "Kind": "property"
+      },
+      {
+        "Node": "trigger",
+        "Name": "aria-required",
+        "Prop": "required",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "value",
+        "Prop": "value",
+        "Kind": "property"
+      },
+      {
+        "Node": "root",
+        "Name": "data-placeholder",
+        "Prop": "placeholder",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "trigger",
+        "Name": "aria-label",
+        "Prop": "ariaLabel",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "trigger",
+        "Name": "aria-labelledby",
+        "Prop": "ariaLabelledby",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "trigger",
+        "Name": "aria-describedby",
+        "Prop": "ariaDescribedby",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "trigger",
+        "Name": "aria-invalid",
+        "Prop": "ariaInvalid",
+        "Kind": "attribute"
+      }
+    ],
+    "Children": [
+      {
+        "Parent": "label",
+        "Node": "",
+        "Slot": "label"
+      },
+      {
+        "Parent": "control",
+        "Node": "",
+        "Slot": "options"
+      },
+      {
+        "Parent": "trigger",
+        "Node": "displayedValue",
+        "Slot": ""
+      },
+      {
+        "Parent": "trigger",
+        "Node": "chevron",
+        "Slot": ""
+      },
+      {
+        "Parent": "root",
+        "Node": "label",
+        "Slot": ""
+      },
+      {
+        "Parent": "root",
+        "Node": "control",
+        "Slot": ""
+      },
+      {
+        "Parent": "root",
+        "Node": "trigger",
+        "Slot": ""
+      },
+      {
+        "Parent": "root",
+        "Node": "popup",
+        "Slot": ""
+      },
+      {
+        "Parent": "popup",
+        "Node": "option",
+        "Slot": ""
+      }
+    ],
+    "Requirements": [
+      "The factory supplies anatomy and initial native properties only. Adapter required: project native option/optgroup content into owned listbox options, synchronize selection, visible value/placeholder, disabled options, and aria-selected.",
+      "The owned hidden option node is a reusable styling prototype, not an active choice. The adapter clones it for projected options, removes hidden, and supplies option IDs, noninteractive native option text, selection, disabled, and highlight states.",
+      "The trigger id and popupId must be unique and distinct. The optional owned label and external Field labels target the visible trigger; provide an accessible name on both the trigger and adapter-managed listbox.",
+      "Adapter required: arrow/Home/End navigation, active descendant, typeahead, activation, Escape, return focus, and aria-expanded synchronization. Native popover visibility and light dismissal do not implement combobox keyboard behavior.",
+      "The native select proxy preserves name, disabled, required, options, submission, validation, and native reset semantics. Keep it mounted and CSS-clipped; do not use hidden or display:none. The adapter redirects invalid focus to the trigger and synchronizes reset with the native option selection baseline.",
+      "Adapter required: popup positioning relative to the trigger, viewport collision handling, and an appropriate visibility/focus fallback where popover is unsupported.",
+      "Omitting value preserves initial native selected options. Supplying value initializes the current native selection after options are inserted; the adapter decides whether a controlled initial selection establishes a reset baseline.",
+      "The native factory takes one HTMLElement per slot; framework converters may emit multiple native option/optgroup nodes."
+    ],
+    "Events": [
+      {
+        "Name": "input",
+        "Target": "control",
+        "State": {
+          "value": "value"
+        },
+        "Type": "Event",
+        "Description": "Native selection notification; adapters synchronize visible state and application models."
+      },
+      {
+        "Name": "change",
+        "Target": "control",
+        "State": {
+          "value": "value"
+        },
+        "Type": "Event",
+        "Description": "Native selection notification; adapters synchronize visible state and application models."
+      },
+      {
+        "Name": "toggle",
+        "Target": "popup",
+        "State": {},
+        "Type": "ToggleEvent",
+        "Description": "Native popup visibility notification; adapters synchronize trigger aria-expanded and focus."
+      }
+    ],
+    "Styling": [
+      "Style the owned root, label, trigger, value, chevron, and popup parts in the consuming design system. The native proxy control is an owned CSS target for visually clipping it while retaining form semantics.",
+      "The chevron is decorative. Derive visible trigger interaction states from the trigger; native validation and required states remain on the proxy control.",
+      "The adapter positions the popup; anchor positioning may be an enhancement. The factory emits no CSS, option projection, or keyboard listeners."
     ],
     "Features": []
   }

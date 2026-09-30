@@ -290,6 +290,60 @@
               "node": "control",
               "pseudo": "required"
             }
+          },
+          "indeterminate": {
+            "source": {
+              "node": "control",
+              "pseudo": "indeterminate"
+            }
+          }
+        }
+      },
+      "indicator": {
+        "node": "indicator",
+        "styleRole": "checkbox-indicator",
+        "state": {
+          "checked": {
+            "source": {
+              "node": "control",
+              "pseudo": "checked"
+            }
+          },
+          "disabled": {
+            "source": {
+              "node": "control",
+              "pseudo": "disabled"
+            }
+          },
+          "focusVisible": {
+            "source": {
+              "node": "control",
+              "pseudo": "focus-visible"
+            }
+          },
+          "hover": {
+            "source": {
+              "node": "control",
+              "pseudo": "hover"
+            }
+          },
+          "invalid": {
+            "source": {
+              "node": "control",
+              "pseudo": "invalid"
+            }
+          },
+          "required": {
+            "source": {
+              "node": "control",
+              "pseudo": "required"
+            }
+          },
+          "indeterminate": {
+            "source": {
+              "node": "control",
+              "pseudo": "indeterminate"
+            }
           }
         }
       }
@@ -653,15 +707,87 @@
     "parts": {
       "root": {
         "node": "root",
-        "styleRole": "field"
+        "styleRole": "field",
+        "state": {
+          "invalid": {
+            "source": {
+              "node": "root",
+              "attribute": "data-invalid",
+              "value": "true"
+            }
+          },
+          "presentationDisabled": {
+            "source": {
+              "node": "root",
+              "attribute": "data-disabled",
+              "value": "true"
+            }
+          }
+        }
       },
       "label": {
         "node": "label",
-        "styleRole": "label"
+        "styleRole": "label",
+        "state": {
+          "invalid": {
+            "source": {
+              "node": "root",
+              "attribute": "data-invalid",
+              "value": "true"
+            }
+          },
+          "presentationDisabled": {
+            "source": {
+              "node": "root",
+              "attribute": "data-disabled",
+              "value": "true"
+            }
+          }
+        }
       },
       "description": {
         "node": "description",
         "styleRole": "description"
+      },
+      "content": {
+        "node": "content",
+        "styleRole": "field-content",
+        "state": {
+          "invalid": {
+            "source": {
+              "node": "root",
+              "attribute": "data-invalid",
+              "value": "true"
+            }
+          },
+          "presentationDisabled": {
+            "source": {
+              "node": "root",
+              "attribute": "data-disabled",
+              "value": "true"
+            }
+          }
+        }
+      },
+      "error": {
+        "node": "error",
+        "styleRole": "field-error",
+        "state": {
+          "invalid": {
+            "source": {
+              "node": "root",
+              "attribute": "data-invalid",
+              "value": "true"
+            }
+          },
+          "presentationDisabled": {
+            "source": {
+              "node": "root",
+              "attribute": "data-disabled",
+              "value": "true"
+            }
+          }
+        }
       }
     }
   },
@@ -682,6 +808,10 @@
       "legend": {
         "node": "legend",
         "styleRole": "group-label"
+      },
+      "description": {
+        "node": "description",
+        "styleRole": "field-description"
       }
     }
   },
@@ -1116,6 +1246,42 @@
             }
           }
         }
+      },
+      "chevron": {
+        "node": "chevron",
+        "styleRole": "select-chevron",
+        "state": {
+          "disabled": {
+            "source": {
+              "node": "control",
+              "pseudo": "disabled"
+            }
+          },
+          "focusVisible": {
+            "source": {
+              "node": "control",
+              "pseudo": "focus-visible"
+            }
+          },
+          "hover": {
+            "source": {
+              "node": "control",
+              "pseudo": "hover"
+            }
+          },
+          "invalid": {
+            "source": {
+              "node": "control",
+              "pseudo": "invalid"
+            }
+          },
+          "required": {
+            "source": {
+              "node": "control",
+              "pseudo": "required"
+            }
+          }
+        }
       }
     }
   },
@@ -1184,6 +1350,90 @@
       "control": {
         "node": "control",
         "styleRole": "switch",
+        "state": {
+          "checked": {
+            "source": {
+              "node": "control",
+              "pseudo": "checked"
+            }
+          },
+          "disabled": {
+            "source": {
+              "node": "control",
+              "pseudo": "disabled"
+            }
+          },
+          "focusVisible": {
+            "source": {
+              "node": "control",
+              "pseudo": "focus-visible"
+            }
+          },
+          "hover": {
+            "source": {
+              "node": "control",
+              "pseudo": "hover"
+            }
+          },
+          "invalid": {
+            "source": {
+              "node": "control",
+              "pseudo": "invalid"
+            }
+          },
+          "required": {
+            "source": {
+              "node": "control",
+              "pseudo": "required"
+            }
+          }
+        }
+      },
+      "track": {
+        "node": "track",
+        "styleRole": "switch-track",
+        "state": {
+          "checked": {
+            "source": {
+              "node": "control",
+              "pseudo": "checked"
+            }
+          },
+          "disabled": {
+            "source": {
+              "node": "control",
+              "pseudo": "disabled"
+            }
+          },
+          "focusVisible": {
+            "source": {
+              "node": "control",
+              "pseudo": "focus-visible"
+            }
+          },
+          "hover": {
+            "source": {
+              "node": "control",
+              "pseudo": "hover"
+            }
+          },
+          "invalid": {
+            "source": {
+              "node": "control",
+              "pseudo": "invalid"
+            }
+          },
+          "required": {
+            "source": {
+              "node": "control",
+              "pseudo": "required"
+            }
+          }
+        }
+      },
+      "thumb": {
+        "node": "thumb",
+        "styleRole": "switch-thumb",
         "state": {
           "checked": {
             "source": {
@@ -1792,6 +2042,48 @@
             }
           }
         }
+      },
+      "indicator": {
+        "node": "indicator",
+        "styleRole": "radio-indicator",
+        "state": {
+          "disabled": {
+            "source": {
+              "node": "control",
+              "pseudo": "disabled"
+            }
+          },
+          "checked": {
+            "source": {
+              "node": "control",
+              "pseudo": "checked"
+            }
+          },
+          "required": {
+            "source": {
+              "node": "control",
+              "pseudo": "required"
+            }
+          },
+          "invalid": {
+            "source": {
+              "node": "control",
+              "pseudo": "invalid"
+            }
+          },
+          "focusVisible": {
+            "source": {
+              "node": "control",
+              "pseudo": "focus-visible"
+            }
+          },
+          "hover": {
+            "source": {
+              "node": "control",
+              "pseudo": "hover"
+            }
+          }
+        }
       }
     }
   },
@@ -1959,6 +2251,174 @@
             "source": {
               "node": "control",
               "pseudo": "required"
+            }
+          }
+        }
+      }
+    }
+  },
+  "select-list": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "field"
+      },
+      "label": {
+        "node": "label",
+        "styleRole": "label"
+      },
+      "control": {
+        "node": "control",
+        "styleRole": "select",
+        "state": {
+          "disabled": {
+            "source": {
+              "node": "control",
+              "pseudo": "disabled"
+            }
+          },
+          "invalid": {
+            "source": {
+              "node": "control",
+              "pseudo": "invalid"
+            }
+          },
+          "required": {
+            "source": {
+              "node": "control",
+              "pseudo": "required"
+            }
+          }
+        }
+      },
+      "trigger": {
+        "node": "trigger",
+        "styleRole": "select-trigger",
+        "state": {
+          "disabled": {
+            "source": {
+              "node": "trigger",
+              "pseudo": "disabled"
+            }
+          },
+          "focusVisible": {
+            "source": {
+              "node": "trigger",
+              "pseudo": "focus-visible"
+            }
+          },
+          "hover": {
+            "source": {
+              "node": "trigger",
+              "pseudo": "hover"
+            }
+          },
+          "expanded": {
+            "source": {
+              "node": "trigger",
+              "attribute": "aria-expanded",
+              "value": "true"
+            }
+          }
+        }
+      },
+      "value": {
+        "node": "displayedValue",
+        "styleRole": "select-value",
+        "state": {
+          "disabled": {
+            "source": {
+              "node": "trigger",
+              "pseudo": "disabled"
+            }
+          },
+          "focusVisible": {
+            "source": {
+              "node": "trigger",
+              "pseudo": "focus-visible"
+            }
+          },
+          "hover": {
+            "source": {
+              "node": "trigger",
+              "pseudo": "hover"
+            }
+          },
+          "expanded": {
+            "source": {
+              "node": "trigger",
+              "attribute": "aria-expanded",
+              "value": "true"
+            }
+          }
+        }
+      },
+      "chevron": {
+        "node": "chevron",
+        "styleRole": "select-chevron",
+        "state": {
+          "disabled": {
+            "source": {
+              "node": "trigger",
+              "pseudo": "disabled"
+            }
+          },
+          "focusVisible": {
+            "source": {
+              "node": "trigger",
+              "pseudo": "focus-visible"
+            }
+          },
+          "hover": {
+            "source": {
+              "node": "trigger",
+              "pseudo": "hover"
+            }
+          },
+          "expanded": {
+            "source": {
+              "node": "trigger",
+              "attribute": "aria-expanded",
+              "value": "true"
+            }
+          }
+        }
+      },
+      "popup": {
+        "node": "popup",
+        "styleRole": "option-list",
+        "state": {
+          "open": {
+            "source": {
+              "node": "popup",
+              "pseudo": "popover-open"
+            }
+          }
+        }
+      },
+      "option": {
+        "node": "option",
+        "styleRole": "option",
+        "state": {
+          "selected": {
+            "source": {
+              "node": "option",
+              "attribute": "aria-selected",
+              "value": "true"
+            }
+          },
+          "disabled": {
+            "source": {
+              "node": "option",
+              "attribute": "aria-disabled",
+              "value": "true"
+            }
+          },
+          "highlighted": {
+            "source": {
+              "node": "option",
+              "attribute": "data-highlighted",
+              "value": "true"
             }
           }
         }
