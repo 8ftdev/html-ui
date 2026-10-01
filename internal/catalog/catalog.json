@@ -7623,5 +7623,692 @@
       "The adapter positions the popup; anchor positioning may be an enhancement. The factory emits no CSS, option projection, or keyboard listeners."
     ],
     "Features": []
+  },
+  {
+    "Name": "combobox-list",
+    "Title": "Combobox List",
+    "Summary": "Editable searchable single-selection anatomy with a native value proxy.",
+    "Status": "adapter-required",
+    "RootType": "HTMLDivElement",
+    "Props": [
+      {
+        "Name": "id",
+        "Type": "string",
+        "Description": "Unique visible input ID. External Field labels target this input.",
+        "Required": true
+      },
+      {
+        "Name": "popupId",
+        "Type": "string",
+        "Description": "Unique listbox popup ID, distinct from the input ID.",
+        "Required": true
+      },
+      {
+        "Name": "name",
+        "Type": "string",
+        "Description": "Form field name on the native select proxy.",
+        "Required": false
+      },
+      {
+        "Name": "disabled",
+        "Type": "boolean",
+        "Description": "Disables both the native form proxy and visible input.",
+        "Required": false,
+        "Default": false
+      },
+      {
+        "Name": "required",
+        "Type": "boolean",
+        "Description": "Requires a native selection and exposes aria-required on the input.",
+        "Required": false,
+        "Default": false
+      },
+      {
+        "Name": "value",
+        "Type": "string",
+        "Description": "Optional initial selection and native selection model. Omission preserves selected options.",
+        "Required": false
+      },
+      {
+        "Name": "placeholder",
+        "Type": "string",
+        "Description": "Placeholder text for the adapter-managed visible value.",
+        "Required": false,
+        "Default": "Search options\u2026"
+      },
+      {
+        "Name": "ariaLabel",
+        "Type": "string",
+        "Description": "Accessible input name when no label content is supplied.",
+        "Required": false
+      },
+      {
+        "Name": "ariaLabelledby",
+        "Type": "string",
+        "Description": "IDs of elements naming the visible input.",
+        "Required": false
+      },
+      {
+        "Name": "ariaDescribedby",
+        "Type": "string",
+        "Description": "IDs of help or error text describing the visible input.",
+        "Required": false
+      },
+      {
+        "Name": "ariaInvalid",
+        "Type": "\"true\" | \"false\"",
+        "Description": "Explicit accessibility invalid state on the visible input; native constraint validation remains independent.",
+        "Required": false
+      },
+      {
+        "Name": "emptyText",
+        "Type": "string",
+        "Description": "Text displayed when no options match the search.",
+        "Required": false,
+        "Default": "No results found."
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "label",
+        "Description": "Optional noninteractive phrasing label associated with the visible trigger. When omitted, provide an external label or accessible trigger name.",
+        "Required": false,
+        "Scope": []
+      },
+      {
+        "Name": "options",
+        "Description": "Required native option/optgroup content inserted into the select proxy. The adapter projects these options into the listbox.",
+        "Required": true,
+        "Scope": []
+      }
+    ],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "div",
+        "Attributes": {}
+      },
+      {
+        "ID": "label",
+        "Tag": "label",
+        "Attributes": {}
+      },
+      {
+        "ID": "control",
+        "Tag": "select",
+        "Attributes": {
+          "aria-hidden": "true",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "ID": "popup",
+        "Tag": "div",
+        "Attributes": {
+          "role": "listbox",
+          "popover": "auto"
+        }
+      },
+      {
+        "ID": "option",
+        "Tag": "div",
+        "Attributes": {
+          "role": "option",
+          "aria-selected": "false",
+          "hidden": ""
+        }
+      },
+      {
+        "ID": "surface",
+        "Tag": "div",
+        "Attributes": {}
+      },
+      {
+        "ID": "input",
+        "Tag": "input",
+        "Attributes": {
+          "type": "text",
+          "autocomplete": "off",
+          "role": "combobox",
+          "aria-haspopup": "listbox",
+          "aria-autocomplete": "list",
+          "aria-expanded": "false"
+        }
+      },
+      {
+        "ID": "icon",
+        "Tag": "span",
+        "Attributes": {
+          "aria-hidden": "true"
+        }
+      },
+      {
+        "ID": "empty",
+        "Tag": "div",
+        "Attributes": {
+          "hidden": "",
+          "role": "status",
+          "aria-live": "polite"
+        }
+      }
+    ],
+    "Bindings": [
+      {
+        "Node": "label",
+        "Name": "for",
+        "Prop": "id",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "input",
+        "Name": "id",
+        "Prop": "id",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "popup",
+        "Name": "id",
+        "Prop": "popupId",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "input",
+        "Name": "aria-controls",
+        "Prop": "popupId",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "name",
+        "Prop": "name",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "disabled",
+        "Prop": "disabled",
+        "Kind": "property"
+      },
+      {
+        "Node": "input",
+        "Name": "disabled",
+        "Prop": "disabled",
+        "Kind": "property"
+      },
+      {
+        "Node": "control",
+        "Name": "required",
+        "Prop": "required",
+        "Kind": "property"
+      },
+      {
+        "Node": "input",
+        "Name": "aria-required",
+        "Prop": "required",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "value",
+        "Prop": "value",
+        "Kind": "property"
+      },
+      {
+        "Node": "root",
+        "Name": "data-placeholder",
+        "Prop": "placeholder",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "input",
+        "Name": "aria-label",
+        "Prop": "ariaLabel",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "input",
+        "Name": "aria-labelledby",
+        "Prop": "ariaLabelledby",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "input",
+        "Name": "aria-describedby",
+        "Prop": "ariaDescribedby",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "input",
+        "Name": "aria-invalid",
+        "Prop": "ariaInvalid",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "input",
+        "Name": "placeholder",
+        "Prop": "placeholder",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "empty",
+        "Name": "textContent",
+        "Prop": "emptyText",
+        "Kind": "property"
+      }
+    ],
+    "Children": [
+      {
+        "Parent": "root",
+        "Node": "label",
+        "Slot": ""
+      },
+      {
+        "Parent": "root",
+        "Node": "control",
+        "Slot": ""
+      },
+      {
+        "Parent": "root",
+        "Node": "surface",
+        "Slot": ""
+      },
+      {
+        "Parent": "root",
+        "Node": "popup",
+        "Slot": ""
+      },
+      {
+        "Parent": "surface",
+        "Node": "input",
+        "Slot": ""
+      },
+      {
+        "Parent": "surface",
+        "Node": "icon",
+        "Slot": ""
+      },
+      {
+        "Parent": "popup",
+        "Node": "option",
+        "Slot": ""
+      },
+      {
+        "Parent": "popup",
+        "Node": "empty",
+        "Slot": ""
+      },
+      {
+        "Parent": "label",
+        "Node": "",
+        "Slot": "label"
+      },
+      {
+        "Parent": "control",
+        "Node": "",
+        "Slot": "options"
+      }
+    ],
+    "Requirements": [
+      "Adapter required: project native option/optgroup content using the hidden owned option prototype; synchronize selection, enabled choices, list naming and active-descendant focus.",
+      "The editable input query is separate from the native select value. Filter visible option text and optional data-keywords, preserve text editing/IME, skip disabled/hidden options, and implement arrows/Enter, Escape cancellation and Tab exit without implicit commitment.",
+      "The input id and popupId must be unique and distinct. Supply an owned/external label or accessible name; projected groups carry native optgroup labels.",
+      "Combobox requires native popover visibility, trigger-relative collision positioning, native form value/reset/required and fieldset-disabled propagation. Command remains inline and dispatches a selection notification on every activation, including the same action twice.",
+      "Keep the native select CSS-clipped, mounted and excluded from the accessibility tree and tab order. Release all observers/listeners on scope disposal. The factory supplies only anatomy; framework adapters supply interactions."
+    ],
+    "Events": [
+      {
+        "Name": "input",
+        "Target": "control",
+        "State": {
+          "value": "value"
+        },
+        "Type": "Event",
+        "Description": "Native selection notification; adapters synchronize visible state and application models."
+      },
+      {
+        "Name": "change",
+        "Target": "control",
+        "State": {
+          "value": "value"
+        },
+        "Type": "Event",
+        "Description": "Native selection notification; adapters synchronize visible state and application models."
+      },
+      {
+        "Name": "toggle",
+        "Target": "popup",
+        "State": {},
+        "Type": "ToggleEvent",
+        "Description": "Native popup visibility notification; adapters synchronize trigger aria-expanded and focus."
+      }
+    ],
+    "Styling": [
+      "Style every owned part, including the repeated option prototype and empty status. The decorative icon carries no semantics. Preserve the native value proxy while visually clipping it."
+    ],
+    "Features": []
+  },
+  {
+    "Name": "command-list",
+    "Title": "Command List",
+    "Summary": "Inline searchable action list with a native option data source.",
+    "Status": "adapter-required",
+    "RootType": "HTMLDivElement",
+    "Props": [
+      {
+        "Name": "id",
+        "Type": "string",
+        "Description": "Unique visible input ID. External Field labels target this input.",
+        "Required": true
+      },
+      {
+        "Name": "popupId",
+        "Type": "string",
+        "Description": "Unique listbox popup ID, distinct from the input ID.",
+        "Required": true
+      },
+      {
+        "Name": "disabled",
+        "Type": "boolean",
+        "Description": "Disables both the native form proxy and visible input.",
+        "Required": false,
+        "Default": false
+      },
+      {
+        "Name": "value",
+        "Type": "string",
+        "Description": "Optional initial selection and native selection model. Omission preserves selected options.",
+        "Required": false
+      },
+      {
+        "Name": "placeholder",
+        "Type": "string",
+        "Description": "Placeholder text for the adapter-managed visible value.",
+        "Required": false,
+        "Default": "Type a command or search\u2026"
+      },
+      {
+        "Name": "ariaLabel",
+        "Type": "string",
+        "Description": "Accessible input name when no label content is supplied.",
+        "Required": false
+      },
+      {
+        "Name": "ariaLabelledby",
+        "Type": "string",
+        "Description": "IDs of elements naming the visible input.",
+        "Required": false
+      },
+      {
+        "Name": "ariaDescribedby",
+        "Type": "string",
+        "Description": "IDs of help or error text describing the visible input.",
+        "Required": false
+      },
+      {
+        "Name": "ariaInvalid",
+        "Type": "\"true\" | \"false\"",
+        "Description": "Explicit accessibility invalid state on the visible input; native constraint validation remains independent.",
+        "Required": false
+      },
+      {
+        "Name": "emptyText",
+        "Type": "string",
+        "Description": "Text displayed when no options match the search.",
+        "Required": false,
+        "Default": "No results found."
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "label",
+        "Description": "Optional noninteractive phrasing label associated with the visible trigger. When omitted, provide an external label or accessible trigger name.",
+        "Required": false,
+        "Scope": []
+      },
+      {
+        "Name": "options",
+        "Description": "Required native option/optgroup content inserted into the select proxy. The adapter projects these options into the listbox.",
+        "Required": true,
+        "Scope": []
+      }
+    ],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "div",
+        "Attributes": {}
+      },
+      {
+        "ID": "label",
+        "Tag": "label",
+        "Attributes": {}
+      },
+      {
+        "ID": "control",
+        "Tag": "select",
+        "Attributes": {
+          "aria-hidden": "true",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "ID": "popup",
+        "Tag": "div",
+        "Attributes": {
+          "role": "listbox"
+        }
+      },
+      {
+        "ID": "option",
+        "Tag": "div",
+        "Attributes": {
+          "role": "option",
+          "aria-selected": "false",
+          "hidden": ""
+        }
+      },
+      {
+        "ID": "surface",
+        "Tag": "div",
+        "Attributes": {}
+      },
+      {
+        "ID": "input",
+        "Tag": "input",
+        "Attributes": {
+          "type": "text",
+          "autocomplete": "off",
+          "role": "combobox",
+          "aria-haspopup": "listbox",
+          "aria-autocomplete": "list",
+          "aria-expanded": "true"
+        }
+      },
+      {
+        "ID": "icon",
+        "Tag": "span",
+        "Attributes": {
+          "aria-hidden": "true"
+        }
+      },
+      {
+        "ID": "empty",
+        "Tag": "div",
+        "Attributes": {
+          "hidden": "",
+          "role": "status",
+          "aria-live": "polite"
+        }
+      }
+    ],
+    "Bindings": [
+      {
+        "Node": "label",
+        "Name": "for",
+        "Prop": "id",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "input",
+        "Name": "id",
+        "Prop": "id",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "popup",
+        "Name": "id",
+        "Prop": "popupId",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "input",
+        "Name": "aria-controls",
+        "Prop": "popupId",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "disabled",
+        "Prop": "disabled",
+        "Kind": "property"
+      },
+      {
+        "Node": "input",
+        "Name": "disabled",
+        "Prop": "disabled",
+        "Kind": "property"
+      },
+      {
+        "Node": "control",
+        "Name": "value",
+        "Prop": "value",
+        "Kind": "property"
+      },
+      {
+        "Node": "root",
+        "Name": "data-placeholder",
+        "Prop": "placeholder",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "input",
+        "Name": "aria-label",
+        "Prop": "ariaLabel",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "input",
+        "Name": "aria-labelledby",
+        "Prop": "ariaLabelledby",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "input",
+        "Name": "aria-describedby",
+        "Prop": "ariaDescribedby",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "input",
+        "Name": "aria-invalid",
+        "Prop": "ariaInvalid",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "input",
+        "Name": "placeholder",
+        "Prop": "placeholder",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "empty",
+        "Name": "textContent",
+        "Prop": "emptyText",
+        "Kind": "property"
+      }
+    ],
+    "Children": [
+      {
+        "Parent": "root",
+        "Node": "label",
+        "Slot": ""
+      },
+      {
+        "Parent": "root",
+        "Node": "control",
+        "Slot": ""
+      },
+      {
+        "Parent": "root",
+        "Node": "surface",
+        "Slot": ""
+      },
+      {
+        "Parent": "root",
+        "Node": "popup",
+        "Slot": ""
+      },
+      {
+        "Parent": "surface",
+        "Node": "input",
+        "Slot": ""
+      },
+      {
+        "Parent": "surface",
+        "Node": "icon",
+        "Slot": ""
+      },
+      {
+        "Parent": "popup",
+        "Node": "option",
+        "Slot": ""
+      },
+      {
+        "Parent": "popup",
+        "Node": "empty",
+        "Slot": ""
+      },
+      {
+        "Parent": "label",
+        "Node": "",
+        "Slot": "label"
+      },
+      {
+        "Parent": "control",
+        "Node": "",
+        "Slot": "options"
+      }
+    ],
+    "Requirements": [
+      "Adapter required: project native option/optgroup content using the hidden owned option prototype; synchronize selection, enabled choices, list naming and active-descendant focus.",
+      "The editable input query is separate from the native select value. Filter visible option text and optional data-keywords, preserve text editing/IME, skip disabled/hidden options, and implement arrows/Enter, Escape cancellation and Tab exit without implicit commitment.",
+      "The input id and popupId must be unique and distinct. Supply an owned/external label or accessible name; projected groups carry native optgroup labels.",
+      "Combobox requires native popover visibility, trigger-relative collision positioning, native form value/reset/required and fieldset-disabled propagation. Command remains inline and dispatches a selection notification on every activation, including the same action twice.",
+      "Keep the native select CSS-clipped, mounted and excluded from the accessibility tree and tab order. Release all observers/listeners on scope disposal. The factory supplies only anatomy; framework adapters supply interactions."
+    ],
+    "Events": [
+      {
+        "Name": "input",
+        "Target": "control",
+        "State": {
+          "value": "value"
+        },
+        "Type": "Event",
+        "Description": "Native selection notification; adapters synchronize visible state and application models."
+      },
+      {
+        "Name": "change",
+        "Target": "control",
+        "State": {
+          "value": "value"
+        },
+        "Type": "Event",
+        "Description": "Native selection notification; adapters synchronize visible state and application models."
+      }
+    ],
+    "Styling": [
+      "Style every owned part, including the repeated option prototype and empty status. The decorative icon carries no semantics. Preserve the native value proxy while visually clipping it."
+    ],
+    "Features": []
   }
 ]

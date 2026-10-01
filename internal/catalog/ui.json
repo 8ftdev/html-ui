@@ -2424,5 +2424,247 @@
         }
       }
     }
+  },
+  "combobox-list": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "field"
+      },
+      "label": {
+        "node": "label",
+        "styleRole": "label"
+      },
+      "control": {
+        "node": "control",
+        "styleRole": "select",
+        "state": {
+          "disabled": {
+            "source": {
+              "node": "control",
+              "pseudo": "disabled"
+            }
+          },
+          "invalid": {
+            "source": {
+              "node": "control",
+              "pseudo": "invalid"
+            }
+          },
+          "required": {
+            "source": {
+              "node": "control",
+              "pseudo": "required"
+            }
+          }
+        }
+      },
+      "popup": {
+        "node": "popup",
+        "styleRole": "option-list",
+        "state": {
+          "open": {
+            "source": {
+              "node": "popup",
+              "pseudo": "popover-open"
+            }
+          }
+        }
+      },
+      "option": {
+        "node": "option",
+        "styleRole": "option",
+        "state": {
+          "selected": {
+            "source": {
+              "node": "option",
+              "attribute": "aria-selected",
+              "value": "true"
+            }
+          },
+          "disabled": {
+            "source": {
+              "node": "option",
+              "attribute": "aria-disabled",
+              "value": "true"
+            }
+          },
+          "highlighted": {
+            "source": {
+              "node": "option",
+              "attribute": "data-highlighted",
+              "value": "true"
+            }
+          }
+        }
+      },
+      "input": {
+        "node": "input",
+        "styleRole": "search-input",
+        "state": {
+          "disabled": {
+            "source": {
+              "node": "input",
+              "pseudo": "disabled"
+            }
+          },
+          "focusVisible": {
+            "source": {
+              "node": "input",
+              "pseudo": "focus-visible"
+            }
+          },
+          "hover": {
+            "source": {
+              "node": "input",
+              "pseudo": "hover"
+            }
+          },
+          "expanded": {
+            "source": {
+              "node": "input",
+              "attribute": "aria-expanded",
+              "value": "true"
+            }
+          },
+          "invalid": {
+            "source": {
+              "node": "input",
+              "attribute": "aria-invalid",
+              "value": "true"
+            }
+          }
+        }
+      },
+      "surface": {
+        "node": "surface",
+        "styleRole": "search-surface"
+      },
+      "icon": {
+        "node": "icon",
+        "styleRole": "search-icon"
+      },
+      "empty": {
+        "node": "empty",
+        "styleRole": "empty-status"
+      }
+    }
+  },
+  "command-list": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "field"
+      },
+      "label": {
+        "node": "label",
+        "styleRole": "label"
+      },
+      "control": {
+        "node": "control",
+        "styleRole": "select",
+        "state": {
+          "disabled": {
+            "source": {
+              "node": "control",
+              "pseudo": "disabled"
+            }
+          },
+          "invalid": {
+            "source": {
+              "node": "control",
+              "pseudo": "invalid"
+            }
+          },
+          "required": {
+            "source": {
+              "node": "control",
+              "pseudo": "required"
+            }
+          }
+        }
+      },
+      "popup": {
+        "node": "popup",
+        "styleRole": "option-list"
+      },
+      "option": {
+        "node": "option",
+        "styleRole": "option",
+        "state": {
+          "selected": {
+            "source": {
+              "node": "option",
+              "attribute": "aria-selected",
+              "value": "true"
+            }
+          },
+          "disabled": {
+            "source": {
+              "node": "option",
+              "attribute": "aria-disabled",
+              "value": "true"
+            }
+          },
+          "highlighted": {
+            "source": {
+              "node": "option",
+              "attribute": "data-highlighted",
+              "value": "true"
+            }
+          }
+        }
+      },
+      "input": {
+        "node": "input",
+        "styleRole": "search-input",
+        "state": {
+          "disabled": {
+            "source": {
+              "node": "input",
+              "pseudo": "disabled"
+            }
+          },
+          "focusVisible": {
+            "source": {
+              "node": "input",
+              "pseudo": "focus-visible"
+            }
+          },
+          "hover": {
+            "source": {
+              "node": "input",
+              "pseudo": "hover"
+            }
+          },
+          "expanded": {
+            "source": {
+              "node": "input",
+              "attribute": "aria-expanded",
+              "value": "true"
+            }
+          },
+          "invalid": {
+            "source": {
+              "node": "input",
+              "attribute": "aria-invalid",
+              "value": "true"
+            }
+          }
+        }
+      },
+      "surface": {
+        "node": "surface",
+        "styleRole": "search-surface"
+      },
+      "icon": {
+        "node": "icon",
+        "styleRole": "search-icon"
+      },
+      "empty": {
+        "node": "empty",
+        "styleRole": "empty-status"
+      }
+    }
   }
 }
