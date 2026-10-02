@@ -143,7 +143,7 @@
       {
         "Name": "descriptionId",
         "Type": "string",
-        "Description": "Unique ID on the slotted alert description.",
+        "Description": "Unique ID on the owned alert description paragraph.",
         "Required": true
       },
       {
@@ -168,15 +168,27 @@
         "Scope": []
       },
       {
-        "Name": "content",
-        "Description": "Dialog contents; for alert-dialog assign descriptionId to its descriptive element.",
+        "Name": "description",
+        "Description": "Connected modal description.",
         "Required": true,
+        "Scope": []
+      },
+      {
+        "Name": "content",
+        "Description": "Modal body content.",
+        "Required": false,
         "Scope": []
       },
       {
         "Name": "close",
         "Description": "Accessible close button label.",
         "Required": true,
+        "Scope": []
+      },
+      {
+        "Name": "footer",
+        "Description": "Local action primitives. Use native command=close and commandFor=id for a dismissing action.",
+        "Required": false,
         "Scope": []
       }
     ],
@@ -211,8 +223,29 @@
         "Tag": "button",
         "Attributes": {
           "type": "button",
-          "command": "close"
+          "command": "close",
+          "autofocus": ""
         }
+      },
+      {
+        "ID": "header",
+        "Tag": "div",
+        "Attributes": {}
+      },
+      {
+        "ID": "description",
+        "Tag": "p",
+        "Attributes": {}
+      },
+      {
+        "ID": "content",
+        "Tag": "div",
+        "Attributes": {}
+      },
+      {
+        "ID": "footer",
+        "Tag": "div",
+        "Attributes": {}
       }
     ],
     "Bindings": [
@@ -257,6 +290,12 @@
         "Kind": "property",
         "Name": "disabled",
         "Prop": "disabled"
+      },
+      {
+        "Node": "description",
+        "Name": "id",
+        "Prop": "descriptionId",
+        "Kind": "attribute"
       }
     ],
     "Children": [
@@ -276,14 +315,34 @@
         "Slot": "title"
       },
       {
-        "Parent": "dialog",
+        "Parent": "header",
         "Node": "title",
         "Slot": ""
       },
       {
+        "Parent": "description",
+        "Node": "",
+        "Slot": "description"
+      },
+      {
+        "Parent": "header",
+        "Node": "description",
+        "Slot": ""
+      },
+      {
         "Parent": "dialog",
+        "Node": "header",
+        "Slot": ""
+      },
+      {
+        "Parent": "content",
         "Node": "",
         "Slot": "content"
+      },
+      {
+        "Parent": "dialog",
+        "Node": "content",
+        "Slot": ""
       },
       {
         "Parent": "close",
@@ -291,8 +350,18 @@
         "Slot": "close"
       },
       {
-        "Parent": "dialog",
+        "Parent": "footer",
         "Node": "close",
+        "Slot": ""
+      },
+      {
+        "Parent": "footer",
+        "Node": "",
+        "Slot": "footer"
+      },
+      {
+        "Parent": "dialog",
+        "Node": "footer",
         "Slot": ""
       },
       {
@@ -304,7 +373,7 @@
     "Requirements": [
       "IDs must be unique within the document. Opening uses command=\"show-modal\"; setting open alone is nonmodal.",
       "On browsers without invoker commands, the adapter must call dialog.showModal() and dialog.close() from button handlers. Feature-detect command support.",
-      "Choose suitable initial focus, verify focus restoration, and handle cancel/close. For alert dialogs, connect the required descriptionId to descriptive content and choose a least-destructive initial action.",
+      "Supply connected title and description IDs. For alert dialogs, the description slot is required; choose a least-destructive initial focus action with autofocus. Native cancel/close events and application action outcomes remain caller-owned.",
       "Action outcomes, controlled state, and dismissal policy belong to the adapter."
     ],
     "Events": [
@@ -568,6 +637,18 @@
         "Type": "string",
         "Description": "Accessible name for icon-only buttons.",
         "Required": false
+      },
+      {
+        "Name": "command",
+        "Type": "string",
+        "Required": false,
+        "Description": "Native invoker command attribute; adapters handle unsupported browsers."
+      },
+      {
+        "Name": "commandFor",
+        "Type": "string",
+        "Required": false,
+        "Description": "Native invoker commandfor attribute; adapters handle unsupported browsers."
       }
     ],
     "Slots": [
@@ -602,6 +683,18 @@
         "Node": "root",
         "Name": "aria-label",
         "Prop": "ariaLabel",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "root",
+        "Name": "command",
+        "Prop": "command",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "root",
+        "Name": "commandfor",
+        "Prop": "commandFor",
         "Kind": "attribute"
       }
     ],
@@ -1405,6 +1498,12 @@
         "Required": true
       },
       {
+        "Name": "descriptionId",
+        "Type": "string",
+        "Required": false,
+        "Description": "Optional ID on the owned description paragraph; supply it when using the description slot."
+      },
+      {
         "Name": "disabled",
         "Type": "boolean",
         "Required": false,
@@ -1426,8 +1525,14 @@
         "Scope": []
       },
       {
+        "Name": "description",
+        "Description": "Connected modal description.",
+        "Required": false,
+        "Scope": []
+      },
+      {
         "Name": "content",
-        "Description": "Dialog contents; for alert-dialog assign descriptionId to its descriptive element.",
+        "Description": "Modal body content.",
         "Required": false,
         "Scope": []
       },
@@ -1435,6 +1540,12 @@
         "Name": "close",
         "Description": "Accessible close button label.",
         "Required": true,
+        "Scope": []
+      },
+      {
+        "Name": "footer",
+        "Description": "Local action primitives. Use native command=close and commandFor=id for a dismissing action.",
+        "Required": false,
         "Scope": []
       }
     ],
@@ -1469,6 +1580,26 @@
           "type": "button",
           "command": "close"
         }
+      },
+      {
+        "ID": "header",
+        "Tag": "div",
+        "Attributes": {}
+      },
+      {
+        "ID": "description",
+        "Tag": "p",
+        "Attributes": {}
+      },
+      {
+        "ID": "content",
+        "Tag": "div",
+        "Attributes": {}
+      },
+      {
+        "ID": "footer",
+        "Tag": "div",
+        "Attributes": {}
       }
     ],
     "Bindings": [
@@ -1507,6 +1638,18 @@
         "Kind": "property",
         "Name": "disabled",
         "Prop": "disabled"
+      },
+      {
+        "Node": "description",
+        "Name": "id",
+        "Prop": "descriptionId",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "dialog",
+        "Name": "aria-describedby",
+        "Prop": "descriptionId",
+        "Kind": "attribute"
       }
     ],
     "Children": [
@@ -1526,14 +1669,34 @@
         "Slot": "title"
       },
       {
-        "Parent": "dialog",
+        "Parent": "header",
         "Node": "title",
         "Slot": ""
       },
       {
+        "Parent": "description",
+        "Node": "",
+        "Slot": "description"
+      },
+      {
+        "Parent": "header",
+        "Node": "description",
+        "Slot": ""
+      },
+      {
         "Parent": "dialog",
+        "Node": "header",
+        "Slot": ""
+      },
+      {
+        "Parent": "content",
         "Node": "",
         "Slot": "content"
+      },
+      {
+        "Parent": "dialog",
+        "Node": "content",
+        "Slot": ""
       },
       {
         "Parent": "close",
@@ -1546,6 +1709,16 @@
         "Slot": ""
       },
       {
+        "Parent": "footer",
+        "Node": "",
+        "Slot": "footer"
+      },
+      {
+        "Parent": "dialog",
+        "Node": "footer",
+        "Slot": ""
+      },
+      {
         "Parent": "root",
         "Node": "dialog",
         "Slot": ""
@@ -1554,7 +1727,7 @@
     "Requirements": [
       "IDs must be unique within the document. Opening uses command=\"show-modal\"; setting open alone is nonmodal.",
       "On browsers without invoker commands, the adapter must call dialog.showModal() and dialog.close() from button handlers. Feature-detect command support.",
-      "Choose suitable initial focus, verify focus restoration, and handle cancel/close. For alert dialogs, connect the required descriptionId to descriptive content and choose a least-destructive initial action.",
+      "Supply connected title and description IDs. For alert dialogs, the description slot is required; choose a least-destructive initial focus action with autofocus. Native cancel/close events and application action outcomes remain caller-owned.",
       "Action outcomes, controlled state, and dismissal policy belong to the adapter."
     ],
     "Events": [
@@ -1604,6 +1777,12 @@
         "Required": true
       },
       {
+        "Name": "descriptionId",
+        "Type": "string",
+        "Required": false,
+        "Description": "Optional ID on the owned description paragraph; supply it when using the description slot."
+      },
+      {
         "Name": "disabled",
         "Type": "boolean",
         "Required": false,
@@ -1625,8 +1804,14 @@
         "Scope": []
       },
       {
+        "Name": "description",
+        "Description": "Connected modal description.",
+        "Required": false,
+        "Scope": []
+      },
+      {
         "Name": "content",
-        "Description": "Dialog contents; for alert-dialog assign descriptionId to its descriptive element.",
+        "Description": "Modal body content.",
         "Required": false,
         "Scope": []
       },
@@ -1634,6 +1819,12 @@
         "Name": "close",
         "Description": "Accessible close button label.",
         "Required": true,
+        "Scope": []
+      },
+      {
+        "Name": "footer",
+        "Description": "Local action primitives. Use native command=close and commandFor=id for a dismissing action.",
+        "Required": false,
         "Scope": []
       }
     ],
@@ -1668,6 +1859,26 @@
           "type": "button",
           "command": "close"
         }
+      },
+      {
+        "ID": "header",
+        "Tag": "div",
+        "Attributes": {}
+      },
+      {
+        "ID": "description",
+        "Tag": "p",
+        "Attributes": {}
+      },
+      {
+        "ID": "content",
+        "Tag": "div",
+        "Attributes": {}
+      },
+      {
+        "ID": "footer",
+        "Tag": "div",
+        "Attributes": {}
       }
     ],
     "Bindings": [
@@ -1706,6 +1917,18 @@
         "Kind": "property",
         "Name": "disabled",
         "Prop": "disabled"
+      },
+      {
+        "Node": "description",
+        "Name": "id",
+        "Prop": "descriptionId",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "dialog",
+        "Name": "aria-describedby",
+        "Prop": "descriptionId",
+        "Kind": "attribute"
       }
     ],
     "Children": [
@@ -1725,14 +1948,34 @@
         "Slot": "title"
       },
       {
-        "Parent": "dialog",
+        "Parent": "header",
         "Node": "title",
         "Slot": ""
       },
       {
+        "Parent": "description",
+        "Node": "",
+        "Slot": "description"
+      },
+      {
+        "Parent": "header",
+        "Node": "description",
+        "Slot": ""
+      },
+      {
         "Parent": "dialog",
+        "Node": "header",
+        "Slot": ""
+      },
+      {
+        "Parent": "content",
         "Node": "",
         "Slot": "content"
+      },
+      {
+        "Parent": "dialog",
+        "Node": "content",
+        "Slot": ""
       },
       {
         "Parent": "close",
@@ -1740,8 +1983,18 @@
         "Slot": "close"
       },
       {
-        "Parent": "dialog",
+        "Parent": "footer",
         "Node": "close",
+        "Slot": ""
+      },
+      {
+        "Parent": "footer",
+        "Node": "",
+        "Slot": "footer"
+      },
+      {
+        "Parent": "dialog",
+        "Node": "footer",
         "Slot": ""
       },
       {
@@ -1753,7 +2006,7 @@
     "Requirements": [
       "IDs must be unique within the document. Opening uses command=\"show-modal\"; setting open alone is nonmodal.",
       "On browsers without invoker commands, the adapter must call dialog.showModal() and dialog.close() from button handlers. Feature-detect command support.",
-      "Choose suitable initial focus, verify focus restoration, and handle cancel/close. For alert dialogs, connect the required descriptionId to descriptive content and choose a least-destructive initial action.",
+      "Supply connected title and description IDs. For alert dialogs, the description slot is required; choose a least-destructive initial focus action with autofocus. Native cancel/close events and application action outcomes remain caller-owned.",
       "Drawer edge positioning is CSS guidance only; gestures and snap points require an adapter."
     ],
     "Events": [

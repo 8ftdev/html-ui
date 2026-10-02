@@ -136,6 +136,22 @@
             }
           }
         }
+      },
+      "header": {
+        "node": "header",
+        "styleRole": "header"
+      },
+      "description": {
+        "node": "description",
+        "styleRole": "description"
+      },
+      "content": {
+        "node": "content",
+        "styleRole": "content"
+      },
+      "footer": {
+        "node": "footer",
+        "styleRole": "footer"
       }
     }
   },
@@ -615,6 +631,22 @@
             }
           }
         }
+      },
+      "header": {
+        "node": "header",
+        "styleRole": "header"
+      },
+      "description": {
+        "node": "description",
+        "styleRole": "description"
+      },
+      "content": {
+        "node": "content",
+        "styleRole": "content"
+      },
+      "footer": {
+        "node": "footer",
+        "styleRole": "footer"
       }
     }
   },
@@ -700,6 +732,22 @@
             }
           }
         }
+      },
+      "header": {
+        "node": "header",
+        "styleRole": "header"
+      },
+      "description": {
+        "node": "description",
+        "styleRole": "description"
+      },
+      "content": {
+        "node": "content",
+        "styleRole": "content"
+      },
+      "footer": {
+        "node": "footer",
+        "styleRole": "footer"
       }
     }
   },

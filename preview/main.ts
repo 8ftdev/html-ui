@@ -68,7 +68,7 @@ function sample(recipe) {
 			if (["toolbar", "toggle-group"].includes(name)) return element('<button type="button" aria-pressed="false">Bold</button>');
 			if (name === "navigation-menu") return element('<a href="#accordion">Accordion example</a>');
 			const body = text("Example content supplied through a slot.");
-			if (name === "alert-dialog") body.id = `${id}-description`;
+
 			return body;
 		}
 		return text({ summary: "Show details", trigger: `Open ${recipe.Title.toLowerCase()}`, title: recipe.Title,
