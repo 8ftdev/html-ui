@@ -8563,5 +8563,485 @@
       "Style every owned part, including the repeated option prototype and empty status. The decorative icon carries no semantics. Preserve the native value proxy while visually clipping it."
     ],
     "Features": []
+  },
+  {
+    "Name": "date-grid",
+    "Title": "Date Grid",
+    "Summary": "Portable single-date month grid anatomy with native form model and owned styling prototypes.",
+    "Status": "adapter-required",
+    "RootType": "HTMLDivElement",
+    "Props": [
+      {
+        "Name": "id",
+        "Type": "string",
+        "Description": "Unique visible trigger ID. External Field labels target this button.",
+        "Required": true
+      },
+      {
+        "Name": "popupId",
+        "Type": "string",
+        "Description": "Unique listbox popup ID, distinct from the trigger ID.",
+        "Required": true
+      },
+      {
+        "Name": "name",
+        "Type": "string",
+        "Description": "Form field name on the native select proxy.",
+        "Required": false
+      },
+      {
+        "Name": "disabled",
+        "Type": "boolean",
+        "Description": "Disables both the native form proxy and visible trigger.",
+        "Required": false,
+        "Default": false
+      },
+      {
+        "Name": "required",
+        "Type": "boolean",
+        "Description": "Requires a native selection and exposes aria-required on the trigger.",
+        "Required": false,
+        "Default": false
+      },
+      {
+        "Name": "value",
+        "Type": "string",
+        "Description": "Optional initial selection and native selection model. Omission preserves selected options.",
+        "Required": false
+      },
+      {
+        "Name": "ariaLabel",
+        "Type": "string",
+        "Description": "Accessible trigger name when no label content is supplied.",
+        "Required": false
+      },
+      {
+        "Name": "ariaLabelledby",
+        "Type": "string",
+        "Description": "IDs of elements naming the visible trigger.",
+        "Required": false
+      },
+      {
+        "Name": "ariaDescribedby",
+        "Type": "string",
+        "Description": "IDs of help or error text describing the visible trigger.",
+        "Required": false
+      },
+      {
+        "Name": "ariaInvalid",
+        "Type": "\"true\" | \"false\"",
+        "Description": "Explicit accessibility invalid state on the visible trigger; native constraint validation remains independent.",
+        "Required": false
+      },
+      {
+        "Name": "autocomplete",
+        "Type": "string",
+        "Description": "Native input autocomplete.",
+        "Required": false
+      },
+      {
+        "Name": "min",
+        "Type": "string",
+        "Required": false,
+        "Description": "ISO date bound."
+      },
+      {
+        "Name": "max",
+        "Type": "string",
+        "Required": false,
+        "Description": "ISO date bound."
+      },
+      {
+        "Name": "placeholder",
+        "Type": "string",
+        "Required": false,
+        "Default": "Pick a date",
+        "Description": "Visible popup trigger placeholder."
+      },
+      {
+        "Name": "locale",
+        "Type": "string",
+        "Required": false,
+        "Default": "en-US",
+        "Description": "BCP47 locale for Gregorian date labels."
+      },
+      {
+        "Name": "firstDayOfWeek",
+        "Type": "number",
+        "Required": false,
+        "Default": 0,
+        "Description": "Explicit week start, 0 Sunday to 6 Saturday."
+      },
+      {
+        "Name": "defaultMonth",
+        "Type": "string",
+        "Required": false,
+        "Description": "Initial viewed month YYYY-MM; selection/today used when omitted."
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "label",
+        "Description": "Optional visible noninteractive label; otherwise supply ariaLabel or external label.",
+        "Required": false,
+        "Scope": []
+      }
+    ],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "div",
+        "Attributes": {}
+      },
+      {
+        "ID": "label",
+        "Tag": "label",
+        "Attributes": {}
+      },
+      {
+        "ID": "control",
+        "Tag": "input",
+        "Attributes": {
+          "type": "date",
+          "aria-hidden": "true",
+          "tabindex": "-1"
+        }
+      },
+      {
+        "ID": "trigger",
+        "Tag": "button",
+        "Attributes": {
+          "type": "button",
+          "aria-haspopup": "dialog",
+          "aria-expanded": "false"
+        }
+      },
+      {
+        "ID": "displayedValue",
+        "Tag": "span",
+        "Attributes": {}
+      },
+      {
+        "ID": "icon",
+        "Tag": "span",
+        "Attributes": {
+          "aria-hidden": "true"
+        }
+      },
+      {
+        "ID": "popup",
+        "Tag": "div",
+        "Attributes": {}
+      },
+      {
+        "ID": "header",
+        "Tag": "div",
+        "Attributes": {}
+      },
+      {
+        "ID": "previous",
+        "Tag": "button",
+        "Attributes": {
+          "type": "button",
+          "aria-label": "Previous month"
+        }
+      },
+      {
+        "ID": "caption",
+        "Tag": "div",
+        "Attributes": {
+          "aria-live": "polite",
+          "aria-atomic": "true"
+        }
+      },
+      {
+        "ID": "next",
+        "Tag": "button",
+        "Attributes": {
+          "type": "button",
+          "aria-label": "Next month"
+        }
+      },
+      {
+        "ID": "grid",
+        "Tag": "table",
+        "Attributes": {
+          "role": "grid"
+        }
+      },
+      {
+        "ID": "head",
+        "Tag": "thead",
+        "Attributes": {}
+      },
+      {
+        "ID": "weekdays",
+        "Tag": "tr",
+        "Attributes": {}
+      },
+      {
+        "ID": "weekday",
+        "Tag": "th",
+        "Attributes": {
+          "hidden": "",
+          "scope": "col"
+        }
+      },
+      {
+        "ID": "body",
+        "Tag": "tbody",
+        "Attributes": {}
+      },
+      {
+        "ID": "week",
+        "Tag": "tr",
+        "Attributes": {
+          "hidden": ""
+        }
+      },
+      {
+        "ID": "cell",
+        "Tag": "td",
+        "Attributes": {}
+      },
+      {
+        "ID": "day",
+        "Tag": "button",
+        "Attributes": {
+          "type": "button",
+          "tabindex": "-1"
+        }
+      }
+    ],
+    "Bindings": [
+      {
+        "Node": "trigger",
+        "Name": "id",
+        "Prop": "id",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "label",
+        "Name": "for",
+        "Prop": "id",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "popup",
+        "Name": "id",
+        "Prop": "popupId",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "trigger",
+        "Name": "aria-controls",
+        "Prop": "popupId",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "name",
+        "Prop": "name",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "disabled",
+        "Prop": "disabled",
+        "Kind": "property"
+      },
+      {
+        "Node": "control",
+        "Name": "required",
+        "Prop": "required",
+        "Kind": "property"
+      },
+      {
+        "Node": "control",
+        "Name": "value",
+        "Prop": "value",
+        "Kind": "property"
+      },
+      {
+        "Node": "control",
+        "Name": "min",
+        "Prop": "min",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "max",
+        "Prop": "max",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "autocomplete",
+        "Prop": "autocomplete",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "trigger",
+        "Name": "disabled",
+        "Prop": "disabled",
+        "Kind": "property"
+      },
+      {
+        "Node": "trigger",
+        "Name": "aria-label",
+        "Prop": "ariaLabel",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "trigger",
+        "Name": "aria-labelledby",
+        "Prop": "ariaLabelledby",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "trigger",
+        "Name": "aria-describedby",
+        "Prop": "ariaDescribedby",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "trigger",
+        "Name": "aria-invalid",
+        "Prop": "ariaInvalid",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "root",
+        "Name": "data-placeholder",
+        "Prop": "placeholder",
+        "Kind": "attribute"
+      }
+    ],
+    "Children": [
+      {
+        "Parent": "root",
+        "Node": "label",
+        "Slot": ""
+      },
+      {
+        "Parent": "root",
+        "Node": "control",
+        "Slot": ""
+      },
+      {
+        "Parent": "root",
+        "Node": "trigger",
+        "Slot": ""
+      },
+      {
+        "Parent": "root",
+        "Node": "popup",
+        "Slot": ""
+      },
+      {
+        "Parent": "trigger",
+        "Node": "displayedValue",
+        "Slot": ""
+      },
+      {
+        "Parent": "trigger",
+        "Node": "icon",
+        "Slot": ""
+      },
+      {
+        "Parent": "popup",
+        "Node": "header",
+        "Slot": ""
+      },
+      {
+        "Parent": "popup",
+        "Node": "grid",
+        "Slot": ""
+      },
+      {
+        "Parent": "header",
+        "Node": "previous",
+        "Slot": ""
+      },
+      {
+        "Parent": "header",
+        "Node": "caption",
+        "Slot": ""
+      },
+      {
+        "Parent": "header",
+        "Node": "next",
+        "Slot": ""
+      },
+      {
+        "Parent": "grid",
+        "Node": "head",
+        "Slot": ""
+      },
+      {
+        "Parent": "grid",
+        "Node": "body",
+        "Slot": ""
+      },
+      {
+        "Parent": "head",
+        "Node": "weekdays",
+        "Slot": ""
+      },
+      {
+        "Parent": "weekdays",
+        "Node": "weekday",
+        "Slot": ""
+      },
+      {
+        "Parent": "body",
+        "Node": "week",
+        "Slot": ""
+      },
+      {
+        "Parent": "week",
+        "Node": "cell",
+        "Slot": ""
+      },
+      {
+        "Parent": "cell",
+        "Node": "day",
+        "Slot": ""
+      },
+      {
+        "Parent": "label",
+        "Node": "",
+        "Slot": "label"
+      }
+    ],
+    "Requirements": [
+      "Adapter required: clone hidden weekday and week/cell/day prototypes to render a single Gregorian month, synchronize ISO value, roving focus, keyboard selection, min/max bounds and accessible labels.",
+      "Adapter required: inline Calendar or native auto-popover DatePicker positioning, focus and dismissal. Caller IDs id/popupId must be unique and distinct.",
+      "The native date proxy remains CSS-clipped, not hidden/display:none, for value, constraints, submission and reset. Redirect invalid focus to the visible date UI. No ranges, time zones, alternative calendar systems or disabled-day predicate."
+    ],
+    "Events": [
+      {
+        "Name": "input",
+        "Target": "control",
+        "State": {
+          "value": "value"
+        },
+        "Type": "Event",
+        "Description": "Native notification; adapters own application state updates."
+      },
+      {
+        "Name": "change",
+        "Target": "control",
+        "State": {
+          "value": "value"
+        },
+        "Type": "Event",
+        "Description": "Native notification; adapters own application state updates."
+      }
+    ],
+    "Styling": [
+      "Every owned prototype supports caller recipes/classes/styles; repeated cells clone those exact styles. Preserve disabled, focus-visible, selection and today semantics."
+    ],
+    "Features": []
   }
 ]

@@ -2714,5 +2714,218 @@
         "styleRole": "empty-status"
       }
     }
+  },
+  "date-grid": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "root"
+      },
+      "label": {
+        "node": "label",
+        "styleRole": "label"
+      },
+      "control": {
+        "node": "control",
+        "styleRole": "control",
+        "state": {
+          "disabled": {
+            "source": {
+              "node": "control",
+              "pseudo": "disabled"
+            }
+          },
+          "focusVisible": {
+            "source": {
+              "node": "control",
+              "pseudo": "focus-visible"
+            }
+          },
+          "hover": {
+            "source": {
+              "node": "control",
+              "pseudo": "hover"
+            }
+          },
+          "invalid": {
+            "source": {
+              "node": "control",
+              "pseudo": "invalid"
+            }
+          },
+          "required": {
+            "source": {
+              "node": "control",
+              "pseudo": "required"
+            }
+          }
+        }
+      },
+      "trigger": {
+        "node": "trigger",
+        "styleRole": "trigger",
+        "state": {
+          "disabled": {
+            "source": {
+              "node": "trigger",
+              "pseudo": "disabled"
+            }
+          },
+          "focusVisible": {
+            "source": {
+              "node": "trigger",
+              "pseudo": "focus-visible"
+            }
+          },
+          "hover": {
+            "source": {
+              "node": "trigger",
+              "pseudo": "hover"
+            }
+          }
+        }
+      },
+      "value": {
+        "node": "displayedValue",
+        "styleRole": "value"
+      },
+      "icon": {
+        "node": "icon",
+        "styleRole": "icon"
+      },
+      "popup": {
+        "node": "popup",
+        "styleRole": "popup"
+      },
+      "header": {
+        "node": "header",
+        "styleRole": "header"
+      },
+      "previous": {
+        "node": "previous",
+        "styleRole": "previous",
+        "state": {
+          "disabled": {
+            "source": {
+              "node": "previous",
+              "pseudo": "disabled"
+            }
+          },
+          "focusVisible": {
+            "source": {
+              "node": "previous",
+              "pseudo": "focus-visible"
+            }
+          },
+          "hover": {
+            "source": {
+              "node": "previous",
+              "pseudo": "hover"
+            }
+          }
+        }
+      },
+      "caption": {
+        "node": "caption",
+        "styleRole": "caption"
+      },
+      "next": {
+        "node": "next",
+        "styleRole": "next",
+        "state": {
+          "disabled": {
+            "source": {
+              "node": "next",
+              "pseudo": "disabled"
+            }
+          },
+          "focusVisible": {
+            "source": {
+              "node": "next",
+              "pseudo": "focus-visible"
+            }
+          },
+          "hover": {
+            "source": {
+              "node": "next",
+              "pseudo": "hover"
+            }
+          }
+        }
+      },
+      "grid": {
+        "node": "grid",
+        "styleRole": "grid"
+      },
+      "head": {
+        "node": "head",
+        "styleRole": "head"
+      },
+      "weekdays": {
+        "node": "weekdays",
+        "styleRole": "weekdays"
+      },
+      "weekday": {
+        "node": "weekday",
+        "styleRole": "weekday"
+      },
+      "body": {
+        "node": "body",
+        "styleRole": "body"
+      },
+      "week": {
+        "node": "week",
+        "styleRole": "week"
+      },
+      "cell": {
+        "node": "cell",
+        "styleRole": "cell"
+      },
+      "day": {
+        "node": "day",
+        "styleRole": "day",
+        "state": {
+          "disabled": {
+            "source": {
+              "node": "day",
+              "pseudo": "disabled"
+            }
+          },
+          "focusVisible": {
+            "source": {
+              "node": "day",
+              "pseudo": "focus-visible"
+            }
+          },
+          "hover": {
+            "source": {
+              "node": "day",
+              "pseudo": "hover"
+            }
+          },
+          "selected": {
+            "source": {
+              "node": "day",
+              "attribute": "data-selected",
+              "value": "true"
+            }
+          },
+          "today": {
+            "source": {
+              "node": "day",
+              "attribute": "data-today",
+              "value": "true"
+            }
+          },
+          "outside": {
+            "source": {
+              "node": "day",
+              "attribute": "data-outside",
+              "value": "true"
+            }
+          }
+        }
+      }
+    }
   }
 }
