@@ -3172,7 +3172,7 @@
     "Name": "otp-field",
     "Title": "Otp Field",
     "Summary": "Single-field one-time code entry.",
-    "Status": "native",
+    "Status": "adapter-required",
     "RootType": "HTMLLabelElement",
     "Props": [
       {
@@ -3212,7 +3212,64 @@
         "Name": "maxLength",
         "Type": "number",
         "Description": "Expected maximum code length.",
-        "Required": false
+        "Required": false,
+        "Default": 6
+      },
+      {
+        "Name": "id",
+        "Type": "string",
+        "Required": false,
+        "Description": "id"
+      },
+      {
+        "Name": "form",
+        "Type": "string",
+        "Required": false,
+        "Description": "form"
+      },
+      {
+        "Name": "readOnly",
+        "Type": "boolean",
+        "Required": false,
+        "Description": "readOnly",
+        "Default": false
+      },
+      {
+        "Name": "minLength",
+        "Type": "number",
+        "Required": false,
+        "Description": "minLength"
+      },
+      {
+        "Name": "ariaLabel",
+        "Type": "string",
+        "Required": false,
+        "Description": "ariaLabel"
+      },
+      {
+        "Name": "ariaLabelledby",
+        "Type": "string",
+        "Required": false,
+        "Description": "ariaLabelledby"
+      },
+      {
+        "Name": "ariaDescribedby",
+        "Type": "string",
+        "Required": false,
+        "Description": "ariaDescribedby"
+      },
+      {
+        "Name": "ariaInvalid",
+        "Type": "string",
+        "Required": false,
+        "Description": "ariaInvalid"
+      },
+      {
+        "Name": "groupSize",
+        "Type": "number",
+        "Required": false,
+        "Description": "groupSize",
+        "Default": 3
       }
     ],
     "Slots": [
@@ -3238,6 +3295,35 @@
           "inputmode": "numeric",
           "pattern": "[0-9]*"
         }
+      },
+      {
+        "ID": "surface",
+        "Tag": "div",
+        "Attributes": {}
+      },
+      {
+        "ID": "cells",
+        "Tag": "div",
+        "Attributes": {
+          "aria-hidden": "true"
+        }
+      },
+      {
+        "ID": "cell",
+        "Tag": "span",
+        "Attributes": {
+          "hidden": ""
+        }
+      },
+      {
+        "ID": "character",
+        "Tag": "span",
+        "Attributes": {}
+      },
+      {
+        "ID": "caret",
+        "Tag": "span",
+        "Attributes": {}
       }
     ],
     "Bindings": [
@@ -3282,6 +3368,54 @@
         "Name": "maxLength",
         "Prop": "maxLength",
         "Kind": "property"
+      },
+      {
+        "Node": "control",
+        "Name": "id",
+        "Prop": "id",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "form",
+        "Prop": "form",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "readOnly",
+        "Prop": "readOnly",
+        "Kind": "property"
+      },
+      {
+        "Node": "control",
+        "Name": "minLength",
+        "Prop": "minLength",
+        "Kind": "property"
+      },
+      {
+        "Node": "control",
+        "Name": "aria-label",
+        "Prop": "ariaLabel",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "aria-labelledby",
+        "Prop": "ariaLabelledby",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "aria-describedby",
+        "Prop": "ariaDescribedby",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "control",
+        "Name": "aria-invalid",
+        "Prop": "ariaInvalid",
+        "Kind": "attribute"
       }
     ],
     "Children": [
@@ -3292,15 +3426,37 @@
       },
       {
         "Parent": "root",
+        "Node": "surface",
+        "Slot": ""
+      },
+      {
+        "Parent": "surface",
+        "Node": "cells",
+        "Slot": ""
+      },
+      {
+        "Parent": "cells",
+        "Node": "cell",
+        "Slot": ""
+      },
+      {
+        "Parent": "cell",
+        "Node": "character",
+        "Slot": ""
+      },
+      {
+        "Parent": "cell",
+        "Node": "caret",
+        "Slot": ""
+      },
+      {
+        "Parent": "surface",
         "Node": "control",
         "Slot": ""
       }
     ],
     "Requirements": [
-      "The label slot must contain noninteractive phrasing content. The enclosing label associates it with the input.",
-      "Read the current control property after input/change; these factories only initialize values.",
-      "Keep codes as strings to preserve leading zeros. This numeric-code pattern is a starting point; segmented focus and paste logic require an adapter.",
-      "Initialize both defaultValue and value so native form reset restores the supplied initial text. Adapters choose whether later updates change the reset baseline."
+      "One real text input preserves leading zeros, one-time-code autofill, native validation, reset and form submission. The local adapter projects decorative cells; maxLength must be an integer between 1 and 32; groupSize between 1 and maxLength. Numeric input only; no password-manager heuristics or arbitrary code patterns."
     ],
     "Events": [
       {
@@ -9041,6 +9197,355 @@
     ],
     "Styling": [
       "Every owned prototype supports caller recipes/classes/styles; repeated cells clone those exact styles. Preserve disabled, focus-visible, selection and today semantics."
+    ],
+    "Features": []
+  },
+  {
+    "Name": "split-view",
+    "Title": "Split-View",
+    "Summary": "Owned portable anatomy with a local framework adapter.",
+    "Status": "adapter-required",
+    "RootType": "HTMLDivElement",
+    "Props": [
+      {
+        "Name": "id",
+        "Type": "string",
+        "Required": true,
+        "Description": "id"
+      },
+      {
+        "Name": "label",
+        "Type": "string",
+        "Required": true,
+        "Description": "label"
+      },
+      {
+        "Name": "orientation",
+        "Type": "\"horizontal\" | \"vertical\"",
+        "Required": false,
+        "Description": "orientation",
+        "Default": "horizontal"
+      },
+      {
+        "Name": "size",
+        "Type": "number",
+        "Required": false,
+        "Description": "size",
+        "Default": 50
+      },
+      {
+        "Name": "min",
+        "Type": "number",
+        "Required": false,
+        "Description": "min",
+        "Default": 10
+      },
+      {
+        "Name": "max",
+        "Type": "number",
+        "Required": false,
+        "Description": "max",
+        "Default": 90
+      },
+      {
+        "Name": "step",
+        "Type": "number",
+        "Required": false,
+        "Description": "step",
+        "Default": 1
+      },
+      {
+        "Name": "disabled",
+        "Type": "boolean",
+        "Required": false,
+        "Description": "disabled",
+        "Default": false
+      }
+    ],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "div",
+        "Attributes": {}
+      },
+      {
+        "ID": "start",
+        "Tag": "div",
+        "Attributes": {}
+      },
+      {
+        "ID": "separator",
+        "Tag": "div",
+        "Attributes": {
+          "role": "separator",
+          "tabindex": "0"
+        }
+      },
+      {
+        "ID": "grip",
+        "Tag": "span",
+        "Attributes": {
+          "aria-hidden": "true"
+        }
+      },
+      {
+        "ID": "end",
+        "Tag": "div",
+        "Attributes": {}
+      }
+    ],
+    "Bindings": [
+      {
+        "Node": "start",
+        "Name": "id",
+        "Prop": "id",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "separator",
+        "Name": "aria-controls",
+        "Prop": "id",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "separator",
+        "Name": "aria-label",
+        "Prop": "label",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "root",
+        "Name": "data-orientation",
+        "Prop": "orientation",
+        "Kind": "attribute"
+      },
+      {
+        "Node": "separator",
+        "Name": "data-disabled",
+        "Prop": "disabled",
+        "Kind": "attribute"
+      }
+    ],
+    "Children": [
+      {
+        "Parent": "root",
+        "Node": "start",
+        "Slot": ""
+      },
+      {
+        "Parent": "start",
+        "Node": "",
+        "Slot": "start"
+      },
+      {
+        "Parent": "root",
+        "Node": "separator",
+        "Slot": ""
+      },
+      {
+        "Parent": "separator",
+        "Node": "grip",
+        "Slot": ""
+      },
+      {
+        "Parent": "root",
+        "Node": "end",
+        "Slot": ""
+      },
+      {
+        "Parent": "end",
+        "Node": "",
+        "Slot": "end"
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "start",
+        "Description": "Application-owned start content.",
+        "Required": true,
+        "Scope": []
+      },
+      {
+        "Name": "end",
+        "Description": "Application-owned end content.",
+        "Required": true,
+        "Scope": []
+      }
+    ],
+    "Requirements": [
+      "Two-pane splitter; size is the first pane percentage. Unique first-pane id and separator label required. Local adapter supports pointer capture, arrows/Home/End, vertical orientation and RTL. Constraints satisfy 0 <= min <= max <= 100. Caller owns persistence; nested two-pane components can compose more panels."
+    ],
+    "Events": [],
+    "Styling": [
+      "All owned parts retain classes, styles and unstyled control."
+    ],
+    "Features": []
+  },
+  {
+    "Name": "toast-message",
+    "Title": "Toast-Message",
+    "Summary": "Owned portable anatomy with a local framework adapter.",
+    "Status": "adapter-required",
+    "RootType": "HTMLDivElement",
+    "Props": [
+      {
+        "Name": "open",
+        "Type": "boolean",
+        "Required": false,
+        "Description": "open",
+        "Default": false
+      },
+      {
+        "Name": "duration",
+        "Type": "number",
+        "Required": false,
+        "Description": "duration",
+        "Default": 0
+      },
+      {
+        "Name": "closeLabel",
+        "Type": "string",
+        "Required": false,
+        "Description": "closeLabel",
+        "Default": "Dismiss notification"
+      }
+    ],
+    "Nodes": [
+      {
+        "ID": "root",
+        "Tag": "div",
+        "Attributes": {}
+      },
+      {
+        "ID": "announcer",
+        "Tag": "div",
+        "Attributes": {
+          "role": "status",
+          "aria-live": "polite",
+          "aria-atomic": "true"
+        }
+      },
+      {
+        "ID": "surface",
+        "Tag": "div",
+        "Attributes": {
+          "hidden": ""
+        }
+      },
+      {
+        "ID": "body",
+        "Tag": "div",
+        "Attributes": {}
+      },
+      {
+        "ID": "title",
+        "Tag": "div",
+        "Attributes": {}
+      },
+      {
+        "ID": "content",
+        "Tag": "div",
+        "Attributes": {}
+      },
+      {
+        "ID": "actions",
+        "Tag": "div",
+        "Attributes": {}
+      },
+      {
+        "ID": "close",
+        "Tag": "button",
+        "Attributes": {
+          "type": "button"
+        }
+      }
+    ],
+    "Bindings": [
+      {
+        "Node": "close",
+        "Name": "aria-label",
+        "Prop": "closeLabel",
+        "Kind": "attribute"
+      }
+    ],
+    "Children": [
+      {
+        "Parent": "root",
+        "Node": "announcer",
+        "Slot": ""
+      },
+      {
+        "Parent": "root",
+        "Node": "surface",
+        "Slot": ""
+      },
+      {
+        "Parent": "surface",
+        "Node": "body",
+        "Slot": ""
+      },
+      {
+        "Parent": "body",
+        "Node": "title",
+        "Slot": ""
+      },
+      {
+        "Parent": "title",
+        "Node": "",
+        "Slot": "title"
+      },
+      {
+        "Parent": "body",
+        "Node": "content",
+        "Slot": ""
+      },
+      {
+        "Parent": "content",
+        "Node": "",
+        "Slot": "default"
+      },
+      {
+        "Parent": "surface",
+        "Node": "actions",
+        "Slot": ""
+      },
+      {
+        "Parent": "actions",
+        "Node": "",
+        "Slot": "action"
+      },
+      {
+        "Parent": "surface",
+        "Node": "close",
+        "Slot": ""
+      }
+    ],
+    "Slots": [
+      {
+        "Name": "title",
+        "Description": "Application-owned title content.",
+        "Required": false,
+        "Scope": []
+      },
+      {
+        "Name": "default",
+        "Description": "Application-owned default content.",
+        "Required": false,
+        "Scope": []
+      },
+      {
+        "Name": "action",
+        "Description": "Application-owned action content.",
+        "Required": false,
+        "Scope": []
+      }
+    ],
+    "Requirements": [
+      "Keep mounted while closed, then open after inserting meaningful text so the persistent polite live region announces it. Local adapter handles open model, dismissal and optional duration (milliseconds, zero disables expiry), paused on pointer/focus/document visibility. Queues, placement, actions and notifications content are application-owned. No focus stealing."
+    ],
+    "Events": [],
+    "Styling": [
+      "All owned parts retain classes, styles and unstyled control."
     ],
     "Features": []
   }

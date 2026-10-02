@@ -8,7 +8,7 @@ import (
 )
 
 func TestCatalogCoverage(t *testing.T) {
-	names := strings.Fields("attachment bubble date-grid date-field carousel chart marker message message-scroller questionnaire resizable sidebar notification empty item input-group kbd pagination typography direction radio accordion alert alert-dialog aspect-ratio badge breadcrumb button-group label skeleton spinner table textarea autocomplete avatar button card grid icon checkbox checkbox-group collapsible combobox context-menu dialog drawer field fieldset form input menu menubar meter navigation-menu number-field otp-field popover preview-card progress radio-group scroll-area select select-list combobox-list command-list separator slider switch tabs toast toggle toggle-group toolbar tooltip")
+	names := strings.Fields("split-view toast-message attachment bubble date-grid date-field carousel chart marker message message-scroller questionnaire resizable sidebar notification empty item input-group kbd pagination typography direction radio accordion alert alert-dialog aspect-ratio badge breadcrumb button-group label skeleton spinner table textarea autocomplete avatar button card grid icon checkbox checkbox-group collapsible combobox context-menu dialog drawer field fieldset form input menu menubar meter navigation-menu number-field otp-field popover preview-card progress radio-group scroll-area select select-list combobox-list command-list separator slider switch tabs toast toggle toggle-group toolbar tooltip")
 	if len(catalog.All()) != len(names) {
 		t.Fatalf("want %d primitives, got %d", len(names), len(catalog.All()))
 	}

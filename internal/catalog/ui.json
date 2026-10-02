@@ -1053,7 +1053,7 @@
     "parts": {
       "root": {
         "node": "root",
-        "styleRole": "field",
+        "styleRole": "root",
         "state": {
           "disabled": {
             "source": {
@@ -1065,7 +1065,7 @@
       },
       "control": {
         "node": "control",
-        "styleRole": "input",
+        "styleRole": "control",
         "state": {
           "disabled": {
             "source": {
@@ -1098,6 +1098,55 @@
             }
           }
         }
+      },
+      "surface": {
+        "node": "surface",
+        "styleRole": "surface"
+      },
+      "cells": {
+        "node": "cells",
+        "styleRole": "cells"
+      },
+      "cell": {
+        "node": "cell",
+        "styleRole": "cell",
+        "state": {
+          "disabled": {
+            "source": {
+              "node": "control",
+              "pseudo": "disabled"
+            }
+          },
+          "invalid": {
+            "source": {
+              "node": "cell",
+              "attribute": "data-invalid",
+              "value": "true"
+            }
+          },
+          "active": {
+            "source": {
+              "node": "cell",
+              "attribute": "data-active",
+              "value": "true"
+            }
+          },
+          "selected": {
+            "source": {
+              "node": "cell",
+              "attribute": "data-selected",
+              "value": "true"
+            }
+          }
+        }
+      },
+      "character": {
+        "node": "character",
+        "styleRole": "character"
+      },
+      "caret": {
+        "node": "caret",
+        "styleRole": "caret"
       }
     }
   },
@@ -2925,6 +2974,90 @@
             }
           }
         }
+      }
+    }
+  },
+  "split-view": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "root"
+      },
+      "start": {
+        "node": "start",
+        "styleRole": "start"
+      },
+      "separator": {
+        "node": "separator",
+        "styleRole": "separator",
+        "state": {
+          "disabled": {
+            "source": {
+              "node": "separator",
+              "attribute": "aria-disabled",
+              "value": "true"
+            }
+          },
+          "focusVisible": {
+            "source": {
+              "node": "separator",
+              "pseudo": "focus-visible"
+            }
+          }
+        }
+      },
+      "grip": {
+        "node": "grip",
+        "styleRole": "grip"
+      },
+      "end": {
+        "node": "end",
+        "styleRole": "end"
+      }
+    }
+  },
+  "toast-message": {
+    "parts": {
+      "root": {
+        "node": "root",
+        "styleRole": "root"
+      },
+      "announcer": {
+        "node": "announcer",
+        "styleRole": "announcer"
+      },
+      "surface": {
+        "node": "surface",
+        "styleRole": "surface",
+        "state": {
+          "open": {
+            "source": {
+              "node": "surface",
+              "attribute": "data-state",
+              "value": "open"
+            }
+          }
+        }
+      },
+      "body": {
+        "node": "body",
+        "styleRole": "body"
+      },
+      "title": {
+        "node": "title",
+        "styleRole": "title"
+      },
+      "content": {
+        "node": "content",
+        "styleRole": "content"
+      },
+      "actions": {
+        "node": "actions",
+        "styleRole": "actions"
+      },
+      "close": {
+        "node": "close",
+        "styleRole": "close"
       }
     }
   }
