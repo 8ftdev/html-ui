@@ -19,8 +19,8 @@ The source additionally exports `ui`, `AccordionStyle<Style>`, and `AccordionCla
 The intended downstream pipeline separates framework and theme selection:
 
 ```sh
-# Proposed downstream tools, not included in this repository:
-html-ui accordion | html-ui-react | html-ui-shadcn > accordion.tsx
+# Separate downstream tools, not included in this repository:
+html-ui accordion | html-ui-to-vue-vapor | html-ui-design --framework vue --plugin shadcn-ui > Accordion.vue
 ```
 
 Framework converters must preserve UI metadata and styling targets for the theme stage. The Vue Vapor converter consumes version 2 and preserves its metadata/types and element markers. Explicit `--contract-version=1` remains available for legacy consumers. See [the v2 contract](docs/contract-v2.md) for the full schema and intermediate-output requirements.
